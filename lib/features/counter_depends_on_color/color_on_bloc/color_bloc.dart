@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
 /* Config */
-import '../../../core/config/app_constants.dart';
+import '../../../core/config/constants/app_constants.dart';
 
 part 'color_event.dart';
 part 'color_state.dart';

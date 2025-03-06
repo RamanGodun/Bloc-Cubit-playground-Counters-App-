@@ -5,8 +5,8 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'core/app_settings_managing/app_config.dart';
-import 'core/config/app_bloc_observer.dart';
-import 'core/config/app_strings.dart';
+import 'core/config/observer/app_bloc_observer.dart';
+import 'core/config/constants/app_strings.dart';
 import 'core/config/routing/routes_for_app.dart';
 import 'core/utils/cubits_and_blocs_exports.dart';
 
@@ -43,6 +43,7 @@ class AppWrapper extends StatelessWidget {
         BlocProvider(
             create: (context) => CounterBlocWhichDependsOnColorBLoC(
                 colorBloc: context.read<ColorOnBloc>())),
+        BlocProvider(create: (_) => HydratedCounterBloc()),
 
         /// 🟧 Cubit Providers
         BlocProvider(create: (_) => AppSettingsOnCubit()),

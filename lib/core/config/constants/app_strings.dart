@@ -14,7 +14,7 @@ abstract class AppStrings {
       'to Counter that depends on Color';
   static const String showCounter = 'Show Me Counter';
   static const String eventTransformers = 'Event Transformers Demo';
-  static const String hydratedBlocCounter = 'Hydrated BLoC Counter';
+  static const String hydratedBlocCounter = 'to Hydrated BLoC Counter';
   static const String themeToggledTo = 'Theme toggled to ';
   static const String darkMode = 'Dark';
   static const String lightMode = 'Light';

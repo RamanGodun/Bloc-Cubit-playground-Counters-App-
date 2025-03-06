@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 /* BLoC */
 import '../../../core/app_settings_managing/app_config.dart';
-import '../../../core/config/app_strings.dart';
-import '../../../core/config/app_constants.dart';
+import '../../../core/config/constants/app_strings.dart';
+import '../../../core/config/constants/app_constants.dart';
 import '../../../core/utils/helpers.dart';
 import '../../../core/utils/show_dialog.dart';
 import '../../../presentation/pages/other_page.dart';

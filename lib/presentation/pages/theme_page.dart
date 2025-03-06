@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 /* Core */
 import '../../core/app_settings_managing/app_config.dart';
-import '../../core/config/app_strings.dart';
+import '../../core/config/constants/app_strings.dart';
 import '../../core/app_settings_managing/app_settings_on_cubit/app_settings_cubit.dart';
 import '../../core/app_settings_managing/app_settings_on_bloc/app_settings_bloc.dart';
 

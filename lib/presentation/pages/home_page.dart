@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 /* Config */
 import '../../core/app_settings_managing/app_config.dart';
 import '../../core/app_settings_managing/app_settings_on_bloc/app_settings_bloc.dart';
-import '../../core/config/app_strings.dart';
-import '../../core/config/app_constants.dart';
+import '../../core/config/constants/app_strings.dart';
+import '../../core/config/constants/app_constants.dart';
 import '../../core/config/routing/route_names.dart';
 
 /* UI Components */
@@ -113,6 +113,11 @@ class ButtonsList extends StatelessWidget {
             label: AppStrings.goToCounterDependsOnColor,
             onPressed: () =>
                 Helpers.pushNamed(context, RouteNames.counterDependsOnColor),
+          ),
+          AppElevatedButton(
+            label: AppStrings.hydratedBlocCounter,
+            onPressed: () =>
+                Helpers.pushNamed(context, RouteNames.counterHydrated),
           ),
         ],
       ),
