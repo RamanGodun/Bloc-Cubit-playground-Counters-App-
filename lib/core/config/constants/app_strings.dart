@@ -36,6 +36,7 @@ abstract class AppStrings {
       'Locally cashed counter value is:';
   static const String counterWithEventsTransformer =
       'Counter with Events Transformer';
+  static const String appBarTitleForContextAccessPage = 'Context access page';
 
   /// 🆗 Buttons
   static const String okButton = 'OK';
