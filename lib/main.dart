@@ -10,7 +10,6 @@ import 'core/config/constants/app_strings.dart';
 import 'core/config/routing/routes_for_app.dart';
 import 'core/utils/cubits_and_blocs_exports.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
