@@ -4,20 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 
-/* CORE */
-import 'core/config/app_strings.dart';
+import 'core/app_settings_managing/app_config.dart';
 import 'core/config/app_bloc_observer.dart';
-import 'core/config/app_config.dart';
-import 'core/config/routes_for_app.dart';
-
-/* BLoCs */
-import 'core/app_settings_managing/app_settings_on_bloc/app_settings_bloc.dart';
-
-/* CUBITS */
-import 'core/config/app_theme.dart';
-import 'core/app_settings_managing/app_settings_on_cubit/app_settings_cubit.dart';
-import 'features/counter/counter_on_bloc/counter_bloc.dart';
-import 'features/counter/counter_on_cubit/counter_cubit.dart';
+import 'core/config/app_strings.dart';
+import 'core/config/routing/routes_for_app.dart';
+import 'core/utils/cubits_and_blocs_exports.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,20 +23,7 @@ void main() async {
         : HydratedStorageDirectory((await getTemporaryDirectory()).path),
   );
 
-  runApp(
-    MultiBlocProvider(
-      providers: [
-        /// 🟦 BLoC Providers
-        BlocProvider(create: (_) => AppSettingsOnBloc()),
-        BlocProvider(create: (_) => CounterOnBloc()),
-
-        /// 🟧 Cubit Providers
-        BlocProvider(create: (_) => AppSettingsOnCubit()),
-        BlocProvider(create: (_) => CounterOnCubit()),
-      ],
-      child: const AppWrapper(),
-    ),
-  );
+  runApp(const AppWrapper());
 }
 
 /// 🏠 [AppWrapper] is the root widget of the application.
@@ -56,35 +34,57 @@ class AppWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppConfig.isAppSettingsOnBlocStateShape
-        ? BlocBuilder<AppSettingsOnBloc, AppSettingsStateOnBloc>(
-            builder: (context, state) {
-              // 🎨 Determine the theme mode based on BLoC state
-              final isDarkMode = state.isAppSettingsUsingBloc
-                  ? state.isDarkThemeForBloc
-                  : state.isDarkThemeForCubit;
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => AppSettingsOnBloc()),
+        BlocProvider(create: (_) => AppSettingsOnCubit()),
+      ],
+      child: const StateManagementWidget(),
+    );
+  }
+}
 
-              return _buildMaterialApp(isDarkMode);
+/// 🎯 [StateManagementWidget] selects between Bloc and Cubit state management
+class StateManagementWidget extends StatelessWidget {
+  const StateManagementWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AppConfig.isAppSettingsOnBlocStateShape
+        ? BlocBuilder<AppSettingsOnBloc, AppSettingsOnBlocState>(
+            builder: (context, state) {
+              final isDarkMode = _getThemeMode(state);
+              return MaterialAppWidget(isDarkMode: isDarkMode);
             },
           )
-        : BlocBuilder<AppSettingsOnCubit, AppSettingsStateOnCubit>(
+        : BlocBuilder<AppSettingsOnCubit, AppSettingsOnCubitState>(
             builder: (context, state) {
-              // 🎨 Determine the theme mode based on Cubit state
-              final isDarkMode = state.isAppSettingsUsingBloc
-                  ? state.isDarkThemeForBloc
-                  : state.isDarkThemeForCubit;
-
-              return _buildMaterialApp(isDarkMode);
+              final isDarkMode = _getThemeMode(state);
+              return MaterialAppWidget(isDarkMode: isDarkMode);
             },
           );
   }
 
-  /// 🌈 Builds the [MaterialApp] with dynamic theming
-  MaterialApp _buildMaterialApp(bool isDarkMode) {
+  /// 🧠 Extracts the theme mode from the state
+  bool _getThemeMode(dynamic state) {
+    return state.isUsingBlocForAppFeatures
+        ? state.isDarkThemeForBloc
+        : state.isDarkThemeForCubit;
+  }
+}
+
+/// 📱 [MaterialAppWidget] builds the MaterialApp with the selected theme and routing
+class MaterialAppWidget extends StatelessWidget {
+  final bool isDarkMode;
+
+  const MaterialAppWidget({super.key, required this.isDarkMode});
+
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp(
       title: AppStrings.appTitle,
       debugShowCheckedModeBanner: false,
-      theme: isDarkMode ? AppThemes.darkTheme : AppThemes.lightTheme,
+      theme: isDarkMode ? ThemeData.dark() : ThemeData.light(),
       onGenerateRoute: AppRoutes.onGenerateRoute,
     );
   }

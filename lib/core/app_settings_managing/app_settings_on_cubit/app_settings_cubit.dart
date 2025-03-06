@@ -5,20 +5,20 @@ part 'app_settings_state.dart';
 
 /// A HydratedCubit responsible for managing application settings
 /// using Cubit state management.
-class AppSettingsOnCubit extends HydratedCubit<AppSettingsStateOnCubit> {
+class AppSettingsOnCubit extends HydratedCubit<AppSettingsOnCubitState> {
   /// Initializes the Cubit with the default or hydrated state.
-  AppSettingsOnCubit() : super(AppSettingsStateOnCubit.initial());
+  AppSettingsOnCubit() : super(AppSettingsOnCubitState.initial());
 
   /// Toggles between BLoC and Cubit state management.
   void toggleUseBloc() {
-    final newUseBloc = !state.isAppSettingsUsingBloc;
+    final newUseBloc = !state.isUsingBlocForAppFeatures;
     emit(state.copyWith(isUseBloc: newUseBloc));
   }
 
   /// Toggles the theme between light and dark mode based on the current state.
   /// The change is applied to either BLoC or Cubit theme state depending on `isUseBloc`.
   void toggleTheme(bool isDarkMode) {
-    if (state.isAppSettingsUsingBloc) {
+    if (state.isUsingBlocForAppFeatures) {
       emit(state.copyWith(isDarkThemeForBloc: isDarkMode));
     } else {
       emit(state.copyWith(isDarkThemeForCubit: isDarkMode));
@@ -27,9 +27,9 @@ class AppSettingsOnCubit extends HydratedCubit<AppSettingsStateOnCubit> {
 
   /// Converts the current Cubit state to a JSON map for persistent storage.
   @override
-  Map<String, dynamic>? toJson(AppSettingsStateOnCubit state) {
+  Map<String, dynamic>? toJson(AppSettingsOnCubitState state) {
     return {
-      'isUseBloc': state.isAppSettingsUsingBloc,
+      'isUsingBlocForAppFeatures': state.isUsingBlocForAppFeatures,
       'isDarkThemeForBloc': state.isDarkThemeForBloc,
       'isDarkThemeForCubit': state.isDarkThemeForCubit,
     };
@@ -37,9 +37,10 @@ class AppSettingsOnCubit extends HydratedCubit<AppSettingsStateOnCubit> {
 
   /// Restores the Cubit state from a JSON map during application startup.
   @override
-  AppSettingsStateOnCubit? fromJson(Map<String, dynamic> json) {
-    return AppSettingsStateOnCubit(
-      isAppSettingsUsingBloc: json['isUseBloc'] as bool? ?? true,
+  AppSettingsOnCubitState? fromJson(Map<String, dynamic> json) {
+    return AppSettingsOnCubitState(
+      isUsingBlocForAppFeatures:
+          json['isUsingBlocForAppFeatures'] as bool? ?? true,
       isDarkThemeForBloc: json['isDarkThemeForBloc'] as bool? ?? false,
       isDarkThemeForCubit: json['isDarkThemeForCubit'] as bool? ?? false,
     );

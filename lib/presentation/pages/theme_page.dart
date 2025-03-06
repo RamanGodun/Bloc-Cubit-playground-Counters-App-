@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 /* Core */
+import '../../core/app_settings_managing/app_config.dart';
 import '../../core/config/app_strings.dart';
-import '../../core/config/app_config.dart';
 import '../../core/app_settings_managing/app_settings_on_cubit/app_settings_cubit.dart';
 import '../../core/app_settings_managing/app_settings_on_bloc/app_settings_bloc.dart';
 
@@ -19,12 +19,12 @@ class ThemePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDarkMode = AppConfig.isAppSettingsOnBlocStateShape
         ? context.select<AppSettingsOnBloc, bool>(
-            (bloc) => bloc.state.isAppSettingsUsingBloc
+            (bloc) => bloc.state.isUsingBlocForAppFeatures
                 ? bloc.state.isDarkThemeForBloc
                 : bloc.state.isDarkThemeForCubit,
           )
         : context.select<AppSettingsOnCubit, bool>(
-            (cubit) => cubit.state.isAppSettingsUsingBloc
+            (cubit) => cubit.state.isUsingBlocForAppFeatures
                 ? cubit.state.isDarkThemeForBloc
                 : cubit.state.isDarkThemeForCubit,
           );

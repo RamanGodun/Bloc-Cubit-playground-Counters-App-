@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 /* Presentation Pages */
-import '../../features/counter/presentation/counter_page_alt.dart';
-import '../../presentation/pages/home_page.dart';
-import '../../presentation/pages/other_page.dart';
+import '../../../features/counter/presentation/counter_page.dart';
+import '../../../presentation/pages/home_page.dart';
+import '../../../presentation/pages/other_page.dart';
 
 /* Routing */
-import '../../presentation/pages/theme_page.dart';
+import '../../../presentation/pages/theme_page.dart';
 import 'route_names.dart';
 
 /// [AppRoutes] manages all navigation within the app using [onGenerateRoute].
@@ -22,7 +22,7 @@ class AppRoutes {
         return _buildRoute(const ThemePage());
 
       case RouteNames.counterPage:
-        return _buildRoute(const CounterPageAlt());
+        return _buildRoute(const CounterPage());
       // return _buildRoute(const CounterPage());
 
       case RouteNames.otherPage:

@@ -16,34 +16,36 @@ import 'counter_manager.dart';
 /// A factory class responsible for creating the appropriate [CounterManager]
 /// based on the state management strategy (BLoC or Cubit).
 class CounterFactory {
-  /// Creates an instance of [CounterManager] based on the [useBloc] flag.
+  /// Creates an instance of [CounterManager] based on the [isCounterOnBloc] flag.
   ///
-  /// When [useBloc] is `true`, a [BlocCounterManager] is returned.
+  /// When [isCounterOnBloc] is `true`, a [BlocCounterManager] is returned.
   /// Otherwise, a [CubitCounterManager] is created.
   ///
   /// [context] is the current [BuildContext] used for dependency injection.
-  static CounterManager create(BuildContext context, {required bool useBloc}) {
-    return useBloc
+  static CounterManager create(BuildContext context,
+      {required bool isCounterOnBloc}) {
+    return isCounterOnBloc
         ? BlocCounterManager(context.read<CounterOnBloc>())
         : CubitCounterManager(context.read<CounterOnCubit>());
   }
 
   /// Determines if the app should use BLoC or Cubit for state management.
   ///
-  /// The method selects the current strategy based on whether [isBlocActive] is `true`.
-  /// When [isBlocActive] is `true`, it fetches the state from [AppSettingsOnBloc].
+  /// The method selects the current strategy based on whether [isAppSettingsOnBloc] is `true`.
+  /// When [isAppSettingsOnBloc] is `true`, it fetches the state from [AppSettingsOnBloc].
   /// Otherwise, it fetches from [AppSettingsOnCubit].
   ///
   /// [context] is the current [BuildContext] used to access the correct provider.
-  static bool isUseBloc(BuildContext context, {required bool isBlocActive}) {
-    return isBlocActive
+  static bool isCounterOnBloc(BuildContext context,
+      {required bool isAppSettingsOnBloc}) {
+    return isAppSettingsOnBloc
         ? context
             .read<bloc_state.AppSettingsOnBloc>()
             .state
-            .isAppSettingsUsingBloc
+            .isUsingBlocForAppFeatures
         : context
             .read<cubit_state.AppSettingsOnCubit>()
             .state
-            .isAppSettingsUsingBloc;
+            .isUsingBlocForAppFeatures;
   }
 }

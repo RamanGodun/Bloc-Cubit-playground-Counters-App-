@@ -3,16 +3,25 @@ import 'package:flutter/material.dart';
 /// 🌈 [AppConstants] holds the application's static UI-related constants and theme configurations.
 abstract class AppConstants {
   /// 🎨 Colors for dark theme
-  static const Color darkPrimaryColor = Color.fromARGB(134, 0, 156, 203);
+  static const Color darkPrimaryColor = Color.fromARGB(255, 0, 156, 203);
   static const Color darkScaffoldBackgroundColor = Color(0xFF181818);
-  static const Color darkAppBarBackgroundColor = Color(0xFF212121);
+  static const Color darkAppBarBackgroundColor =
+      Color.fromARGB(255, 79, 78, 78);
   static const Color darkForegroundColor = Colors.white;
+  static const Color darkGlassButtonBackgroundColor =
+      Color.fromARGB(255, 79, 78, 78);
 
   /// 🎨 Colors for light theme
-  static const Color lightPrimaryColor = Color.fromARGB(124, 12, 90, 132);
+  static const Color lightPrimaryColor = Color.fromARGB(240, 6, 148, 187);
   static const Color lightScaffoldBackgroundColor = Colors.white;
   static const Color lightAppBarBackgroundColor = Colors.white;
-  static const Color lightForegroundColor = Colors.black;
+  static const Color lightForegroundColor = Color.fromARGB(255, 46, 46, 46);
+
+  /// 🌈 Button colors
+  static const Color darkButtonBackgroundColor =
+      Color.fromARGB(200, 100, 100, 100);
+  static const Color lightButtonBackgroundColor =
+      Color.fromARGB(124, 12, 90, 132);
 
   /// 🌈 Error color
   static const Color errorColor = Colors.redAccent;

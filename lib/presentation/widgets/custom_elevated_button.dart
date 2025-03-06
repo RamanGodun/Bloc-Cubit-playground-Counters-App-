@@ -1,10 +1,9 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../../core/config/app_constants.dart';
-import '../../core/utils/helpers.dart';
-import '../widgets/text_widget.dart';
+import 'text_widget.dart';
 
-/// 🆕 `AppElevatedButton` ensures consistent styling for all elevated buttons in the app.
-/// - Applies glassmorphism with a soft blur and semi-transparent background.
+/// 🆕 `AppElevatedButton` з сучасним дизайном glassmorphism для iOS/macOS.
 class AppElevatedButton extends StatelessWidget {
   final String label;
   final VoidCallback onPressed;
@@ -17,31 +16,81 @@ class AppElevatedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: AppConstants.largePadding),
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: AppConstants.mediumPadding),
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ButtonStyle(
-          elevation: WidgetStateProperty.all(5.0),
-          padding: WidgetStateProperty.all(const EdgeInsets.all(16.0)),
-          shape: WidgetStateProperty.all(
-            const RoundedRectangleBorder(
-              borderRadius: AppConstants.commonBorderRadius,
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppConstants.largePadding,
+        vertical: AppConstants.mediumPadding,
+      ),
+      child: ClipRRect(
+        borderRadius: AppConstants.commonBorderRadius,
+        child: Stack(
+          children: [
+            // 🌀 Glassmorphism background
+            Positioned.fill(
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: isDarkMode
+                        ? AppConstants.darkGlassButtonBackgroundColor
+                            .withOpacity(0.2)
+                        : Colors.white.withOpacity(0.6),
+                    borderRadius: AppConstants.commonBorderRadius,
+                    border: Border.all(
+                      color: Colors.white.withOpacity(0.3),
+                      width: 1.5,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        blurRadius: 8,
+                        offset: const Offset(2, 2),
+                      ),
+                      BoxShadow(
+                        color: Colors.white.withOpacity(0.05),
+                        blurRadius: 8,
+                        offset: const Offset(-2, -2),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
-          ),
-          backgroundColor: WidgetStateProperty.all(
-            Helpers.getColorScheme(context).primary.withOpacity(0.2),
-          ),
-          overlayColor: WidgetStateProperty.all(
-            Helpers.getColorScheme(context).secondaryFixed.withOpacity(0.1),
-          ),
-        ),
-        child: TextWidget(
-          label,
-          TextType.button,
-          color: Helpers.getColorScheme(context).onPrimary.withOpacity(0.7),
+            // ✨ Elevated Button з кастомним стилем
+            SizedBox(
+              height: 50,
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: onPressed,
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(
+                    Colors.transparent.withOpacity(0.1),
+                  ),
+                  elevation: MaterialStateProperty.all(0),
+                  shape: MaterialStateProperty.all(
+                    const RoundedRectangleBorder(
+                      borderRadius: AppConstants.commonBorderRadius,
+                    ),
+                  ),
+                  shadowColor: MaterialStateProperty.all(
+                    Colors.black.withOpacity(0.1),
+                  ),
+                  overlayColor: MaterialStateProperty.all(
+                    Colors.white.withOpacity(0.1),
+                  ),
+                ),
+                child: TextWidget(
+                  label,
+                  TextType.button,
+                  color: isDarkMode
+                      ? AppConstants.darkForegroundColor.withOpacity(0.6)
+                      : AppConstants.lightForegroundColor.withOpacity(0.7),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
