@@ -24,22 +24,16 @@ class CounterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // 🔄 Determine whether to use BLoC or Cubit and create the appropriate manager
-    final isCounterOnBloc = CounterFactory.isCounterOnBloc(
-      context,
-      isAppSettingsOnBloc: AppConfig.isAppSettingsOnBlocStateShape,
-    );
-    final counterManager = CounterFactory.create(
-      context,
-      isCounterOnBloc: isCounterOnBloc,
-    );
+    final isCounterOnBloc = CounterFactory.isCounterOnBloc(context,
+        isAppSettingsOnBloc: AppConfig.isAppSettingsOnBlocStateShape);
+    final counterManager =
+        CounterFactory.create(context, isCounterOnBloc: isCounterOnBloc);
     final appBarText = isCounterOnBloc
         ? AppStrings.counterPageTitleOnBloc
         : AppStrings.counterPageTitleOnCubit;
 
     return Scaffold(
-      appBar: AppBar(
-        title: TextWidget(appBarText, TextType.titleMedium),
-      ),
+      appBar: AppBar(title: TextWidget(appBarText, TextType.titleMedium)),
       body: isCounterOnBloc
           ? BlocListener<CounterOnBloc, CounterOnBLoCState>(
               listener: (context, state) =>

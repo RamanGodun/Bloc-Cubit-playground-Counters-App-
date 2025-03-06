@@ -10,12 +10,12 @@ import '../../../core/config/app_constants.dart';
 import '../../../core/app_settings_managing/app_settings_on_cubit/app_settings_cubit.dart';
 import '../../../core/app_settings_managing/app_settings_on_bloc/app_settings_bloc.dart';
 
-/* Logic & Utils */
+/* Logic & UI */
 import '../../../presentation/widgets/custom_elevated_button.dart';
-import '../_state_switching_of_counter_which_depends_on_color/factory_for_counter_which_depends_on_color.dart';
 import '../../../presentation/widgets/text_widget.dart';
 
 /* Bloc & Cubit */
+import '../_state_switching_of_counter_which_depends_on_color/factory_for_counter_which_depends_on_color.dart';
 import '../color_on_bloc/color_bloc.dart';
 import '../color_on_cubit/color_cubit.dart';
 import '../counter_on_bloc/counter_bloc.dart';
@@ -23,28 +23,31 @@ import '../counter_on_cubit/counter_which_depends_on_color_cubit.dart';
 
 part 'counter_display_w.dart';
 
-/// 🟢 `CounterDependsOnColorPage` dynamically handles counter and color states using BLoC or Cubit
+/// 🟢 [CounterDependsOnColorPage] dynamically handles counter and color states using BLoC or Cubit.
 class CounterDependsOnColorPage extends StatelessWidget {
   const CounterDependsOnColorPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // 🔄 Creates a manager for handling counter and color logic
+    // 🛠️ Creates a manager for handling counter and color logic.
     final counterManager = CounterDependsOnColorFactory.create(context);
 
-    // 🔍 Determines whether BLoC or Cubit is being used
-    final isUsingBlocForThisFeature = AppConfig.isAppSettingsOnBlocStateShape
+    // 🔍 Determines if the app uses BLoC or Cubit for state management.
+    final isUsingBloc = AppConfig.isAppSettingsOnBlocStateShape
         ? context.select<AppSettingsOnBloc, bool>(
-            (bloc) => bloc.state.isUsingBlocForAppFeatures)
+            (bloc) => bloc.state.isUsingBlocForAppFeatures,
+          )
         : context.select<AppSettingsOnCubit, bool>(
-            (cubit) => cubit.state.isUsingBlocForAppFeatures);
+            (cubit) => cubit.state.isUsingBlocForAppFeatures,
+          );
 
-    // 🎨 Retrieves the current background color from the active state manager
-    final backgroundColor = isUsingBlocForThisFeature
+    // 🎨 Retrieves the current background color from the active state manager.
+    final backgroundColor = isUsingBloc
         ? context.select<ColorOnBloc, Color>((bloc) => bloc.state.color)
         : context.select<ColorOnCubit, Color>((cubit) => cubit.state.color);
 
-    final appBarText = isUsingBlocForThisFeature
+    // 📄 Sets the app bar title based on the state management strategy.
+    final appBarText = isUsingBloc
         ? AppStrings.counterPageTitleOnBloc
         : AppStrings.counterPageTitleOnCubit;
 
