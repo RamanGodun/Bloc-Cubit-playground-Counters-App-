@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 /* Presentation Pages */
 import '../../../features/counter/presentation/counter_page_.dart';
+import '../../../features/counter_depends_on_color/presentation/counter_depends_on_color_page.dart';
 import '../../../presentation/pages/home_page.dart';
 import '../../../presentation/pages/other_page.dart';
 
@@ -27,6 +28,9 @@ class AppRoutes {
 
       case RouteNames.otherPage:
         return _buildRoute(const OtherPage());
+
+      case RouteNames.counterDependsOnColor:
+        return _buildRoute(const CounterDependsOnColorPage());
 
       default:
         return _buildRoute(const HomePage());

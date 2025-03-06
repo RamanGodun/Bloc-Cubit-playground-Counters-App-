@@ -56,7 +56,7 @@ class TextWidget extends StatelessWidget {
       case TextType.body:
         return buildText(textTheme.bodyMedium);
       case TextType.button:
-        return buildText(textTheme.titleLarge);
+        return buildText(textTheme.bodyLarge);
       case TextType.error:
         return buildText(
           textTheme.bodyLarge?.copyWith(color: AppConstants.errorColor),

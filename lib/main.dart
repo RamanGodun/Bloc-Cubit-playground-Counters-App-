@@ -39,10 +39,18 @@ class AppWrapper extends StatelessWidget {
         /// 🟦 BLoC Providers
         BlocProvider(create: (_) => AppSettingsOnBloc()),
         BlocProvider(create: (_) => CounterOnBloc()),
+        BlocProvider(create: (_) => ColorOnBloc()),
+        BlocProvider(
+            create: (context) => CounterBlocWhichDependsOnColorBLoC(
+                colorBloc: context.read<ColorOnBloc>())),
 
         /// 🟧 Cubit Providers
         BlocProvider(create: (_) => AppSettingsOnCubit()),
         BlocProvider(create: (_) => CounterOnCubit()),
+        BlocProvider(create: (_) => ColorOnCubit()),
+        BlocProvider(
+            create: (context) => CounterCubitWhichDependsOnColorCubit(
+                colorCubit: context.read<ColorOnCubit>())),
       ],
       child: const StateManagementWidget(),
     );

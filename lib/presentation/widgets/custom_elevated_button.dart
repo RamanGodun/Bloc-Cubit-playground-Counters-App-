@@ -66,7 +66,7 @@ class AppElevatedButton extends StatelessWidget {
                 onPressed: onPressed,
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(
-                    Colors.transparent.withOpacity(0.1),
+                    Colors.transparent.withOpacity(isDarkMode ? 0.05 : 0.15),
                   ),
                   elevation: MaterialStateProperty.all(0),
                   shape: MaterialStateProperty.all(
@@ -75,11 +75,13 @@ class AppElevatedButton extends StatelessWidget {
                     ),
                   ),
                   shadowColor: MaterialStateProperty.all(
-                    Colors.black.withOpacity(0.1),
+                    isDarkMode
+                        ? Colors.black.withOpacity(0.1)
+                        : Colors.white.withOpacity(0.15),
                   ),
-                  overlayColor: MaterialStateProperty.all(
-                    Colors.white.withOpacity(0.1),
-                  ),
+                  overlayColor: MaterialStateProperty.all(isDarkMode
+                      ? Colors.white.withOpacity(0.1)
+                      : Colors.black.withOpacity(0.12)),
                 ),
                 child: TextWidget(
                   label,

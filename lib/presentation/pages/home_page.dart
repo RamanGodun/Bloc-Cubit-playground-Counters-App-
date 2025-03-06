@@ -109,6 +109,13 @@ class ButtonsList extends StatelessWidget {
             label: AppStrings.goToCounterPage,
             onPressed: () => Helpers.pushNamed(context, RouteNames.counterPage),
           ),
+          AppElevatedButton(
+            label: AppStrings.goToCounterDependsOnColor,
+            onPressed: () => Helpers.pushNamed(
+              context,
+              RouteNames.counterDependsOnColor,
+            ),
+          ),
         ],
       ),
     );

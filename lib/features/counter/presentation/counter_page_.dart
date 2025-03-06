@@ -71,8 +71,8 @@ class CounterPage extends StatelessWidget {
   }
 
   /// 🔢 Builds a display for the current counter value
-  Widget _buildCounterDisplay(BuildContext context, bool useBloc) {
-    final counter = useBloc
+  Widget _buildCounterDisplay(BuildContext context, bool isCounterOnBloc) {
+    final counter = isCounterOnBloc
         ? context.select<CounterOnBloc, int>((bloc) => bloc.state.counter)
         : context.select<CounterOnCubit, int>((cubit) => cubit.state.counter);
 

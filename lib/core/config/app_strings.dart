@@ -9,9 +9,9 @@ abstract class AppStrings {
   static const String eventTransformersDemo = 'Event Transformers Demo';
   static const String appIsOnBloc = 'App is on BLoC now';
   static const String appIsOnCubit = 'App is on Cubit now';
-  static const String goToCounterPage = 'Go to Counter Page';
+  static const String goToCounterPage = 'to Counter';
   static const String goToCounterDependsOnColor =
-      'Go to CounterDependsOnColor page';
+      'to Counter that depends on Color';
   static const String showCounter = 'Show Me Counter';
   static const String eventTransformers = 'Event Transformers Demo';
   static const String hydratedBlocCounter = 'Hydrated BLoC Counter';
@@ -20,10 +20,9 @@ abstract class AppStrings {
   static const String lightMode = 'Light';
   static const String otherPageTitle = 'Other page';
   static const String otherPageBody = 'This is other page 🙋🏿🙋🏻‍♂️ ';
-  static const String counterPageTitleOnCubit = 'Counter Page on Cubit';
-  static const String counterPageTitleOnBloc = 'Counter Page on Bloc';
-  static const String counterThatDependsOnColorPageTitle =
-      'Page of counter, that depends on color';
+  static const String counterPageTitleOnCubit = 'Counter is on Cubit now';
+  static const String counterPageTitleOnBloc = 'Counter is on Bloc now';
+
   static const String currentValue = 'Current counter value is:';
   static const String incrementHeroTag = 'increment';
   static const String decrementHeroTag = 'decrement';
