@@ -36,8 +36,13 @@ class AppWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        /// 🟦 BLoC Providers
         BlocProvider(create: (_) => AppSettingsOnBloc()),
+        BlocProvider(create: (_) => CounterOnBloc()),
+
+        /// 🟧 Cubit Providers
         BlocProvider(create: (_) => AppSettingsOnCubit()),
+        BlocProvider(create: (_) => CounterOnCubit()),
       ],
       child: const StateManagementWidget(),
     );

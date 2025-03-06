@@ -47,22 +47,20 @@ class CounterPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const TextWidget(
-              AppStrings.counterPageTitle, TextType.titleSmall),
+              AppStrings.counterPageTitle, TextType.titleMedium),
         ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextWidget(
+              const TextWidget(
                 AppStrings.currentValue,
-                TextType.titleMedium,
-                color: Helpers.getColorScheme(context).onSurface,
+                TextType.smallHeadline,
               ),
               const SizedBox(height: AppConstants.largePadding),
               TextWidget(
                 '$counter',
                 TextType.headline,
-                color: Helpers.getColorScheme(context).onSurface,
               ),
             ],
           ),
