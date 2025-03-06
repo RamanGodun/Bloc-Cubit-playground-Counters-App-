@@ -20,7 +20,8 @@ abstract class AppStrings {
   static const String lightMode = 'Light';
   static const String otherPageTitle = 'Other page';
   static const String otherPageBody = 'This is other page 🙋🏿🙋🏻‍♂️ ';
-  static const String counterPageTitle = 'Counter Page';
+  static const String counterPageTitleOnCubit = 'Counter Page on Cubit';
+  static const String counterPageTitleOnBloc = 'Counter Page on Bloc';
   static const String counterThatDependsOnColorPageTitle =
       'Page of counter, that depends on color';
   static const String currentValue = 'Current counter value is:';

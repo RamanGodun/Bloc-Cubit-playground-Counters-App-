@@ -14,9 +14,9 @@ import '../../../presentation/widgets/text_widget.dart';
 import '../counter_on_bloc/counter_bloc.dart';
 import '../counter_on_cubit/counter_cubit.dart';
 
-/// 🟢 [CounterPage] demonstrates dynamic state management using BLoC or Cubit
-class CounterPage extends StatelessWidget {
-  const CounterPage({super.key});
+/// 🟢 [CounterPageAlt] demonstrates dynamic state management using BLoC or Cubit
+class CounterPageAlt extends StatelessWidget {
+  const CounterPageAlt({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +46,11 @@ class CounterPage extends StatelessWidget {
       ],
       child: Scaffold(
         appBar: AppBar(
-          title: const TextWidget(
-              AppStrings.counterPageTitle, TextType.titleMedium),
+          title: TextWidget(
+              !isCounterOnBloc
+                  ? AppStrings.counterPageTitleOnCubit
+                  : AppStrings.counterPageTitleOnBloc,
+              TextType.titleMedium),
         ),
         body: Center(
           child: Column(

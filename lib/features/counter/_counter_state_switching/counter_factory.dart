@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 /* BLoC */
+import '../../../core/app_settings_managing/app_config.dart';
 import '../../../core/app_settings_managing/app_settings_on_bloc/app_settings_bloc.dart'
     as bloc_state;
 import '../counter_on_bloc/counter_bloc.dart';
@@ -38,14 +39,19 @@ class CounterFactory {
   /// [context] is the current [BuildContext] used to access the correct provider.
   static bool isCounterOnBloc(BuildContext context,
       {required bool isAppSettingsOnBloc}) {
-    return isAppSettingsOnBloc
-        ? context
-            .read<bloc_state.AppSettingsOnBloc>()
-            .state
-            .isUsingBlocForAppFeatures
-        : context
-            .read<cubit_state.AppSettingsOnCubit>()
-            .state
-            .isUsingBlocForAppFeatures;
+    try {
+      return isAppSettingsOnBloc
+          ? context
+              .read<bloc_state.AppSettingsOnBloc>()
+              .state
+              .isUsingBlocForAppFeatures
+          : context
+              .read<cubit_state.AppSettingsOnCubit>()
+              .state
+              .isUsingBlocForAppFeatures;
+    } catch (e) {
+      debugPrint('⚠️ Provider not found: $e');
+      return AppConfig.isAppSettingsOnBlocStateShape;
+    }
   }
 }
