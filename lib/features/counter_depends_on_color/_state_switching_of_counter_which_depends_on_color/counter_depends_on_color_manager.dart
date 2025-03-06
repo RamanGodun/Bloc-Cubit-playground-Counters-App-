@@ -28,7 +28,6 @@ class BlocCounterDependsOnColorManager extends CounterDependsOnColorManager {
     });
   }
 
-  
   @override
   int get currentCounter => _counterBloc.state.counter;
 

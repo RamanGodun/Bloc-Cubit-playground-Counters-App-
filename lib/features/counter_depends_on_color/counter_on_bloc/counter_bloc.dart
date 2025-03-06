@@ -28,10 +28,10 @@ class CounterBlocWhichDependsOnColorBLoC extends Bloc<
   /// 🎨 Updates [_incrementSize] based on the current color and triggers a counter change.
   void _handleColorChange(ColorStateOnBLoC colorState) {
     _incrementSize = switch (colorState.color) {
-      AppConstants.grayColor => 1, 
-      AppConstants.greenColor => 10, 
-      AppConstants.blueColor => 100, 
-      AppConstants.darkRedColor => -100, 
+      AppConstants.grayColor => 1,
+      AppConstants.greenColor => 10,
+      AppConstants.blueColor => 100,
+      AppConstants.darkRedColor => -100,
       _ => 1,
     };
     add(ChangeCounterEvent());
