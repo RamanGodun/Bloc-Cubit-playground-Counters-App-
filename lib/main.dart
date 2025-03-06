@@ -104,3 +104,41 @@ class MaterialAppWidget extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+// TODO 1: 🛠️ Implement Global Error Handling
+// - [ ] Create a custom `BlocObserver` and `CubitObserver` to handle global errors consistently.
+// - [ ] Add the `onError` method to log or display errors in a user-friendly way (e.g., via DialogService).
+// - [ ] Integrate with a logging service (e.g., Firebase Crashlytics) for persistent error tracking.
+// - [ ] Implement unit tests to ensure errors are properly captured and handled in both BLoC and Cubit.
+// - [ ] Add an example scenario to intentionally trigger an error for demonstration purposes.
+
+
+// TODO 2: 🧠 Introduce BLoC Middleware (Interceptors)
+// - [ ] Develop Middleware that can intercept and modify events before they are processed by the BLoC or Cubit.
+// - [ ] Create an example Middleware that logs every event and applies transformation (e.g., mapping, filtering).
+// - [ ] Ensure Middleware can handle both synchronous and asynchronous operations.
+// - [ ] Add automated tests to validate Middleware behavior in different scenarios.
+// - [ ] Demonstrate Middleware usage in a dedicated feature or page within the app.
+
+
+// TODO 3: 🚀 Optimize Performance with Lazy Loading & RepaintBoundary
+// - [ ] Wrap frequently updated widgets (e.g., around `CounterDisplayWidget`) in `RepaintBoundary` to avoid unnecessary repaints.
+
+// TODO 4: 🎨 Improve App Styling and Polish UI Design
+// - [ ] Refine the color scheme and typography for better readability and aesthetics.
+// - [ ] Use `Hero` animations to enhance transitions.
+// - [ ] Add custom `shadows`, `elevation`, and `rounded corners` to buttons and cards.
+// - [ ] Implement `Adaptive Design` to ensure a seamless experience on both mobile and desktop platforms.
+
