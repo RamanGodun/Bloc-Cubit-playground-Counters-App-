@@ -6,14 +6,14 @@ abstract class AppStrings {
   static const String showCounterButton = 'Show Me Counter';
   static const String incrementButton = 'Increment Counter';
   static const String toggleThemeButton = 'Toggle Theme';
-  static const String eventTransformersDemo = 'Event Transformers Demo';
+  static const String eventTransformersDemo = 'Counter with events transformer';
   static const String appIsOnBloc = 'App is on BLoC now';
   static const String appIsOnCubit = 'App is on Cubit now';
   static const String goToCounterPage = 'to Counter';
   static const String goToCounterDependsOnColor =
       'to Counter that depends on Color';
-  static const String showCounter = 'Show Me Counter';
-  static const String eventTransformers = 'Event Transformers Demo';
+  static const String toStateAccessPage = 'to "state access" page';
+  static const String eventTransformers = 'to Counter with events transformer';
   static const String hydratedBlocCounter = 'to Hydrated BLoC Counter';
   static const String themeToggledTo = 'Theme toggled to ';
   static const String darkMode = 'Dark';
@@ -29,14 +29,15 @@ abstract class AppStrings {
   static const String counterIs = 'Now Counter is';
   static const String hydratedCounterPageTitle = 'Hydrated Counter Page';
   static const String clearHeroTag = 'clear';
-  static const String blocAccessPageTitle = 'Bloc Access Page';
+  static const String blocAccessPageTitle = 'State Access Page';
   static const String counterSerOnPreviousPage =
       'Counter, set on previous page, is:';
   static const String locallyCashedCounterIs =
       'Locally cashed counter value is:';
   static const String counterWithEventsTransformer =
       'Counter with Events Transformer';
-  static const String appBarTitleForContextAccessPage = 'Context access page';
+  static const String appBarTitleForContextAccessPage =
+      'State access via routing';
 
   /// 🆗 Buttons
   static const String okButton = 'OK';

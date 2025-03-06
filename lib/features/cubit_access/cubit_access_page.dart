@@ -36,7 +36,7 @@ class BlocAccessPage extends StatelessWidget {
           children: [
             /// 🔗 Navigates to the Counter Page with saving counter state via [`onGenerateRoute`](lib/core/config/routing/app_routes.dart)
             AppElevatedButton(
-              label: AppStrings.showCounter,
+              label: AppStrings.toStateAccessPage,
               onPressed: () =>
                   Helpers.pushNamed(context, RouteNames.blocAccessCounter),
             ),

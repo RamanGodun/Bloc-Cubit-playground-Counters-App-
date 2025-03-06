@@ -120,8 +120,15 @@ class ButtonsList extends StatelessWidget {
                 Helpers.pushNamed(context, RouteNames.counterHydrated),
           ),
           AppElevatedButton(
-            label: AppStrings.showCounter,
+            label: AppStrings.toStateAccessPage,
             onPressed: () => Helpers.pushNamed(context, RouteNames.blocAccess),
+          ),
+          AppElevatedButton(
+            label: AppStrings.eventTransformers,
+            onPressed: () => Helpers.pushNamed(
+              context,
+              RouteNames.counterEventTransformerDemo,
+            ),
           ),
         ],
       ),

@@ -7,6 +7,7 @@ import '../../../features/counter_depends_on_color/presentation/counter_depends_
 import '../../../features/counter_on_hydrated_bloc/hydrated_counter_page.dart';
 import '../../../features/cubit_access/cubit_access_page.dart';
 import '../../../features/cubit_access/show_counter_page.dart';
+import '../../../features/events_transformer/counter_with_events_transformer_page.dart';
 import '../../../presentation/pages/home_page.dart';
 import '../../../presentation/pages/other_page.dart';
 
@@ -48,6 +49,9 @@ class AppRoutes {
           contextBuilder: (context) => BlocProvider.of<CounterOnCubit>(context),
           child: const ShowMeCounter(),
         );
+
+      case RouteNames.counterEventTransformerDemo:
+        return _buildRoute(const CounterWithEventTransformerHandling());
 
       default:
         return _buildRoute(const HomePage());
