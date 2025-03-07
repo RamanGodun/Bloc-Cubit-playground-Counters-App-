@@ -26,23 +26,52 @@ This project is an advanced **educational Flutter application** designed as a **
 
 ### 🌐 Core
 
-- **AppSettingsManagement** (`core/app_settings_managing/`)
+The **Core** module is organized into clearly defined sub-modules, each responsible for a specific aspect of the application's architecture:
 
-  - Manages global app settings and state management mode (BLoC or Cubit) via `AppConfig`.
-  - Controls theme and app-wide state management.
-  - Dynamically switches feature state management in real-time.
+- **AppConstants** (`core/app_constants/`)
 
-- **Configuration** (`core/config/`)
+  - **app_constants.dart:** Contains all reusable constants (e.g., padding, colors).
+  - **app_strings.dart:** Manages all static strings used in the app to support maintainability and localization.
 
-  - Centralized management of **AppConfig**, **Constants**, **Strings**, **Themes**, and **Routing**.
+- **State Management** (`core/app_settings_state_management/`)
 
-- **Utilities** (`core/utils/`)
+  - **BLoC State Management:** (`app_settings_on_bloc/`)
 
-  - **Helpers:** Common utility methods.
-  - **DialogService:** Provides reusable showDialog.
+    - `app_settings_bloc.dart`, `app_settings_event.dart`, `app_settings_state.dart`: Provide global app settings and handle the state management mode using BLoC.
 
-- **Documentation** (`core/info/`)
-  - Contains educational resources on **BLoC and Cubit lifecycles**, **Event Transformation**, and **RxDart**.
+  - **Cubit State Management:** (`app_settings_on_cubit/`)
+    - `app_settings_cubit.dart`, `app_settings_state.dart`: Manage app settings using the Cubit state management approach.
+
+- **Config** (`core/config/`)
+
+  - **Observer:** (`observer/`)
+    - `app_bloc_observer.dart`: Custom observer for monitoring and logging BLoC and Cubit state transitions.
+  - **AppConfig:** (`config/`)
+    - `app_config.dart`: Determines which `AppSettings` state management mode (`BLoC` or `Cubit`) is set manually
+
+- **Exports** (`core/exports/`)
+
+  - **cubits_and_blocs_exports.dart:** Centralized export file for all Cubits and BLoCs.
+  - **core_config_export.dart:** Simplifies imports for configuration files, constants, and utilities.
+
+- **Routing** (`core/routing/`)
+
+  - **Route Management:**
+    - `route_names.dart`: Defines all route names as constants to avoid hardcoded strings.
+    - `routes_for_app.dart`: Manages `onGenerateRoute` logic, ensuring safe and modular navigation.
+
+- **Theming** (`core/theming/`)
+
+  - **App Theme:**
+    - `app_theme.dart`: Defines light and dark themes.
+    - `text_styles.dart`: Provides consistent text styling throughout the application.
+
+- **Utilities** (`core/utilities/`)
+
+  - **Helpers:** (`helpers.dart`) Provides utility functions for theme management, navigation, and context-based operations.
+  - **DialogService:** (`show_dialog.dart`) Centralizes dialog management with custom styling and behavior.
+
+---
 
 ### 🧩 Features
 
@@ -80,12 +109,12 @@ This project is an advanced **educational Flutter application** designed as a **
 
 1. **State Management Flexibility**
 
-   - Dynamic switching between BLoC and Cubit.
+   - Dynamic switching between BLoC and Cubit state for app features.
    - Factory Pattern for dynamic state management.
 
 2. **Advanced Counter Implementations**
 
-   - Standard Counter, Color-Dependent Counter, Hydrated Counter, Event Transformers Counter.
+   - Standard Counter, Color-Dependent Counter, Hydrated Counter, Event Transformers Counter, Counter with state that was obtained via route.
 
 3. **Cross-Feature Dependencies**
 
@@ -95,9 +124,6 @@ This project is an advanced **educational Flutter application** designed as a **
 
    - **onGenerateRoute** for dynamic state access and navigation.
 
-5. **Educational Resources**
-   - In-depth documentation on BLoC/Cubit lifecycles, **RxDart usage**, and event transformation techniques.
-
 ---
 
 ## 📌 Tech Stack
@@ -106,7 +132,6 @@ This project is an advanced **educational Flutter application** designed as a **
 - **Dart**
 - **flutter_bloc** (BLoC & Cubit)
 - **HydratedBloc** for state persistence
-- **RxDart** for **reactive programming**
 - **Event Transformers** from **bloc_concurrency**
 - **Factory Pattern** and **Modular Architecture**
 
