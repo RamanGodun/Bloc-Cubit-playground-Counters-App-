@@ -20,14 +20,14 @@ void main() async {
         : HydratedStorageDirectory((await getTemporaryDirectory()).path),
   );
 
-  runApp(const AppWrapper());
+  runApp(const StateManagementProvider());
 }
 
-/// 🏠 [AppWrapper] is the root widget of the application.
+/// 🏠 [StateManagementProvider] is the root widget of the application.
 /// It dynamically selects between BLoC [AppSettingsOnBloc] and Cubit [AppSettingsOnCubit]
 /// based on the [AppConfig] configuration.
-class AppWrapper extends StatelessWidget {
-  const AppWrapper({super.key});
+class StateManagementProvider extends StatelessWidget {
+  const StateManagementProvider({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -53,14 +53,14 @@ class AppWrapper extends StatelessWidget {
                 colorCubit: context.read<ColorOnCubit>()),
             lazy: true),
       ],
-      child: const StateManagementWidget(),
+      child: const AppStateBuilder(),
     );
   }
 }
 
-/// 🎯 [StateManagementWidget] selects between Bloc and Cubit state management
-class StateManagementWidget extends StatelessWidget {
-  const StateManagementWidget({super.key});
+/// 🎯 [AppStateBuilder] selects between Bloc and Cubit state management
+class AppStateBuilder extends StatelessWidget {
+  const AppStateBuilder({super.key});
 
   @override
   Widget build(BuildContext context) {
