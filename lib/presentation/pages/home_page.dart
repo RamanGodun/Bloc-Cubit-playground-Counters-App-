@@ -1,22 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-/* Config */
-import '../../core/app_settings_managing/app_config.dart';
+import '../../core/utils/core_config_export.dart';
+
+/* State Management */
+import '../../core/app_settings_managing/app_settings_on_cubit/app_settings_cubit.dart';
 import '../../core/app_settings_managing/app_settings_on_bloc/app_settings_bloc.dart';
-import '../../core/config/constants/app_strings.dart';
-import '../../core/config/constants/app_constants.dart';
-import '../../core/config/routing/route_names.dart';
 
 /* UI Components */
 import '../../presentation/widgets/text_widget.dart';
 import '../widgets/custom_elevated_button.dart';
 
-/* State Management */
-import '../../core/app_settings_managing/app_settings_on_cubit/app_settings_cubit.dart';
-
-/* Helpers */
-import '../../core/utils/helpers.dart';
 
 /// 🏠 [HomePage] is the main entry point for navigating through the app features.
 /// It dynamically switches between BLoC and Cubit state management based on [AppConfig].
@@ -38,7 +32,7 @@ class HomePage extends StatelessWidget {
         : context.select<AppSettingsOnCubit, bool>(
             (cubit) => cubit.state.isDarkThemeForCubit);
 /*
-?Alternative: 
+? Alternative: 
   // 🔍 Determine if the app uses BLoC or Cubit for state management
     final state = AppConfig.isAppSettingsOnBlocStateShape
         ? context.watch<AppSettingsOnBloc>().state
@@ -104,6 +98,8 @@ class ButtonsList extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          const HeaderText(),
+          const SizedBox(height: AppConstants.largePadding),
           // 🚀 Navigation Buttons using `AppElevatedButton`
           AppElevatedButton(
             label: AppStrings.goToCounterPage,
@@ -132,6 +128,32 @@ class ButtonsList extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class HeaderText extends StatelessWidget {
+  const HeaderText({super.key});
+
+  @override
+  @override
+  Widget build(BuildContext context) {
+    final textColor =
+        Helpers.getColorScheme(context).onSurface.withOpacity(0.7);
+    return Column(
+      children: [
+        TextWidget(
+          AppStrings.exploreFeatures,
+          TextType.headline,
+          color: textColor,
+        ),
+        const SizedBox(height: 4),
+        TextWidget(
+          AppStrings.smashThoseButtons,
+          TextType.titleMedium,
+          color: textColor,
+        ),
+      ],
     );
   }
 }

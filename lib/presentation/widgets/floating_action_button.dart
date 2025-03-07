@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../core/config/constants/app_constants.dart';
 
 /// 🆕 `AppFloatingActionButton` ensures consistent styling for all FABs in the app.
