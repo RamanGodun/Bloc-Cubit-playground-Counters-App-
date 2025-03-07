@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'hydrated_counter_bloc/counter_bloc.dart';
+import '../../core/utils/core_config_export.dart';
 
-/* Config */
-import '../../core/config/constants/app_constants.dart';
-import '../../core/config/constants/app_strings.dart';
-import '../../core/utils/helpers.dart';
+import 'hydrated_counter_bloc/counter_bloc.dart';
 
 /* Custom Widgets */
 import '../../presentation/widgets/floating_action_button.dart';
@@ -34,11 +31,8 @@ class CounterOnHydratedBlocPage extends StatelessWidget {
               children: [
                 TextWidget(
                   AppStrings.locallyCashedCounterIs,
-                  TextType.titleMedium,
+                  TextType.smallHeadline,
                   color: Helpers.getColorScheme(context).onSurface,
-                ),
-                const SizedBox(
-                  height: AppConstants.largePadding,
                 ),
                 TextWidget(
                   '${state.counter}',

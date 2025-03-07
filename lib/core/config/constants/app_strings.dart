@@ -9,15 +9,14 @@ abstract class AppStrings {
   static const String blocAccessPageTitle = 'State Access Page';
   static const String counterPageTitleOnBloc = 'Counter is on Bloc now';
   static const String counterPageTitleOnCubit = 'Counter is on Cubit now';
-  static const String counterWithEventsTransformer =
-      'Counter with Events Transformer';
   static const String hydratedCounterPageTitle = 'Hydrated Counter Page';
   static const String otherPageTitle = 'Other page';
   static const String themeScreenTitle = 'Theme Screen';
 
   // 🔢 Counter
   static const String clearHeroTag = 'clear';
-  static const String counterIs = 'Now Counter is';
+  static const String counterIs = 'Now Counter value is: ';
+  static const String counterIz = 'Current counter value:  ';
   static const String counterSerOnPreviousPage =
       'Counter, set on previous page, is:';
   static const String currentValue = 'Current counter value is:';
@@ -27,6 +26,9 @@ abstract class AppStrings {
   static const String incrementHeroTag = 'increment';
   static const String locallyCashedCounterIs =
       'Locally cashed counter value is:';
+  static const String incrementCounterHeadline = 'Increment counter here';
+  static const String incrementCounterSubtitle =
+      'and will see value on next page';
 
   // 🚦 Navigation Buttons
   static const String eventTransformers = 'to Counter with events transformer';
@@ -37,7 +39,7 @@ abstract class AppStrings {
   static const String hydratedBlocCounterButton =
       'to Hydrated BLoC Counter Page';
   static const String showCounterButton = 'Show Me Counter';
-  static const String toStateAccessPage = 'to "state access" page';
+  static const String toStateAccessPage = 'to see the Counter value';
 
   // 🌈 Theme & Modes
   static const String changeColor = 'Change Color';
@@ -50,6 +52,14 @@ abstract class AppStrings {
   // 📄 Other
   static const String okButton = 'OK';
   static const String otherPageBody = 'This is other page 🙋🏿🙋🏻‍♂️ ';
-  static const String exploreFeatures = 'Explore features 😎';
-  static const String smashThoseButtons = 'smash those buttons!';
+  static const String exploreFeatures = '🚀 Explore features ';
+  static const String smashThoseButtons = '😎 smash those buttons!';
+
+  // 🆕 Custom Header Texts
+  static const String counterWithSideEffectsHeadline = 'This counter is with';
+  static const String counterWithSideEffectsSubtitle = 'some side effects😉';
+
+// 🆕 Dynamic Counter Text Method
+  static String currentCounterValue(int counter) =>
+      'Current counter value: $counter';
 }

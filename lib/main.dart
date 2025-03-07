@@ -35,21 +35,23 @@ class AppWrapper extends StatelessWidget {
       providers: [
         /// 🟦 BLoC Providers
         BlocProvider(create: (_) => AppSettingsOnBloc()),
-        BlocProvider(create: (_) => CounterOnBloc()),
-        BlocProvider(create: (_) => ColorOnBloc()),
+        BlocProvider(create: (_) => CounterOnBloc(), lazy: true),
+        BlocProvider(create: (_) => ColorOnBloc(), lazy: true),
         BlocProvider(
             create: (context) => CounterBlocWhichDependsOnColorBLoC(
-                colorBloc: context.read<ColorOnBloc>())),
-        BlocProvider(create: (_) => HydratedCounterBloc()),
-        BlocProvider(create: (_) => CounterBlocWithTransformers()),
+                colorBloc: context.read<ColorOnBloc>()),
+            lazy: true),
+        BlocProvider(create: (_) => HydratedCounterBloc(), lazy: true),
+        BlocProvider(create: (_) => CounterBlocWithTransformers(), lazy: true),
 
         /// 🟧 Cubit Providers
         BlocProvider(create: (_) => AppSettingsOnCubit()),
-        BlocProvider(create: (_) => CounterOnCubit()),
-        BlocProvider(create: (_) => ColorOnCubit()),
+        BlocProvider(create: (_) => CounterOnCubit(), lazy: true),
+        BlocProvider(create: (_) => ColorOnCubit(), lazy: true),
         BlocProvider(
             create: (context) => CounterCubitWhichDependsOnColorCubit(
-                colorCubit: context.read<ColorOnCubit>())),
+                colorCubit: context.read<ColorOnCubit>()),
+            lazy: true),
       ],
       child: const StateManagementWidget(),
     );
@@ -102,14 +104,14 @@ class MaterialAppWidget extends StatelessWidget {
   }
 }
 
-// TODO 1: 🧠 Introduce BLoC Middleware (Interceptors)
-// - [ ] Develop Middleware that can intercept and modify events before they are processed by the BLoC or Cubit.
-// - [ ] Create an example Middleware that logs every event and applies transformation (e.g., mapping, filtering).
-// - [ ] Add automated tests to validate Middleware behavior in different scenarios.
-
-// TODO 2: 🚀 Optimize Performance with Lazy Loading
-
-// TODO 3: 🎨 Improve App Styling and Polish UI Design
+/* 
+? TODO
+ */
+// TODO 1: 🎨 Improve App Styling and Polish UI Design
 // - [ ] Refine the color scheme and typography for better readability and aesthetics.
 // - [ ] Use `Hero` animations to enhance transitions.
-// - [ ] Implement `Adaptive Design` to ensure a seamless experience on both mobile and desktop platforms.
+// - [ ] Implement `Adaptive Design` to ensure a seamless experience on both mobile platforms.
+
+// TODO 2:  Finish alt Counter page
+
+// TODO 3:  Improve Documentations and comments

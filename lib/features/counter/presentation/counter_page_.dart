@@ -1,3 +1,4 @@
+import 'package:countersapp_bloccubit_playground/presentation/widgets/header_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -77,7 +78,7 @@ class CounterPage extends StatelessWidget {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: TextWidget(
-              'Current counter value: $counter', TextType.titleMedium),
+              '${AppStrings.counterIz} $counter', TextType.titleMedium),
           duration: const Duration(seconds: 2),
           behavior: SnackBarBehavior.floating,
           backgroundColor:
@@ -105,7 +106,12 @@ class CounterView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        SizedBox(height: deviceHeight * 0.35),
+        SizedBox(height: deviceHeight * 0.1),
+        const HeaderText(
+          headlineText: AppStrings.counterWithSideEffectsHeadline,
+          subTitleText: AppStrings.counterWithSideEffectsSubtitle,
+        ),
+        SizedBox(height: deviceHeight * 0.15),
         const TextWidget(AppStrings.currentValue, TextType.smallHeadline),
         const SizedBox(height: AppConstants.largePadding),
         CounterDisplayWidget(isCounterOnBloc: isCounterOnBloc),

@@ -9,18 +9,15 @@ import '../../../core/config/constants/app_constants.dart';
 /* State Management */
 import '../../../core/app_settings_managing/app_settings_on_cubit/app_settings_cubit.dart';
 import '../../../core/app_settings_managing/app_settings_on_bloc/app_settings_bloc.dart';
-
-/* Logic & UI */
-import '../../../presentation/widgets/custom_elevated_button.dart';
-import '../../../presentation/widgets/text_widget.dart';
-
-/* Bloc & Cubit */
 import '../_state_switching_of_counter_which_depends_on_color/factory_for_counter_which_depends_on_color.dart';
 import '../color_on_bloc/color_bloc.dart';
 import '../color_on_cubit/color_cubit.dart';
 import '../counter_on_bloc/counter_bloc.dart';
 import '../counter_on_cubit/counter_which_depends_on_color_cubit.dart';
 
+/* UI components */
+import '../../../presentation/widgets/custom_elevated_button.dart';
+import '../../../presentation/widgets/text_widget.dart';
 part 'counter_display_w.dart';
 
 /// 🟢 [CounterDependsOnColorPage] dynamically handles counter and color states using BLoC or Cubit.
@@ -61,23 +58,20 @@ class CounterDependsOnColorPage extends StatelessWidget {
           color: AppConstants.darkForegroundColor,
         ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            AppElevatedButton(
-              label: AppStrings.changeColor,
-              onPressed: counterManager.changeColor,
-            ),
-            const SizedBox(height: AppConstants.largePadding),
-            const CounterDisplayWidget(),
-            const SizedBox(height: AppConstants.largePadding),
-            AppElevatedButton(
-              label: AppStrings.changeCounter,
-              onPressed: counterManager.changeCounter,
-            ),
-          ],
-        ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        spacing: AppConstants.largePadding,
+        children: [
+          AppElevatedButton(
+            label: AppStrings.changeColor,
+            onPressed: counterManager.changeColor,
+          ),
+          const CounterDisplayWidget(),
+          AppElevatedButton(
+            label: AppStrings.changeCounter,
+            onPressed: counterManager.changeCounter,
+          ),
+        ],
       ),
     );
   }

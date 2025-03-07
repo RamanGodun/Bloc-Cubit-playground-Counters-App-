@@ -17,6 +17,7 @@ abstract class AppThemes {
     primaryColor: AppConstants.darkPrimaryColor,
     scaffoldBackgroundColor: AppConstants.darkScaffoldBackgroundColor,
     appBarTheme: AppBarTheme(
+      centerTitle: true,
       backgroundColor: AppConstants.darkAppBarBackgroundColor,
       foregroundColor: AppConstants.darkForegroundColor,
       elevation: 0,
@@ -49,6 +50,7 @@ abstract class AppThemes {
     primaryColor: AppConstants.lightPrimaryColor,
     scaffoldBackgroundColor: AppConstants.lightScaffoldBackgroundColor,
     appBarTheme: const AppBarTheme(
+      centerTitle: true,
       backgroundColor: AppConstants.lightAppBarBackgroundColor,
       foregroundColor: AppConstants.lightForegroundColor,
       elevation: 0,

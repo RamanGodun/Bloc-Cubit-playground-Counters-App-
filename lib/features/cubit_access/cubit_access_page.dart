@@ -1,3 +1,4 @@
+import 'package:countersapp_bloccubit_playground/presentation/widgets/header_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -30,26 +31,29 @@ class BlocAccessPage extends StatelessWidget {
           TextType.titleSmall,
         ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            /// 🔗 Navigates to the Counter Page with saving counter state via [`onGenerateRoute`](lib/core/config/routing/app_routes.dart)
-            AppElevatedButton(
-              label: AppStrings.toStateAccessPage,
-              onPressed: () =>
-                  Helpers.pushNamed(context, RouteNames.blocAccessCounter),
-            ),
-            const SizedBox(height: AppConstants.largePadding),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        spacing: AppConstants.largePadding,
+        children: [
+          const HeaderText(
+            headlineText: AppStrings.incrementCounterHeadline,
+            subTitleText: AppStrings.incrementCounterSubtitle,
+          ),
 
-            /// ➕ Directly increments the counter using `AppFloatingActionButton`
-            AppFloatingActionButton(
-              icon: AppConstants.addIcon,
-              onPressed: () => context.read<CounterOnCubit>().increment(),
-              heroTag: AppStrings.incrementButton,
-            ),
-          ],
-        ),
+          /// 🔗 Navigates to the Counter Page with saving counter state via [`onGenerateRoute`](lib/core/config/routing/app_routes.dart)
+          AppElevatedButton(
+            label: AppStrings.toStateAccessPage,
+            onPressed: () =>
+                Helpers.pushNamed(context, RouteNames.blocAccessCounter),
+          ),
+
+          /// ➕ Directly increments the counter using `AppFloatingActionButton`
+          AppFloatingActionButton(
+            icon: AppConstants.addIcon,
+            onPressed: () => context.read<CounterOnCubit>().increment(),
+            heroTag: AppStrings.incrementButton,
+          ),
+        ],
       ),
     );
   }

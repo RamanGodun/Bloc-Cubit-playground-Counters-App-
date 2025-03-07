@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-/* Config */
-import '../../core/config/constants/app_strings.dart';
-import '../../core/config/constants/app_constants.dart';
-import '../../core/utils/helpers.dart';
-
-/* UI Components */
-import '../../presentation/widgets/text_widget.dart';
-
-/* State Management */
+import '../../core/utils/core_config_export.dart';
 import '../counter/counter_on_cubit/counter_cubit.dart';
+import '../../presentation/widgets/text_widget.dart';
 
 /// 🟢 `ShowMeCounter` displays the current counter value using Cubit state management.
 class ShowMeCounter extends StatelessWidget {
@@ -21,29 +14,21 @@ class ShowMeCounter extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const TextWidget(
-          AppStrings.appBarTitleForContextAccessPage,
-          TextType.titleSmall,
-        ),
+            AppStrings.appBarTitleForContextAccessPage, TextType.titleSmall),
       ),
       body: Center(
         child: BlocBuilder<CounterOnCubit, CounterOnCubitState>(
           buildWhen: (previous, current) => previous.counter != current.counter,
           builder: (context, state) {
-            print('[UI REBUILD] Counter Value: ${state.counter}');
             return Column(
               mainAxisSize: MainAxisSize.min,
+              spacing: AppConstants.largePadding,
               children: [
-                TextWidget(
+                const TextWidget(
                   AppStrings.counterSerOnPreviousPage,
-                  TextType.titleMedium,
-                  color: Helpers.getColorScheme(context).onSurface,
+                  TextType.smallHeadline,
                 ),
-                const SizedBox(height: AppConstants.largePadding),
-                TextWidget(
-                  '${state.counter}',
-                  TextType.headline,
-                  color: Helpers.getColorScheme(context).onSurface,
-                ),
+                TextWidget('${state.counter}', TextType.headline),
               ],
             );
           },

@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-/* Config */
-import '../../core/config/constants/app_constants.dart';
-import '../../core/config/constants/app_strings.dart';
-
-/* UI Components */
+import 'bloc/counter_bloc.dart';
+import '../../core/utils/core_config_export.dart';
 
 import '../../presentation/widgets/floating_action_button.dart';
 import '../../presentation/widgets/text_widget.dart';
-
-/* State Management */
-import 'bloc/counter_bloc.dart';
+import '../../presentation/widgets/header_text.dart';
 
 /// 🟢 `CounterWithEventTransformerHandling`
 /// Demonstrates the usage of BLoC with custom event transformers.
@@ -30,12 +25,12 @@ class CounterWithEventTransformerHandling extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
+          spacing: AppConstants.largePadding,
           children: [
-            const TextWidget(
-              AppStrings.counterWithEventsTransformer,
-              TextType.smallHeadline,
-            ),
-            const SizedBox(height: AppConstants.largePadding),
+            const HeaderText(
+                headlineText: 'Try different combinations ',
+                subTitleText: '"+" - droppable (3s), "-" - restartable (1s)'),
+            const TextWidget(AppStrings.currentValue, TextType.smallHeadline),
             BlocBuilder<CounterBlocWithTransformers,
                 CounterStateWithTransformers>(
               builder: (context, state) {
@@ -45,6 +40,7 @@ class CounterWithEventTransformerHandling extends StatelessWidget {
                 );
               },
             ),
+            const SizedBox(height: 50),
           ],
         ),
       ),

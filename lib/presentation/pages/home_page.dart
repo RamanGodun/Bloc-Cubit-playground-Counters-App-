@@ -10,6 +10,7 @@ import '../../core/app_settings_managing/app_settings_on_bloc/app_settings_bloc.
 /* UI Components */
 import '../../presentation/widgets/text_widget.dart';
 import '../widgets/custom_elevated_button.dart';
+import '../widgets/header_text.dart';
 
 /// 🏠 [HomePage] is the main entry point for navigating through the app features.
 /// It dynamically switches between BLoC and Cubit state management based on [AppConfig].
@@ -30,6 +31,7 @@ class HomePage extends StatelessWidget {
             (bloc) => bloc.state.isDarkThemeForBloc)
         : context.select<AppSettingsOnCubit, bool>(
             (cubit) => cubit.state.isDarkThemeForCubit);
+
 /*
 ? Alternative: 
   // 🔍 Determine if the app uses BLoC or Cubit for state management
@@ -63,7 +65,8 @@ class HomePage extends StatelessWidget {
                   : AppConstants.lightModeIcon,
               color: Helpers.getColorScheme(context).primary,
             ),
-            onPressed: () => Helpers.pushNamed(context, RouteNames.themePage),
+            onPressed: () =>
+                Helpers.pushNamed(context, RouteNames.counterHydrated),
             tooltip: AppStrings.toggleThemeButton,
           ),
           IconButton(
@@ -93,64 +96,37 @@ class ButtonsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const HeaderText(),
-          const SizedBox(height: AppConstants.largePadding),
-          // 🚀 Navigation Buttons using `AppElevatedButton`
-          AppElevatedButton(
-            label: AppStrings.goToCounterPage,
-            onPressed: () => Helpers.pushNamed(context, RouteNames.counterPage),
-          ),
-          AppElevatedButton(
-            label: AppStrings.goToCounterDependsOnColor,
-            onPressed: () =>
-                Helpers.pushNamed(context, RouteNames.counterDependsOnColor),
-          ),
-          AppElevatedButton(
-            label: AppStrings.hydratedBlocCounter,
-            onPressed: () =>
-                Helpers.pushNamed(context, RouteNames.counterHydrated),
-          ),
-          AppElevatedButton(
-            label: AppStrings.toStateAccessPage,
-            onPressed: () => Helpers.pushNamed(context, RouteNames.blocAccess),
-          ),
-          AppElevatedButton(
-            label: AppStrings.eventTransformers,
-            onPressed: () => Helpers.pushNamed(
-              context,
-              RouteNames.counterEventTransformerDemo,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class HeaderText extends StatelessWidget {
-  const HeaderText({super.key});
-
-  @override
-  @override
-  Widget build(BuildContext context) {
-    final textColor =
-        Helpers.getColorScheme(context).onSurface.withOpacity(0.7);
-    return Column(
+    return ListView(
       children: [
-        TextWidget(
-          AppStrings.exploreFeatures,
-          TextType.headline,
-          color: textColor,
+        const HeaderText(
+          headlineText: AppStrings.exploreFeatures,
+          subTitleText: AppStrings.smashThoseButtons,
         ),
-        const SizedBox(height: 4),
-        TextWidget(
-          AppStrings.smashThoseButtons,
-          TextType.titleMedium,
-          color: textColor,
+        // 🚀 Navigation Buttons using `AppElevatedButton`
+        AppElevatedButton(
+          label: AppStrings.goToCounterPage,
+          onPressed: () => Helpers.pushNamed(context, RouteNames.counterPage),
+        ),
+        AppElevatedButton(
+          label: AppStrings.goToCounterDependsOnColor,
+          onPressed: () =>
+              Helpers.pushNamed(context, RouteNames.counterDependsOnColor),
+        ),
+        AppElevatedButton(
+          label: AppStrings.hydratedBlocCounter,
+          onPressed: () =>
+              Helpers.pushNamed(context, RouteNames.counterHydrated),
+        ),
+        AppElevatedButton(
+          label: AppStrings.toStateAccessPage,
+          onPressed: () => Helpers.pushNamed(context, RouteNames.blocAccess),
+        ),
+        AppElevatedButton(
+          label: AppStrings.eventTransformers,
+          onPressed: () => Helpers.pushNamed(
+            context,
+            RouteNames.counterEventTransformerDemo,
+          ),
         ),
       ],
     );
