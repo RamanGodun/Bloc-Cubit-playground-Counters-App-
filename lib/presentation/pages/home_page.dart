@@ -11,7 +11,6 @@ import '../../core/app_settings_managing/app_settings_on_bloc/app_settings_bloc.
 import '../../presentation/widgets/text_widget.dart';
 import '../widgets/custom_elevated_button.dart';
 
-
 /// 🏠 [HomePage] is the main entry point for navigating through the app features.
 /// It dynamically switches between BLoC and Cubit state management based on [AppConfig].
 class HomePage extends StatelessWidget {

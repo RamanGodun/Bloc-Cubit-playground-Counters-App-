@@ -1,27 +1,30 @@
 part of 'counter_cubit.dart';
 
-/// 🟢 `CounterOnCubitState` represents the state of the counter in the Cubit.
-/// Utilizes `Equatable` to ensure state comparisons are efficient and avoid unnecessary UI rebuilds.
+/// 🟢 [CounterOnCubitState] holds the state of the counter in the Cubit.
+///
+/// Efficiently manages state changes using [Equatable] to avoid unnecessary UI rebuilds.
 final class CounterOnCubitState extends Equatable {
+  /// 🔢 The current counter value.
   final int counter;
 
+  /// 🆕 Initializes the state with the provided [counter] value.
   const CounterOnCubitState({required this.counter});
 
-  /// 🟢 Factory constructor for the initial state of the counter.
-  factory CounterOnCubitState.initial() {
-    return const CounterOnCubitState(counter: 0);
-  }
+  /// 🚀 Factory constructor for the initial state, setting the counter to `0`.
+  factory CounterOnCubitState.initial() =>
+      const CounterOnCubitState(counter: 0);
 
-  /// 🟢 Properties used by `Equatable` for comparison.
+  /// 📏 Properties used by [Equatable] for state comparison.
   @override
   List<Object> get props => [counter];
 
-  /// 🟢 A more readable `toString` method for logging and debugging.
+  /// 🔍 Returns a readable string for logging and debugging.
   @override
   String toString() => 'CounterOnCubitState(counter: $counter)';
 
-  /// 🟢 The `copyWith` method allows cloning the state with optional new values.
-  /// Prevents direct mutation and maintains immutability of the state.
+  /// 🛠️ Creates a copy of the state with optional new values.
+  ///
+  /// This method maintains immutability and allows for concise state updates.
   CounterOnCubitState copyWith({int? counter}) {
     return CounterOnCubitState(
       counter: counter ?? this.counter,

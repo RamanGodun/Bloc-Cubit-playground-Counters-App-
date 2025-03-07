@@ -1,7 +1,7 @@
 part of 'counter_bloc.dart';
 
-/// 🎯 `CounterEvent` is the base class for all counter-related events.
-/// - Utilizes `Equatable` to optimize state comparison and avoid unnecessary rebuilds.
+/// 🎯 [CounterEventWithTransformers] is the base class for all counter-related events.
+/// - 🛠️ Utilizes `Equatable` to optimize state comparison and avoid unnecessary rebuilds.
 sealed class CounterEventWithTransformers extends Equatable {
   const CounterEventWithTransformers();
 
@@ -9,10 +9,12 @@ sealed class CounterEventWithTransformers extends Equatable {
   List<Object> get props => [];
 }
 
-/// ➕ `IncrementCounterEvent` triggers an increment of the counter.
+/// ➕ `IncrementCounterEventWithTransformers` triggers an increment of the counter.
+/// - Handled by the `CounterBlocWithTransformers` to increase the counter value.
 final class IncrementCounterEventWithTransformers
     extends CounterEventWithTransformers {}
 
-/// ➖ `DecrementCounterEvent` triggers a decrement of the counter.
+/// ➖ `DecrementCounterEventWithTransformers` triggers a decrement of the counter.
+/// - Handled by the `CounterBlocWithTransformers` to decrease the counter value.
 final class DecrementCounterEventWithTransformers
     extends CounterEventWithTransformers {}

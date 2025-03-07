@@ -5,10 +5,12 @@ import '../config/constants/app_constants.dart';
 import '../config/constants/app_strings.dart';
 import 'helpers.dart';
 
-/// 💬 [DialogService] provides a simple way to show alert dialogs in the app.
+/// 💬 [DialogService] provides a streamlined method to display alert dialogs in the app.
+/// It ensures consistent styling and behavior across all alert dialogs.
+
 abstract class DialogService {
-  /// ⚠️ Shows a customizable alert dialog with the provided [text].
-  /// The dialog is centered and takes 40% of the screen height.
+  /// ⚠️ Displays a centered alert dialog with the given [text].
+
   static void showAlertDialog(BuildContext context, String text) {
     showDialog(
       context: context,

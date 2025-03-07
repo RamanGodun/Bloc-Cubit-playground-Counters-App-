@@ -4,19 +4,22 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 part 'app_settings_event.dart';
 part 'app_settings_state.dart';
 
-/// `AppSettingsOnBloc` handles application settings using the BLoC pattern.
+///  [AppSettingsOnBloc] manages application settings using the BLoC pattern
+/// with persistent state management through [HydratedBloc].
 ///
-/// This BLoC is `Hydrated`, meaning it persists its state locally and restores it on app relaunch.
+/// This BLoC allows toggling between **BLoC** and **Cubit** state management
+/// and switching between **light** and **dark** themes.
 class AppSettingsOnBloc
     extends HydratedBloc<AppSettingsEvents, AppSettingsOnBlocState> {
-  /// Initializes the BLoC with the initial state and sets up event handlers.
+  /// 🆕 Initializes the BLoC with the initial state and sets up event handlers.
   AppSettingsOnBloc() : super(AppSettingsOnBlocState.initial()) {
-    /// Toggles between BLoC and Cubit state management modes.
+    /// 🔁 Toggles between BLoC and Cubit state management modes.
     on<ToggleUseBlocEvent>((event, emit) {
       emit(state.copyWith(isUseBloc: !state.isUsingBlocForAppFeatures));
     });
 
-    /// Toggles the theme between light and dark modes based on the active state management.
+    /// 🔁 🎨 Toggles the theme between light and dark modes.
+    /// Updates either `isDarkThemeForBloc` or `isDarkThemeForCubit` based on the active state manager.
     on<ToggleThemeEvent>((event, emit) {
       emit(state.isUsingBlocForAppFeatures
           ? state.copyWith(isDarkThemeForBloc: event.isDarkMode)
@@ -24,7 +27,7 @@ class AppSettingsOnBloc
     });
   }
 
-  /// Persists the current state into a JSON object.
+  /// 💾 Persists the current state into a JSON object using `HydratedBloc` storage.
   @override
   Map<String, dynamic>? toJson(AppSettingsOnBlocState state) => {
         'isUsingBlocForAppFeatures': state.isUsingBlocForAppFeatures,
@@ -32,7 +35,8 @@ class AppSettingsOnBloc
         'isDarkThemeForCubit': state.isDarkThemeForCubit,
       };
 
-  /// Restores the state from a JSON object on app startup with error handling.
+  /// 💾 Restores the state from a JSON object during app startup.
+  /// Handles potential errors and defaults to the initial state if deserialization fails.
   @override
   AppSettingsOnBlocState? fromJson(Map<String, dynamic> json) {
     try {
@@ -43,7 +47,7 @@ class AppSettingsOnBloc
         isDarkThemeForCubit: json['isDarkThemeForCubit'] as bool? ?? false,
       );
     } catch (e) {
-      print('Error restoring AppSettingsOnBloc state: $e');
+      print('⚠️ Error restoring AppSettingsOnBloc state: $e');
       return AppSettingsOnBlocState.initial();
     }
   }

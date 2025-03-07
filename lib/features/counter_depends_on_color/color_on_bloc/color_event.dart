@@ -1,8 +1,7 @@
 part of 'color_bloc.dart';
 
-/// 🟢 `ColorEvents` serves as the base class for all events in `ColorOnBloc`.
-/// - Utilizes `Equatable` to avoid unnecessary widget rebuilds.
-/// - Facilitates future extension with additional color-related events.
+/// 🎨 [ColorEvents] is the abstract base class for all events related to [ColorOnBloc].
+/// - ✅ Uses `Equatable` to optimize state management.
 sealed class ColorEvents extends Equatable {
   const ColorEvents();
 
@@ -10,7 +9,6 @@ sealed class ColorEvents extends Equatable {
   List<Object> get props => [];
 }
 
-/// 🟢 `ChangeColorEvent` triggers a color transition in the BLoC.
-/// - Initiates the switch to the next color in the predefined cycle.
-/// - Lightweight and stateless, ensuring efficient event handling.
+/// 🌈 [ChangeColorEvent] triggers a color transition in [ColorOnBloc].
+/// - 📲 Initiates the switch to the next color in the cyclic list.
 final class ChangeColorEvent extends ColorEvents {}

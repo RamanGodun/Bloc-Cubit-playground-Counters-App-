@@ -3,20 +3,22 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 part 'app_settings_state.dart';
 
-/// A HydratedCubit responsible for managing application settings
-/// using Cubit state management.
+///  [AppSettingsOnCubit] is a `HydratedCubit` responsible for managing
+/// the application settings using Cubit state management.
+/// It provides persistent state management even after app restarts.
 class AppSettingsOnCubit extends HydratedCubit<AppSettingsOnCubitState> {
-  /// Initializes the Cubit with the default or hydrated state.
+  /// 🆕 Initializes the Cubit with the default state or the hydrated state if available.
   AppSettingsOnCubit() : super(AppSettingsOnCubitState.initial());
 
-  /// Toggles between BLoC and Cubit state management.
+  /// 🔁 Toggles between BLoC and Cubit state management modes.
+  /// Emits a new state with the updated management approach.
   void toggleUseBloc() {
     final newUseBloc = !state.isUsingBlocForAppFeatures;
     emit(state.copyWith(isUseBloc: newUseBloc));
   }
 
-  /// Toggles the theme between light and dark mode based on the current state.
-  /// The change is applied to either BLoC or Cubit theme state depending on `isUseBloc`.
+  /// 🎨 Toggles the theme between light and dark mode.
+  /// Updates the appropriate theme state depending on whether BLoC or Cubit is active.
   void toggleTheme(bool isDarkMode) {
     if (state.isUsingBlocForAppFeatures) {
       emit(state.copyWith(isDarkThemeForBloc: isDarkMode));
@@ -25,7 +27,8 @@ class AppSettingsOnCubit extends HydratedCubit<AppSettingsOnCubitState> {
     }
   }
 
-  /// Converts the current Cubit state to a JSON map for persistent storage.
+  /// 💾 Converts the current [AppSettingsOnCubitState] to a JSON map
+  /// for persistent storage using [HydratedBloc].
   @override
   Map<String, dynamic>? toJson(AppSettingsOnCubitState state) {
     return {
@@ -35,7 +38,8 @@ class AppSettingsOnCubit extends HydratedCubit<AppSettingsOnCubitState> {
     };
   }
 
-  /// Restores the Cubit state from a JSON map during application startup.
+  /// 💾 Restores the [AppSettingsOnCubitState] from a JSON map
+  /// when the app is restarted or resumed.
   @override
   AppSettingsOnCubitState? fromJson(Map<String, dynamic> json) {
     return AppSettingsOnCubitState(

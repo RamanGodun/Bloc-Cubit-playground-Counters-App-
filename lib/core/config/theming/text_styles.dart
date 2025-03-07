@@ -4,7 +4,14 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../utils/helpers.dart';
 
+/// 🎨 [TextStyles4ThisAppThemes] provides consistent typography styles for both dark and light themes.
+///
+/// Uses [GoogleFonts.montserratTextTheme] for a modern and clean appearance.
 abstract class TextStyles4ThisAppThemes {
+  /// 📝 Generates the [TextTheme] based on the app's theme mode (dark/light).
+  ///
+  /// Applies specific font weights and sizes to various text styles such as
+  /// title, body, label, and display text types.
   static TextTheme kTextThemeData(bool isDarkTheme) {
     return GoogleFonts.montserratTextTheme().copyWith(
       titleLarge: _getTextStyle(isDarkTheme, FontWeight.w600, 22),
@@ -22,6 +29,8 @@ abstract class TextStyles4ThisAppThemes {
     );
   }
 
+  /// 🎯 [_getTextStyle] creates a [TextStyle] with specific weight, size, and color.
+  /// The color adapts based on whether the app is in dark or light mode.
   static TextStyle _getTextStyle(
       bool isDarkTheme, FontWeight fontWeight, double fontSize) {
     return TextStyle(
@@ -31,6 +40,8 @@ abstract class TextStyles4ThisAppThemes {
     );
   }
 
+  /// 🍎 Provides [CupertinoTextThemeData] for iOS-styled components.
+  /// Automatically adapts the primary color to the current [ColorScheme].
   static CupertinoTextThemeData getCupertinoTextStyle(BuildContext context) {
     final colorScheme = Helpers.getColorScheme(context);
     return CupertinoTextThemeData(

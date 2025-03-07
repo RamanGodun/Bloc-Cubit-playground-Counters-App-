@@ -1,23 +1,25 @@
 part of 'app_settings_cubit.dart';
 
-/// Represents the state for application settings managed by [AppSettingsOnCubit].
-/// It includes whether the app is using BLoC or Cubit, and the theme settings for both approaches.
+/// 🎛️ [AppSettingsOnCubitState] manages the application settings for [AppSettingsOnCubit].
+/// It controls whether the app is using BLoC or Cubit and manages theme preferences for both.
 class AppSettingsOnCubitState extends Equatable {
-  /// Indicates whether the app uses BLoC or Cubit state management.
+  /// 🔁 Indicates whether the app uses BLoC or Cubit for state management.
   final bool isUsingBlocForAppFeatures;
 
-  /// Stores the dark theme preference when using BLoC or Cubit
+  /// 🎨 Stores the theme preference (dark/light) for BLoC and Cubit approaches.
   final bool isDarkThemeForBloc;
   final bool isDarkThemeForCubit;
 
+  /// 🆕 Creates an immutable state for app settings.
   const AppSettingsOnCubitState({
     required this.isUsingBlocForAppFeatures,
     required this.isDarkThemeForBloc,
     required this.isDarkThemeForCubit,
   });
 
-  /// Returns the initial state with default values.
-  /// Defaults to BLoC as the state management approach with light themes.
+  /// 🛠️ Returns the initial state with default values:
+  /// ✅ BLoC as the state management approach
+  /// 🌞 Light theme for both BLoC and Cubit.
   factory AppSettingsOnCubitState.initial() {
     return const AppSettingsOnCubitState(
       isUsingBlocForAppFeatures: true,
@@ -26,8 +28,8 @@ class AppSettingsOnCubitState extends Equatable {
     );
   }
 
-  /// Creates a new state instance with the option to override specific values.
-  /// This method maintains immutability by returning a new instance instead of modifying the existing state.
+  /// ✨ Creates a new state with optional overrides while maintaining immutability.
+  /// Useful for updating only specific fields without mutating the original state.
   AppSettingsOnCubitState copyWith({
     bool? isUseBloc,
     bool? isDarkThemeForBloc,
@@ -40,8 +42,11 @@ class AppSettingsOnCubitState extends Equatable {
     );
   }
 
-  /// Properties used for equality checks to ensure proper state comparison.
+  /// 🔍 Used for equality checks to ensure accurate state comparison.
   @override
-  List<Object> get props =>
-      [isUsingBlocForAppFeatures, isDarkThemeForBloc, isDarkThemeForCubit];
+  List<Object> get props => [
+        isUsingBlocForAppFeatures,
+        isDarkThemeForBloc,
+        isDarkThemeForCubit,
+      ];
 }

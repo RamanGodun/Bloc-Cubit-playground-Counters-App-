@@ -1,7 +1,8 @@
 part of 'counter_bloc.dart';
 
-/// 🟢 `CounterOnBLoCEvent` is an abstract base class for all counter events.
-/// Uses `Equatable` to enable efficient state comparison in BLoC.
+/// 🔄 [CounterOnBLoCEvent] serves as the base class for all events related to the counter BLoC.
+///
+/// It utilizes [Equatable] to optimize event comparison and avoid unnecessary state rebuilds.
 sealed class CounterOnBLoCEvent extends Equatable {
   const CounterOnBLoCEvent();
 
@@ -9,7 +10,8 @@ sealed class CounterOnBLoCEvent extends Equatable {
   List<Object> get props => [];
 }
 
-/// 🟢 This events are handled by the `CounterOnBloc` to update the state.
+/// ➕ [IncrementCounterEvent] triggers an increment in the counter state.
 final class IncrementCounterEvent extends CounterOnBLoCEvent {}
 
+/// ➖ [DecrementCounterEvent] triggers a decrement in the counter state.
 final class DecrementCounterEvent extends CounterOnBLoCEvent {}

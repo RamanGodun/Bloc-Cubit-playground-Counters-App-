@@ -1,6 +1,6 @@
 /// 🌐 [AppStrings] holds all the static text used in the application.
 abstract class AppStrings {
-  /// 🏠 App Titles
+  // 🏠 App Titles
   static const String appBarTitleForContextAccessPage =
       'State access via routing';
   static const String appIsOnBloc = 'App is on BLoC now';
@@ -15,7 +15,7 @@ abstract class AppStrings {
   static const String otherPageTitle = 'Other page';
   static const String themeScreenTitle = 'Theme Screen';
 
-  /// 🔢 Counter
+  // 🔢 Counter
   static const String clearHeroTag = 'clear';
   static const String counterIs = 'Now Counter is';
   static const String counterSerOnPreviousPage =
@@ -28,7 +28,7 @@ abstract class AppStrings {
   static const String locallyCashedCounterIs =
       'Locally cashed counter value is:';
 
-  /// 🚦 Navigation Buttons
+  // 🚦 Navigation Buttons
   static const String eventTransformers = 'to Counter with events transformer';
   static const String eventTransformersDemo = 'Counter with events transformer';
   static const String goToCounterDependsOnColor =
@@ -39,7 +39,7 @@ abstract class AppStrings {
   static const String showCounterButton = 'Show Me Counter';
   static const String toStateAccessPage = 'to "state access" page';
 
-  /// 🌈 Theme & Modes
+  // 🌈 Theme & Modes
   static const String changeColor = 'Change Color';
   static const String changeCounter = 'Change Counter';
   static const String darkMode = 'Dark';
@@ -47,7 +47,7 @@ abstract class AppStrings {
   static const String themeToggledTo = 'Theme toggled to ';
   static const String toggleThemeButton = 'Toggle Theme';
 
-  /// 📄 Other
+  // 📄 Other
   static const String okButton = 'OK';
   static const String otherPageBody = 'This is other page 🙋🏿🙋🏻‍♂️ ';
   static const String exploreFeatures = 'Explore features 😎';

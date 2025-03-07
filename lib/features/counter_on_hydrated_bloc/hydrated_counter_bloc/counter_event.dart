@@ -1,16 +1,17 @@
 part of 'counter_bloc.dart';
 
-/// 🟢 `CounterEvent` defines the base class for all events in `HydratedCounterBloc`.
-/// - Uses `Equatable` for efficient state comparisons.
+/// 🟢 [HydratedCounterEvent] serves as the base class for all events in [HydratedCounterBloc].
+/// - Inherits from `Equatable` to optimize state comparison and prevent unnecessary UI rebuilds.
 sealed class HydratedCounterEvent extends Equatable {
   const HydratedCounterEvent();
 
+  /// 🧮 Returns the properties used for state comparison.
   @override
   List<Object> get props => [];
 }
 
-/// ➕ `IncrementCounterEvent` triggers an increment in the counter.
+/// ➕ `IncrementHydratedCounterEvent` is dispatched to increase the counter value.
 final class IncrementHydratedCounterEvent extends HydratedCounterEvent {}
 
-/// ➖ `DecrementCounterEvent` triggers a decrement in the counter.
+/// ➖ `DecrementHydratedCounterEvent` is dispatched to decrease the counter value.
 final class DecrementHydratedCounterEvent extends HydratedCounterEvent {}

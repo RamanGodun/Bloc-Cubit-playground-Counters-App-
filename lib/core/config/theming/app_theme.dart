@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 import 'text_styles.dart';
 import '../constants/app_constants.dart';
 
-/// 🎨 `AppThemes` визначає теми додатку
+/// 🎨 [AppThemes] defines the dark and light themes for the application.
+///
+/// Uses [ThemeData] and [ColorScheme] to provide a consistent look and feel
+/// across all components, including dynamic theme switching.
 abstract class AppThemes {
-  /// 🌓 Dark theme
+  /// 🌑 **Dark Theme** - Provides a modern, low-light UI with high contrast.
+  ///
+  /// Uses [Material3] guidelines and leverages [AppConstants] for consistent
+  /// color and styling choices.
   static final ThemeData darkTheme = ThemeData(
     useMaterial3: true,
     brightness: Brightness.dark,
@@ -33,7 +39,10 @@ abstract class AppThemes {
     textTheme: TextStyles4ThisAppThemes.kTextThemeData(true),
   );
 
-  /// 🌞 Light theme
+  /// 🌞 **Light Theme** - Delivers a bright, clean, and inviting user interface.
+  ///
+  /// The light theme uses softer colors and maintains readability and usability
+  /// even in well-lit environments.
   static final ThemeData lightTheme = ThemeData(
     useMaterial3: true,
     brightness: Brightness.light,
