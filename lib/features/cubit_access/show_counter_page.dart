@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../core/utils/core_config_export.dart';
+import '../../core/exports/core_config_export.dart';
 import '../counter/counter_on_cubit/counter_cubit.dart';
 import '../../presentation/widgets/text_widget.dart';
 

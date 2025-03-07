@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'bloc/counter_bloc.dart';
-import '../../core/utils/core_config_export.dart';
+import '../../core/exports/core_config_export.dart';
 
 import '../../presentation/widgets/floating_action_button.dart';
 import '../../presentation/widgets/text_widget.dart';

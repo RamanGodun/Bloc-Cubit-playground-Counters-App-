@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../core/config/constants/app_strings.dart';
+import '../../core/app_constants/app_strings.dart';
 import '../widgets/text_widget.dart';
 
 /// 📄 [OtherPage] displays a simple screen with page text.

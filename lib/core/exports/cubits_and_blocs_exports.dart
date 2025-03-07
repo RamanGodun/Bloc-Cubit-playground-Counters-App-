@@ -4,7 +4,7 @@
 library;
 
 /// 🌐 Application Settings Bloc
-export '../../core/app_settings_managing/app_settings_on_bloc/app_settings_bloc.dart';
+export '../app_settings_state_management/app_settings_on_bloc/app_settings_bloc.dart';
 
 /// 🔢 Counter Features' BLoCs
 export '../../features/counter/counter_on_bloc/counter_bloc.dart';
@@ -21,7 +21,7 @@ export '../../features/counter_depends_on_color/counter_on_bloc/counter_bloc.dar
 // 📦 Exports for all Cubit providers
 
 /// 🌐 Application Settings Cubit
-export '../../core/app_settings_managing/app_settings_on_cubit/app_settings_cubit.dart';
+export '../app_settings_state_management/app_settings_on_cubit/app_settings_cubit.dart';
 
 /// 🔢 Counter Feature Cubit
 export '../../features/counter/counter_on_cubit/counter_cubit.dart';

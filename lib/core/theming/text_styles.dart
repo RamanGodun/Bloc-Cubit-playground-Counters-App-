@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../utils/helpers.dart';
+import '../utilities/helpers.dart';
 
 /// 🎨 [TextStyles4ThisAppThemes] provides consistent typography styles for both dark and light themes.
 ///

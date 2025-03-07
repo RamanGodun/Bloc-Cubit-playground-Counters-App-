@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 /* Config */
-import '../../core/config/routing/route_names.dart';
-import '../../core/config/constants/app_constants.dart';
-import '../../core/config/constants/app_strings.dart';
+import '../../core/routing/route_names.dart';
+import '../../core/app_constants/app_constants.dart';
+import '../../core/app_constants/app_strings.dart';
 
 /* Utils */
-import '../../core/utils/helpers.dart';
+import '../../core/utilities/helpers.dart';
 
 /* State Management */
 import '../counter/counter_on_cubit/counter_cubit.dart';

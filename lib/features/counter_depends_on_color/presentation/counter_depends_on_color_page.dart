@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 /* Config */
-import '../../../core/app_settings_managing/app_config.dart';
-import '../../../core/config/constants/app_strings.dart';
-import '../../../core/config/constants/app_constants.dart';
+import '../../../core/config/app_config.dart';
+import '../../../core/app_constants/app_strings.dart';
+import '../../../core/app_constants/app_constants.dart';
 
 /* State Management */
-import '../../../core/app_settings_managing/app_settings_on_cubit/app_settings_cubit.dart';
-import '../../../core/app_settings_managing/app_settings_on_bloc/app_settings_bloc.dart';
+import '../../../core/app_settings_state_management/app_settings_on_cubit/app_settings_cubit.dart';
+import '../../../core/app_settings_state_management/app_settings_on_bloc/app_settings_bloc.dart';
 import '../_state_switching_of_counter_which_depends_on_color/factory_for_counter_which_depends_on_color.dart';
 import '../color_on_bloc/color_bloc.dart';
 import '../color_on_cubit/color_cubit.dart';

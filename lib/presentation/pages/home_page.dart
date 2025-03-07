@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../core/utils/core_config_export.dart';
+import '../../core/exports/core_config_export.dart';
 
 /* State Management */
-import '../../core/app_settings_managing/app_settings_on_cubit/app_settings_cubit.dart';
-import '../../core/app_settings_managing/app_settings_on_bloc/app_settings_bloc.dart';
+import '../../core/app_settings_state_management/app_settings_on_cubit/app_settings_cubit.dart';
+import '../../core/app_settings_state_management/app_settings_on_bloc/app_settings_bloc.dart';
 
 /* UI Components */
 import '../../presentation/widgets/text_widget.dart';

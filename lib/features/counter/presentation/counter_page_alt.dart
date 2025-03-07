@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/app_settings_managing/app_config.dart';
-import '../../../core/app_settings_managing/app_settings_on_bloc/app_settings_bloc.dart';
-import '../../../core/app_settings_managing/app_settings_on_cubit/app_settings_cubit.dart';
-import '../../../core/config/constants/app_constants.dart';
-import '../../../core/config/constants/app_strings.dart';
-import '../../../core/utils/helpers.dart';
-import '../../../core/utils/show_dialog.dart';
+import '../../../core/config/app_config.dart';
+import '../../../core/app_settings_state_management/app_settings_on_bloc/app_settings_bloc.dart';
+import '../../../core/app_settings_state_management/app_settings_on_cubit/app_settings_cubit.dart';
+import '../../../core/app_constants/app_constants.dart';
+import '../../../core/app_constants/app_strings.dart';
+import '../../../core/utilities/helpers.dart';
+import '../../../core/utilities/show_dialog.dart';
 import '../../../presentation/pages/other_page.dart';
 import '../../../presentation/widgets/floating_action_button.dart';
 import '../../../presentation/widgets/text_widget.dart';

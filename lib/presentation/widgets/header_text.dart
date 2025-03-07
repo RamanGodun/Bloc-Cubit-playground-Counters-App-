@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../core/utils/core_config_export.dart';
+import '../../core/exports/core_config_export.dart';
 import 'text_widget.dart';
 
 class HeaderText extends StatelessWidget {

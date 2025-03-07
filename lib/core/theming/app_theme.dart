@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'text_styles.dart';
-import '../constants/app_constants.dart';
+import '../app_constants/app_constants.dart';
 
 /// 🎨 [AppThemes] defines the dark and light themes for the application.
 ///

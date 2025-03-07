@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'core/utils/core_config_export.dart';
-import 'core/utils/cubits_and_blocs_exports.dart';
+import 'core/exports/core_config_export.dart';
+import 'core/exports/cubits_and_blocs_exports.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

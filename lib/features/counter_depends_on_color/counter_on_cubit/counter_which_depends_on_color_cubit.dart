@@ -3,7 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 /* Config */
-import '../../../core/config/constants/app_constants.dart';
+import '../../../core/app_constants/app_constants.dart';
 
 /* Cubit */
 import '../color_on_cubit/color_cubit.dart';

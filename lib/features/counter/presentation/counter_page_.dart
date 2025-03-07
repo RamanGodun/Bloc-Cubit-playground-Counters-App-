@@ -2,7 +2,7 @@ import 'package:countersapp_bloccubit_playground/presentation/widgets/header_tex
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/utils/core_config_export.dart';
+import '../../../core/exports/core_config_export.dart';
 
 /* UI components */
 import '../../../presentation/pages/other_page.dart';
