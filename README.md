@@ -173,3 +173,15 @@ The **Core** module is organized into clearly defined sub-modules, each responsi
 ## 🔍 License
 
 This project is licensed under the [MIT License](LICENSE).
+
+/_
+? TODO
+_/
+// TODO 1: 🎨 Improve App Styling and Polish UI Design
+// - [ ] Refine the color scheme and typography for better readability and aesthetics.
+// - [ ] Use `Hero` animations to enhance transitions.
+// - [ ] Implement `Adaptive Design` to ensure a seamless experience on both mobile platforms.
+
+// TODO 2: Finish alt Counter page
+
+// TODO 3: Improve Documentations and comments

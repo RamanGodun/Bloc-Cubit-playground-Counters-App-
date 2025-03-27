@@ -65,8 +65,7 @@ class HomePage extends StatelessWidget {
                   : AppConstants.lightModeIcon,
               color: Helpers.getColorScheme(context).primary,
             ),
-            onPressed: () =>
-                Helpers.pushNamed(context, RouteNames.counterHydrated),
+            onPressed: () => Helpers.pushNamed(context, RouteNames.themePage),
             tooltip: AppStrings.toggleThemeButton,
           ),
           IconButton(
@@ -96,39 +95,42 @@ class ButtonsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        const HeaderText(
-          headlineText: AppStrings.exploreFeatures,
-          subTitleText: AppStrings.smashThoseButtons,
-        ),
-        // 🚀 Navigation Buttons using `AppElevatedButton`
-        AppElevatedButton(
-          label: AppStrings.goToCounterPage,
-          onPressed: () => Helpers.pushNamed(context, RouteNames.counterPage),
-        ),
-        AppElevatedButton(
-          label: AppStrings.goToCounterDependsOnColor,
-          onPressed: () =>
-              Helpers.pushNamed(context, RouteNames.counterDependsOnColor),
-        ),
-        AppElevatedButton(
-          label: AppStrings.hydratedBlocCounter,
-          onPressed: () =>
-              Helpers.pushNamed(context, RouteNames.counterHydrated),
-        ),
-        AppElevatedButton(
-          label: AppStrings.toStateAccessPage,
-          onPressed: () => Helpers.pushNamed(context, RouteNames.blocAccess),
-        ),
-        AppElevatedButton(
-          label: AppStrings.eventTransformers,
-          onPressed: () => Helpers.pushNamed(
-            context,
-            RouteNames.counterEventTransformerDemo,
+    return Center(
+      child: ListView(
+        shrinkWrap: true,
+        children: [
+          const HeaderText(
+            headlineText: AppStrings.exploreFeatures,
+            subTitleText: AppStrings.smashThoseButtons,
           ),
-        ),
-      ],
+          // 🚀 Navigation Buttons using `AppElevatedButton`
+          AppElevatedButton(
+            label: AppStrings.goToCounterPage,
+            onPressed: () => Helpers.pushNamed(context, RouteNames.counterPage),
+          ),
+          AppElevatedButton(
+            label: AppStrings.goToCounterDependsOnColor,
+            onPressed: () =>
+                Helpers.pushNamed(context, RouteNames.counterDependsOnColor),
+          ),
+          AppElevatedButton(
+            label: AppStrings.hydratedBlocCounter,
+            onPressed: () =>
+                Helpers.pushNamed(context, RouteNames.counterHydrated),
+          ),
+          AppElevatedButton(
+            label: AppStrings.toStateAccessPage,
+            onPressed: () => Helpers.pushNamed(context, RouteNames.blocAccess),
+          ),
+          AppElevatedButton(
+            label: AppStrings.eventTransformers,
+            onPressed: () => Helpers.pushNamed(
+              context,
+              RouteNames.counterEventTransformerDemo,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
