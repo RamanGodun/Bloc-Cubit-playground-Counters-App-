@@ -103,4 +103,3 @@ class MaterialAppWidget extends StatelessWidget {
     );
   }
 }
-
