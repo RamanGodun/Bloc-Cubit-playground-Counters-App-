@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../core/exports/core_config_export.dart';
+import '../../core/app_constants/app_constants.dart';
+import '../../core/app_constants/app_strings.dart';
+import '../../core/routing/route_names.dart';
+import '../../core/utilities/helpers.dart';
 import '../../presentation/widgets/text_widget.dart';
-import 'counter_for_route_access/route_access_cubit.dart';
+import '../../presentation/widgets/custom_elevated_button.dart';
+import '../../features/cubit_access/counter_for_route_access/route_access_cubit.dart';
 
-/// 🟢 `ShowMeCounter` displays the current counter value using Cubit state management.
-class ShowMeCounter extends StatelessWidget {
-  const ShowMeCounter({super.key});
+/// 🟢 `ShowMeCounter` displays and manages the counter value with routing to other pages.
+class MainPage4RouteAccessFeature extends StatelessWidget {
+  const MainPage4RouteAccessFeature({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Helpers.getColorScheme(context);
+
+    ///
     return Scaffold(
       appBar: AppBar(
         title: const TextWidget(
@@ -25,7 +32,11 @@ class ShowMeCounter extends StatelessWidget {
             final text = wasInc ? 'Incremented!' : 'Decremented!';
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(text),
+                content: TextWidget(
+                  text,
+                  TextType.titleMedium,
+                  color: colorScheme.onPrimary,
+                ),
                 duration: const Duration(milliseconds: 300),
               ),
             );
@@ -41,7 +52,6 @@ class ShowMeCounter extends StatelessWidget {
                 TextType.smallHeadline,
               ),
               TextWidget('${state.counter}', TextType.headline),
-              const SizedBox(height: 24),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -60,15 +70,15 @@ class ShowMeCounter extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 24),
-              ElevatedButton(
+              AppElevatedButton(
+                label: 'Go to Second Page',
                 onPressed: () =>
-                    Helpers.pushNamed(context, RouteNames.routeAccessSecond),
-                child: const Text('To Second Page'),
+                    Helpers.pushNamed(context, RouteNames.routeAccessOtherPage),
               ),
-              ElevatedButton(
-                onPressed: () =>
-                    Helpers.pushNamed(context, RouteNames.routeAccessThird),
-                child: const Text('To Third Page'),
+              AppElevatedButton(
+                label: 'Go to Third Page',
+                onPressed: () => Helpers.pushNamed(
+                    context, RouteNames.routeAccessAnotherPage),
               ),
             ],
           );

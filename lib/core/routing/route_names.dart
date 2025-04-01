@@ -12,9 +12,6 @@ class RouteNames {
   /// 🌐 BLoC Access Page
   static const String blocAccess = '/blocAccessPage';
 
-  /// 🔢 Counter display on BLoC Access Page
-  static const String blocAccessCounter = '/blocAccessPage/counter';
-
   /// 🎨 Theme selection page
   static const String themePage = '/themePage';
 
@@ -37,9 +34,12 @@ class RouteNames {
   /// 🚏 Route Access Feature - Home
   static const String routeAccessHome = '/routeAccess';
 
+  /// 🔢 Counter display on BLoC Access Page (Main Page of Route Feature)
+  static const String cubitAccessMainPage = '/routeAccess/main';
+
   /// 🟥 Route Access Feature - Second Page
-  static const String routeAccessSecond = '/routeAccess/second';
+  static const String routeAccessOtherPage = '/routeAccess/main/other';
 
   /// 🟩 Route Access Feature - Third Page
-  static const String routeAccessThird = '/routeAccess/third';
+  static const String routeAccessAnotherPage = '/routeAccess/main/another';
 }

@@ -19,8 +19,8 @@ import '../../presentation/widgets/text_widget.dart';
 import '../../presentation/widgets/floating_action_button.dart';
 
 /// 🟢 `BlocAccessPage` provides UI to navigate to the counter page and increment the counter directly using Cubit.
-class BlocAccessPage extends StatelessWidget {
-  const BlocAccessPage({super.key});
+class HomePage4RouteAccessFeature extends StatelessWidget {
+  const HomePage4RouteAccessFeature({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class BlocAccessPage extends StatelessWidget {
           AppElevatedButton(
             label: AppStrings.toStateAccessPage,
             onPressed: () =>
-                Helpers.pushNamed(context, RouteNames.blocAccessCounter),
+                Helpers.pushNamed(context, RouteNames.cubitAccessMainPage),
           ),
 
           /// ➕ Directly increments the counter using `AppFloatingActionButton`

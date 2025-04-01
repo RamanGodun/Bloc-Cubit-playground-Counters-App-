@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../features/cubit_access/_route_access_home_page.dart';
-import '../../features/cubit_access/second_page.dart';
-import '../../features/cubit_access/third_page.dart';
-import '../../presentation/pages/theme_page.dart';
-import '../exports/cubits_and_blocs_exports.dart';
-import 'route_names.dart';
-
-/* 📄 Presentation Pages */
 import '../../features/counter/presentation/counter_page_.dart';
 import '../../features/counter_depends_on_color/presentation/counter_depends_on_color_page.dart';
 import '../../features/counter_on_hydrated_bloc/hydrated_counter_page.dart';
-import '../../features/cubit_access/cubit_access_page.dart';
-import '../../features/cubit_access/show_counter_page.dart';
+import '../../features/cubit_access/_home_page_4_route_cubit_access.dart';
+import '../../features/cubit_access/_main_page_4_route_cubit_access.dart';
+import '../../features/cubit_access/another_page.dart';
+import '../../features/cubit_access/other_page.dart';
 import '../../features/events_transformer/counter_with_events_transformer_page.dart';
 import '../../presentation/pages/home_page.dart';
 import '../../presentation/pages/other_page.dart';
+import '../../presentation/pages/theme_page.dart';
+import '../exports/cubits_and_blocs_exports.dart';
+import 'route_names.dart';
 
 /// 🚦 [AppRoutes] provides a centralized navigation management for the app.
 /// Uses [onGenerateRoute] to handle all navigation requests safely and efficiently,
@@ -46,33 +43,32 @@ class AppRoutes {
         return _buildRoute(const CounterOnHydratedBlocPage());
 
       case RouteNames.blocAccess:
-        return _buildRoute(const BlocAccessPage());
+        return _buildRoute(const HomePage4RouteAccessFeature());
 
-      case RouteNames.blocAccessCounter:
-        return _buildRouteWithBlocProvider<RouteAccessCounterCubit>(
-          contextBuilder: (context) =>
-              BlocProvider.of<RouteAccessCounterCubit>(context),
-          child: const ShowMeCounter(),
-        );
-
-      ///
+      /// For route access feature
       case RouteNames.routeAccessHome:
         return _buildRouteWithBlocProvider<RouteAccessCounterCubit>(
           contextBuilder: (context) =>
               BlocProvider.of<RouteAccessCounterCubit>(context),
-          child: const RouteAccessHomePage(),
+          child: const HomePage4RouteAccessFeature(),
         );
-      case RouteNames.routeAccessSecond:
+      case RouteNames.cubitAccessMainPage:
         return _buildRouteWithBlocProvider<RouteAccessCounterCubit>(
           contextBuilder: (context) =>
               BlocProvider.of<RouteAccessCounterCubit>(context),
-          child: const RouteAccessSecondPage(),
+          child: const MainPage4RouteAccessFeature(),
         );
-      case RouteNames.routeAccessThird:
+      case RouteNames.routeAccessOtherPage:
         return _buildRouteWithBlocProvider<RouteAccessCounterCubit>(
           contextBuilder: (context) =>
               BlocProvider.of<RouteAccessCounterCubit>(context),
-          child: const RouteAccessThirdPage(),
+          child: const OtherPage4CubitRouteAccessFeature(),
+        );
+      case RouteNames.routeAccessAnotherPage:
+        return _buildRouteWithBlocProvider<RouteAccessCounterCubit>(
+          contextBuilder: (context) =>
+              BlocProvider.of<RouteAccessCounterCubit>(context),
+          child: const AnotherPage4CubitRouteAccessFeature(),
         );
 
       ///

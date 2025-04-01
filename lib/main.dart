@@ -7,7 +7,6 @@ import 'package:path_provider/path_provider.dart';
 import 'core/exports/core_config_export.dart';
 import 'core/exports/cubits_and_blocs_exports.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 

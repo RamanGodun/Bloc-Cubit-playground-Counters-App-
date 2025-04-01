@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'counter_for_route_access/route_access_cubit.dart';
 
-class RouteAccessSecondPage extends StatelessWidget {
-  const RouteAccessSecondPage({super.key});
+class AnotherPage4CubitRouteAccessFeature extends StatelessWidget {
+  const AnotherPage4CubitRouteAccessFeature({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final color = Colors.redAccent;
+    final color = Colors.green;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Second Page'), backgroundColor: color),
+      appBar: AppBar(title: const Text('Third Page'), backgroundColor: color),
       body: Center(
         child: BlocBuilder<RouteAccessCounterCubit, RouteAccessCounterState>(
           builder: (context, state) => Column(
@@ -26,14 +26,14 @@ class RouteAccessSecondPage extends StatelessWidget {
                     onPressed: () =>
                         context.read<RouteAccessCounterCubit>().decrement(),
                     backgroundColor: color,
-                    heroTag: 'sec_dec',
+                    heroTag: 'third_dec',
                     child: const Icon(Icons.remove),
                   ),
                   FloatingActionButton(
                     onPressed: () =>
                         context.read<RouteAccessCounterCubit>().increment(),
                     backgroundColor: color,
-                    heroTag: 'sec_inc',
+                    heroTag: 'third_inc',
                     child: const Icon(Icons.add),
                   )
                 ],
