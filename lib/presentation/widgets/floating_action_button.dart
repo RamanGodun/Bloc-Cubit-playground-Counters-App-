@@ -6,12 +6,14 @@ class AppFloatingActionButton extends StatelessWidget {
   final IconData icon;
   final VoidCallback onPressed;
   final String heroTag;
+  final Color? color;
 
   const AppFloatingActionButton({
     super.key,
     required this.icon,
     required this.onPressed,
     required this.heroTag,
+    this.color = AppConstants.darkPrimaryColor,
   });
 
   @override
@@ -20,7 +22,7 @@ class AppFloatingActionButton extends StatelessWidget {
       heroTag: heroTag,
       onPressed: onPressed,
       foregroundColor: AppConstants.darkForegroundColor,
-      backgroundColor: AppConstants.darkPrimaryColor,
+      backgroundColor: color,
       child: Icon(icon),
     );
   }
