@@ -7,6 +7,7 @@ import 'package:path_provider/path_provider.dart';
 import 'core/exports/core_config_export.dart';
 import 'core/exports/cubits_and_blocs_exports.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -47,6 +48,7 @@ class StateManagementProvider extends StatelessWidget {
         /// 🟧 Cubit Providers
         BlocProvider(create: (_) => AppSettingsOnCubit()),
         BlocProvider(create: (_) => CounterOnCubit()),
+        BlocProvider(create: (_) => RouteAccessCounterCubit()),
         BlocProvider(create: (_) => ColorOnCubit()),
         BlocProvider(
           create: (context) => CounterCubitWhichDependsOnColorCubit(

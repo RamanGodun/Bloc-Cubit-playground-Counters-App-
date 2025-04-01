@@ -33,4 +33,13 @@ class RouteNames {
 
   /// 🚦 Navigation to "Other Page"
   static const String otherPage = '/counterPage/otherPage';
+
+  /// 🚏 Route Access Feature - Home
+  static const String routeAccessHome = '/routeAccess';
+
+  /// 🟥 Route Access Feature - Second Page
+  static const String routeAccessSecond = '/routeAccess/second';
+
+  /// 🟩 Route Access Feature - Third Page
+  static const String routeAccessThird = '/routeAccess/third';
 }

@@ -29,3 +29,6 @@ export '../../features/counter/counter_on_cubit/counter_cubit.dart';
 /// 🎨 Color-Dependent Feature Cubits
 export '../../features/counter_depends_on_color/color_on_cubit/color_cubit.dart';
 export '../../features/counter_depends_on_color/counter_on_cubit/counter_which_depends_on_color_cubit.dart';
+
+/// 🌐 For Route Access feature Cubit
+export '../../features/cubit_access/counter_for_route_access/route_access_cubit.dart';

@@ -11,7 +11,7 @@ import '../../core/app_constants/app_strings.dart';
 import '../../core/utilities/helpers.dart';
 
 /* State Management */
-import '../counter/counter_on_cubit/counter_cubit.dart';
+import 'counter_for_route_access/route_access_cubit.dart';
 
 /* UI Components */
 import '../../presentation/widgets/custom_elevated_button.dart';
@@ -50,7 +50,8 @@ class BlocAccessPage extends StatelessWidget {
           /// ➕ Directly increments the counter using `AppFloatingActionButton`
           AppFloatingActionButton(
             icon: AppConstants.addIcon,
-            onPressed: () => context.read<CounterOnCubit>().increment(),
+            onPressed: () =>
+                context.read<RouteAccessCounterCubit>().increment(),
             heroTag: AppStrings.incrementButton,
           ),
         ],

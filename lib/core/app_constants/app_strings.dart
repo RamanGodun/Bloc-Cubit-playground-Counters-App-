@@ -3,8 +3,8 @@ abstract class AppStrings {
   // 🏠 App Titles
   static const String appBarTitleForContextAccessPage =
       'State access via routing';
-  static const String appIsOnBloc = 'App is on BLoC now';
-  static const String appIsOnCubit = 'App is on Cubit now';
+  static const String appIsOnBloc = 'Features mostly on BLoC now';
+  static const String appIsOnCubit = 'Features mostly on Cubit now';
   static const String appTitle = 'BLoC & Cubit';
   static const String blocAccessPageTitle = 'State Access Page';
   static const String counterPageTitleOnBloc = 'Counter is on Bloc now';

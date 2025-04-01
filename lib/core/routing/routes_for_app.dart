@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../features/cubit_access/_route_access_home_page.dart';
+import '../../features/cubit_access/second_page.dart';
+import '../../features/cubit_access/third_page.dart';
 import '../../presentation/pages/theme_page.dart';
 import '../exports/cubits_and_blocs_exports.dart';
 import 'route_names.dart';
@@ -16,12 +19,10 @@ import '../../presentation/pages/home_page.dart';
 import '../../presentation/pages/other_page.dart';
 
 /// 🚦 [AppRoutes] provides a centralized navigation management for the app.
-///
 /// Uses [onGenerateRoute] to handle all navigation requests safely and efficiently,
 /// ensuring type safety and modularity in routing.
 class AppRoutes {
   /// 🛣️ [onGenerateRoute] dynamically generates the route based on [RouteSettings].
-  ///
   /// This approach provides flexibility and reduces the risk of misrouting
   /// by avoiding hardcoded navigation strings scattered throughout the app.
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
@@ -48,11 +49,33 @@ class AppRoutes {
         return _buildRoute(const BlocAccessPage());
 
       case RouteNames.blocAccessCounter:
-        return _buildRouteWithBlocProvider<CounterOnCubit>(
-          contextBuilder: (context) => BlocProvider.of<CounterOnCubit>(context),
+        return _buildRouteWithBlocProvider<RouteAccessCounterCubit>(
+          contextBuilder: (context) =>
+              BlocProvider.of<RouteAccessCounterCubit>(context),
           child: const ShowMeCounter(),
         );
 
+      ///
+      case RouteNames.routeAccessHome:
+        return _buildRouteWithBlocProvider<RouteAccessCounterCubit>(
+          contextBuilder: (context) =>
+              BlocProvider.of<RouteAccessCounterCubit>(context),
+          child: const RouteAccessHomePage(),
+        );
+      case RouteNames.routeAccessSecond:
+        return _buildRouteWithBlocProvider<RouteAccessCounterCubit>(
+          contextBuilder: (context) =>
+              BlocProvider.of<RouteAccessCounterCubit>(context),
+          child: const RouteAccessSecondPage(),
+        );
+      case RouteNames.routeAccessThird:
+        return _buildRouteWithBlocProvider<RouteAccessCounterCubit>(
+          contextBuilder: (context) =>
+              BlocProvider.of<RouteAccessCounterCubit>(context),
+          child: const RouteAccessThirdPage(),
+        );
+
+      ///
       case RouteNames.counterEventTransformerDemo:
         return _buildRoute(const CounterWithEventTransformerHandling());
 
@@ -62,7 +85,6 @@ class AppRoutes {
   }
 
   /// 📦 Builds a standard [MaterialPageRoute] for the provided [widget].
-  ///
   /// This method centralizes the route creation process and keeps the navigation
   /// logic clean and consistent across the application.
   static MaterialPageRoute _buildRoute(Widget widget) {
@@ -70,7 +92,6 @@ class AppRoutes {
   }
 
   /// 🌐 Builds a [MaterialPageRoute] with an existing [BlocProvider].
-  ///
   /// Useful for pages that depend on an existing BLoC or Cubit instance.
   /// It ensures the current state is maintained and prevents unnecessary rebuilds.
   static MaterialPageRoute
