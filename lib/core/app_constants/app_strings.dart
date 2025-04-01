@@ -1,6 +1,6 @@
 /// 🌐 [AppStrings] holds all the static text used in the application.
 abstract class AppStrings {
-  // 🏠 App Titles
+  /// 🏠 App Titles
   static const String appBarTitleForContextAccessPage =
       'State access via routing';
   static const String appIsOnBloc = 'Features mostly on BLoC now';
@@ -13,7 +13,9 @@ abstract class AppStrings {
   static const String otherPageTitle = 'Other page';
   static const String themeScreenTitle = 'Theme Screen';
 
-  // 🔢 Counter
+  /// 🔢 Counter
+  static const String incrementedText = 'Incremented!';
+  static const String decrementedText = 'Decremented!';
   static const String clearHeroTag = 'clear';
   static const String counterIs = 'Now Counter value is: ';
   static const String counterIz = 'Current counter value:  ';
@@ -30,7 +32,7 @@ abstract class AppStrings {
   static const String incrementCounterSubtitle =
       'and will see value on next page';
 
-  // 🚦 Navigation Buttons
+  /// 🚦 Navigation Buttons
   static const String eventTransformers = 'to Counter with events transformer';
   static const String eventTransformersDemo = 'Counter with events transformer';
   static const String goToCounterDependsOnColor =
@@ -40,8 +42,18 @@ abstract class AppStrings {
       'to Hydrated BLoC Counter Page';
   static const String showCounterButton = 'Show Me Counter';
   static const String toStateAccessPage = 'to see the Counter value';
+  static const String toOtherPage = 'To Other Page';
+  static const String toAnotherPage = 'To Another Page';
 
-  // 🌈 Theme & Modes
+  ///Route access feature
+  static const String otherRouteAccessPageTitle = 'Other Page';
+  static const String otherPageDecrementHeroTag = 'other_page_dec';
+  static const String otherPageIncrementHeroTag = 'other_page_inc';
+  static const String anotherPageTitle = 'Another Page';
+  static const String anotherPageDecrementHeroTag = 'another_page_dec';
+  static const String anotherPageIncrementHeroTag = 'another_page_inc';
+
+  /// 🌈 Theme & Modes
   static const String changeColor = 'Change Color';
   static const String changeCounter = 'Change Counter';
   static const String darkMode = 'Dark';
@@ -49,17 +61,17 @@ abstract class AppStrings {
   static const String themeToggledTo = 'Theme toggled to ';
   static const String toggleThemeButton = 'Toggle Theme';
 
-  // 📄 Other
+  /// 📄 Other
   static const String okButton = 'OK';
   static const String otherPageBody = 'This is other page 🙋🏿🙋🏻‍♂️ ';
   static const String exploreFeatures = '🚀 Explore features ';
   static const String smashThoseButtons = '😎 smash those buttons!';
 
-  // 🆕 Custom Header Texts
+  /// 🆕 Custom Header Texts
   static const String counterWithSideEffectsHeadline = 'This counter is with';
   static const String counterWithSideEffectsSubtitle = 'some side effects😉';
 
-// 🆕 Dynamic Counter Text Method
+  /// 🆕 Dynamic Counter Text Method
   static String currentCounterValue(int counter) =>
       'Current counter value: $counter';
 }

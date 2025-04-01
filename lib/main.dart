@@ -47,7 +47,6 @@ class StateManagementProvider extends StatelessWidget {
         /// 🟧 Cubit Providers
         BlocProvider(create: (_) => AppSettingsOnCubit()),
         BlocProvider(create: (_) => CounterOnCubit()),
-        BlocProvider(create: (_) => RouteAccessCounterCubit()),
         BlocProvider(create: (_) => ColorOnCubit()),
         BlocProvider(
           create: (context) => CounterCubitWhichDependsOnColorCubit(

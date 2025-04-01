@@ -1,22 +1,21 @@
+import 'package:countersapp_bloccubit_playground/core/routing/routes_for_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../core/app_constants/app_constants.dart';
 import '../../core/app_constants/app_strings.dart';
-import '../../core/routing/route_names.dart';
 import '../../core/utilities/helpers.dart';
 import '../../presentation/widgets/floating_action_button.dart';
 import '../../presentation/widgets/text_widget.dart';
 import '../../presentation/widgets/custom_elevated_button.dart';
 import '../../features/cubit_access/counter_for_route_access/route_access_cubit.dart';
 
-/// 🟢 `ShowMeCounter` displays and manages the counter value with routing to other pages.
+/// 🟢 [MainPage4RouteAccessFeature] displays and manages the counter value with routing to other pages.
 class MainPage4RouteAccessFeature extends StatelessWidget {
   const MainPage4RouteAccessFeature({super.key});
 
   @override
   Widget build(BuildContext context) {
-    ///
     return Scaffold(
       appBar: AppBar(
         title: const TextWidget(
@@ -28,7 +27,9 @@ class MainPage4RouteAccessFeature extends StatelessWidget {
         listener: (context, state) {
           final wasIncremented = state.wasIncremented;
           if (wasIncremented != null) {
-            final text = wasIncremented ? 'Incremented!' : 'Decremented!';
+            final text = wasIncremented
+                ? AppStrings.incrementedText
+                : AppStrings.decrementedText;
             Helpers.showStyledSnackBar(context: context, message: text);
           }
         },
@@ -46,31 +47,31 @@ class MainPage4RouteAccessFeature extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   AppFloatingActionButton(
-                    heroTag: 'counter_dec',
+                    heroTag: AppStrings.decrementHeroTag,
                     onPressed: () =>
                         context.read<RouteAccessCounterCubit>().decrement(),
-                    icon: Icons.remove,
+                    icon: AppConstants.removeIcon,
                   ),
                   AppFloatingActionButton(
-                    heroTag: 'counter_inc',
+                    heroTag: AppStrings.incrementHeroTag,
                     onPressed: () =>
                         context.read<RouteAccessCounterCubit>().increment(),
-                    icon: Icons.add,
+                    icon: AppConstants.addIcon,
                   ),
                 ],
               ),
-              const SizedBox(height: 24),
-
-              ///
+              const SizedBox(height: AppConstants.largePadding),
               AppElevatedButton(
-                label: 'to Other page',
-                onPressed: () =>
-                    Helpers.pushNamed(context, RouteNames.routeAccessOtherPage),
+                label: AppStrings.toOtherPage,
+                onPressed: () => context.goToOtherRouteAccessPage(
+                  context.read<RouteAccessCounterCubit>(),
+                ),
               ),
               AppElevatedButton(
-                label: 'to Another page',
-                onPressed: () => Helpers.pushNamed(
-                    context, RouteNames.routeAccessAnotherPage),
+                label: AppStrings.toAnotherPage,
+                onPressed: () => context.goToAnotherRouteAccessPage(
+                  context.read<RouteAccessCounterCubit>(),
+                ),
               ),
             ],
           );
