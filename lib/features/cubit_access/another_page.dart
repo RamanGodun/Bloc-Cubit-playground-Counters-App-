@@ -13,6 +13,7 @@ class AnotherPage4CubitRouteAccessFeature extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = AppConstants.anotherPageAppBarColor;
 
+
     return Scaffold(
       appBar: AppBar(
         title: const TextWidget(

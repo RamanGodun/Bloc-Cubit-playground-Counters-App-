@@ -1,9 +1,10 @@
-import 'package:countersapp_bloccubit_playground/core/routing/routes_for_app.dart';
+// import 'package:countersapp_bloccubit_playground/core/routing/routes_for_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../core/app_constants/app_constants.dart';
 import '../../core/app_constants/app_strings.dart';
+import '../../core/routing/route_names.dart';
 import '../../core/utilities/helpers.dart';
 import '../../presentation/widgets/floating_action_button.dart';
 import '../../presentation/widgets/text_widget.dart';
@@ -63,15 +64,22 @@ class MainPage4RouteAccessFeature extends StatelessWidget {
               const SizedBox(height: AppConstants.largePadding),
               AppElevatedButton(
                 label: AppStrings.toOtherPage,
-                onPressed: () => context.goToOtherRouteAccessPage(
-                  context.read<RouteAccessCounterCubit>(),
-                ),
+                onPressed: () => Helpers.goToPageWithSharedCounterCubit(
+                    context, RouteNames.routeAccessOtherPage),
+                // ? Alternative way for routing with shared cubit instance, for it using see [AppRoutes].
+                // onPressed: () => context.goToOtherRouteAccessPage(
+                //   context.read<RouteAccessCounterCubit>(),
+                // ),
+                // ),
               ),
               AppElevatedButton(
                 label: AppStrings.toAnotherPage,
-                onPressed: () => context.goToAnotherRouteAccessPage(
-                  context.read<RouteAccessCounterCubit>(),
-                ),
+                onPressed: () => Helpers.goToPageWithSharedCounterCubit(
+                    context, RouteNames.routeAccessAnotherPage),
+                // ? Alternative way for routing with shared cubit instance, for it using see [AppRoutes].
+                // onPressed: () => context.goToAnotherRouteAccessPage(
+                //   context.read<RouteAccessCounterCubit>(),
+                // ),
               ),
             ],
           );

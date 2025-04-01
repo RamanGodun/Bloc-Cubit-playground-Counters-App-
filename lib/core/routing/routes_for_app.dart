@@ -46,14 +46,27 @@ class AppRoutes {
       case RouteNames.blocAccess:
         return _buildRoute(const HomePage4RouteAccessFeature());
 
-      /// For route access feature
-      case RouteNames.routeAccessHome:
-        return _buildRoute(const HomePage4RouteAccessFeature());
-
-      ///
       case RouteNames.counterEventTransformerDemo:
         return _buildRoute(const CounterWithEventTransformerHandling());
 
+      /// For cubit with route access feature:
+      case RouteNames.routeAccessHome:
+        return _buildRoute(const HomePage4RouteAccessFeature());
+
+      /// ? when use alternative routing option next 3 cases are absent
+      case RouteNames.routeAccessMainPage:
+        final cubit = settings.arguments as RouteAccessCounterCubit;
+        return _buildRouteWithCubit(cubit, const MainPage4RouteAccessFeature());
+      case RouteNames.routeAccessOtherPage:
+        final cubit = settings.arguments as RouteAccessCounterCubit;
+        return _buildRouteWithCubit(
+            cubit, const OtherPage4CubitRouteAccessFeature());
+      case RouteNames.routeAccessAnotherPage:
+        final cubit = settings.arguments as RouteAccessCounterCubit;
+        return _buildRouteWithCubit(
+            cubit, const AnotherPage4CubitRouteAccessFeature());
+
+      ///
       default:
         return _buildRoute(const HomePage());
     }
@@ -66,7 +79,20 @@ class AppRoutes {
     return MaterialPageRoute(builder: (context) => widget);
   }
 
-
+  /// ? when using alternative routing option next method isn't need any more
+  /// 🌐 Builds a [MaterialPageRoute] with an injected cubit instance.
+  /// This method is used when passing an existing Cubit instance via `settings.arguments`.
+  static MaterialPageRoute _buildRouteWithCubit<T extends Cubit<Object?>>(
+    T cubit,
+    Widget child,
+  ) {
+    return MaterialPageRoute(
+      builder: (_) => BlocProvider.value(
+        value: cubit,
+        child: child,
+      ),
+    );
+  }
 
   ///
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../features/cubit_access/counter_for_route_access/route_access_cubit.dart';
 import '../../presentation/widgets/text_widget.dart';
 
 /// 🔧 [Helpers] provides utility methods for navigation, theming, and context-based operations.
@@ -52,6 +54,16 @@ abstract class Helpers {
   }
 
   ///
+  static void goToPageWithSharedCounterCubit(
+    BuildContext context,
+    String pageName,
+  ) {
+    final cubit = context.read<RouteAccessCounterCubit>();
+    Navigator.of(context).pushNamed(
+      pageName,
+      arguments: cubit,
+    );
+  }
 
   ///
 }

@@ -1,9 +1,11 @@
-import 'package:countersapp_bloccubit_playground/core/routing/routes_for_app.dart';
+// import 'package:countersapp_bloccubit_playground/core/routing/routes_for_app.dart';
 import 'package:countersapp_bloccubit_playground/presentation/widgets/header_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../core/app_constants/app_constants.dart';
 import '../../core/app_constants/app_strings.dart';
+import '../../core/routing/route_names.dart';
+import '../../core/utilities/helpers.dart';
 import 'counter_for_route_access/route_access_cubit.dart';
 import '../../presentation/widgets/custom_elevated_button.dart';
 import '../../presentation/widgets/text_widget.dart';
@@ -43,14 +45,14 @@ class _HomePage4RouteAccessBody extends StatelessWidget {
             subTitleText: AppStrings.incrementCounterSubtitle,
           ),
 
-          /// 🔗 Navigates to the Counter Page with saving counter state via [`onGenerateRoute`](lib/core/config/routing/app_routes.dart)
+          /// 🔗 Navigates to the Counter Page with saving counter state via
           AppElevatedButton(
             label: AppStrings.toStateAccessPage,
-            // onPressed: () =>
-            //     Helpers.pushNamed(context, RouteNames.cubitAccessMainPage),
-            onPressed: () => context.goToMainRouteAccessPage(
-              context.read<RouteAccessCounterCubit>(),
-            ),
+            onPressed: () => Helpers.goToPageWithSharedCounterCubit(
+                context, RouteNames.routeAccessMainPage),
+            // ? Alternative way for routing with shared cubit instance, for it using see [AppRoutes].
+            // onPressed: () => context.goToMainRouteAccessPage(
+            //            context.read<RouteAccessCounterCubit>()),
           ),
 
           /// ➕ Directly increments the counter using `AppFloatingActionButton`

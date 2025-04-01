@@ -35,7 +35,7 @@ class RouteNames {
   static const String routeAccessHome = '/routeAccess';
 
   /// 🔢 Counter display on BLoC Access Page (Main Page of Route Feature)
-  static const String cubitAccessMainPage = '/routeAccess/main';
+  static const String routeAccessMainPage = '/routeAccess/main';
 
   /// 🟥 Route Access Feature - Second Page
   static const String routeAccessOtherPage = '/routeAccess/main/other';
