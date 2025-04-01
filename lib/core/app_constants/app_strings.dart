@@ -41,17 +41,14 @@ abstract class AppStrings {
   static const String hydratedBlocCounterButton =
       'to Hydrated BLoC Counter Page';
   static const String showCounterButton = 'Show Me Counter';
-  static const String toStateAccessPage = 'to see the Counter value';
+  static const String toStateAccessPage = 'to State access feature';
+  static const String toSeeCounterValue = 'to see the Counter value';
   static const String toOtherPage = 'To Other Page';
   static const String toAnotherPage = 'To Another Page';
 
   ///Route access feature
   static const String otherRouteAccessPageTitle = 'Other Page';
-  static const String otherPageDecrementHeroTag = 'other_page_dec';
-  static const String otherPageIncrementHeroTag = 'other_page_inc';
   static const String anotherPageTitle = 'Another Page';
-  static const String anotherPageDecrementHeroTag = 'another_page_dec';
-  static const String anotherPageIncrementHeroTag = 'another_page_inc';
 
   /// 🌈 Theme & Modes
   static const String changeColor = 'Change Color';

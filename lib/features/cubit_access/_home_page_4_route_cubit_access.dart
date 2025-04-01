@@ -29,41 +29,68 @@ class _HomePage4RouteAccessBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const TextWidget(
-          AppStrings.blocAccessPageTitle,
-          TextType.titleSmall,
-        ),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        spacing: AppConstants.largePadding,
-        children: [
-          const HeaderText(
-            headlineText: AppStrings.incrementCounterHeadline,
-            subTitleText: AppStrings.incrementCounterSubtitle,
+    return BlocConsumer<RouteAccessCounterCubit, RouteAccessCounterState>(
+      listener: (context, state) {
+        final wasIncremented = state.wasIncremented;
+        if (wasIncremented != null) {
+          final text = wasIncremented
+              ? AppStrings.incrementedText
+              : AppStrings.decrementedText;
+          Helpers.showStyledSnackBar(context: context, message: text);
+        }
+      },
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            title: const TextWidget(
+              AppStrings.blocAccessPageTitle,
+              TextType.titleSmall,
+            ),
           ),
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            spacing: AppConstants.largePadding,
+            children: [
+              const HeaderText(
+                headlineText: AppStrings.incrementCounterHeadline,
+                subTitleText: AppStrings.incrementCounterSubtitle,
+              ),
 
-          /// 🔗 Navigates to the Counter Page with saving counter state via
-          AppElevatedButton(
-            label: AppStrings.toStateAccessPage,
-            onPressed: () => Helpers.goToPageWithSharedCounterCubit(
-                context, RouteNames.routeAccessMainPage),
-            // ? Alternative way for routing with shared cubit instance, for it using see [AppRoutes].
-            // onPressed: () => context.goToMainRouteAccessPage(
-            //            context.read<RouteAccessCounterCubit>()),
-          ),
+              /// ➕ Directly increments the counter using `AppFloatingActionButton`
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  AppFloatingActionButton(
+                    heroTag: AppStrings.decrementHeroTag,
+                    icon: AppConstants.removeIcon,
+                    onPressed: () =>
+                        context.read<RouteAccessCounterCubit>().decrement(),
+                  ),
+                  const SizedBox(width: AppConstants.largePadding),
+                  AppFloatingActionButton(
+                    heroTag: AppStrings.incrementHeroTag,
+                    icon: AppConstants.addIcon,
+                    onPressed: () =>
+                        context.read<RouteAccessCounterCubit>().increment(),
+                  ),
+                ],
+              ),
 
-          /// ➕ Directly increments the counter using `AppFloatingActionButton`
-          AppFloatingActionButton(
-            icon: AppConstants.addIcon,
-            onPressed: () =>
-                context.read<RouteAccessCounterCubit>().increment(),
-            heroTag: AppStrings.incrementButton,
+              const SizedBox(height: 50),
+
+              /// 🔗 Navigates to the Counter Page with saving counter state via
+              AppElevatedButton(
+                label: AppStrings.toSeeCounterValue,
+                onPressed: () => Helpers.goToPageWithSharedCounterCubit(
+                    context, RouteNames.routeAccessMainPage),
+                // ? Alternative way for routing with shared cubit instance, for it using see [AppRoutes].
+                // onPressed: () => context.goToMainRouteAccessPage(
+                //            context.read<RouteAccessCounterCubit>()),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

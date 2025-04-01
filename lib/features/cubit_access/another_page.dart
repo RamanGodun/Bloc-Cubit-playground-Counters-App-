@@ -13,7 +13,6 @@ class AnotherPage4CubitRouteAccessFeature extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = AppConstants.anotherPageAppBarColor;
 
-
     return Scaffold(
       appBar: AppBar(
         title: const TextWidget(
@@ -37,14 +36,14 @@ class AnotherPage4CubitRouteAccessFeature extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   AppFloatingActionButton(
-                    heroTag: AppStrings.anotherPageDecrementHeroTag,
+                    heroTag: AppStrings.decrementHeroTag,
                     icon: AppConstants.removeIcon,
                     color: color,
                     onPressed: () =>
                         context.read<RouteAccessCounterCubit>().decrement(),
                   ),
                   AppFloatingActionButton(
-                    heroTag: AppStrings.anotherPageIncrementHeroTag,
+                    heroTag: AppStrings.incrementHeroTag,
                     icon: AppConstants.addIcon,
                     color: color,
                     onPressed: () =>

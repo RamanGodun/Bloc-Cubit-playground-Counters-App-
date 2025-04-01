@@ -49,15 +49,15 @@ class MainPage4RouteAccessFeature extends StatelessWidget {
                 children: [
                   AppFloatingActionButton(
                     heroTag: AppStrings.decrementHeroTag,
+                    icon: AppConstants.removeIcon,
                     onPressed: () =>
                         context.read<RouteAccessCounterCubit>().decrement(),
-                    icon: AppConstants.removeIcon,
                   ),
                   AppFloatingActionButton(
                     heroTag: AppStrings.incrementHeroTag,
+                    icon: AppConstants.addIcon,
                     onPressed: () =>
                         context.read<RouteAccessCounterCubit>().increment(),
-                    icon: AppConstants.addIcon,
                   ),
                 ],
               ),

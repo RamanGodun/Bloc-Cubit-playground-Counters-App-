@@ -34,14 +34,14 @@ class OtherPage4CubitRouteAccessFeature extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   AppFloatingActionButton(
-                    heroTag: AppStrings.otherPageDecrementHeroTag,
+                    heroTag: AppStrings.decrementHeroTag,
                     icon: AppConstants.removeIcon,
                     color: color,
                     onPressed: () =>
                         context.read<RouteAccessCounterCubit>().decrement(),
                   ),
                   AppFloatingActionButton(
-                    heroTag: AppStrings.otherPageIncrementHeroTag,
+                    heroTag: AppStrings.incrementHeroTag,
                     icon: AppConstants.addIcon,
                     color: color,
                     onPressed: () =>

@@ -33,22 +33,28 @@ abstract class Helpers {
     return Theme.of(context).colorScheme;
   }
 
-  /// 📣 Shows a snackbar with custom text using [TextWidget].
+  /// 📣 Shows a styled snackbar.
   static void showStyledSnackBar({
     required BuildContext context,
     required String message,
-    Duration duration = const Duration(milliseconds: 300),
+    Duration duration = const Duration(milliseconds: 500),
   }) {
-    final color = Theme.of(context).colorScheme.onPrimary;
-
-    ScaffoldMessenger.of(context).showSnackBar(
+    final messenger = ScaffoldMessenger.of(context);
+    // instant dismiss of any previous one
+    messenger.hideCurrentSnackBar(reason: SnackBarClosedReason.dismiss);
+    messenger.showSnackBar(
       SnackBar(
         content: TextWidget(
           message,
           TextType.titleMedium,
-          color: color,
+          color: Theme.of(context).colorScheme.onPrimary,
         ),
         duration: duration,
+        // behavior: SnackBarBehavior.floating,
+        // margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        // shape: RoundedRectangleBorder(
+        //   borderRadius: BorderRadius.circular(12),
+        // ),
       ),
     );
   }
