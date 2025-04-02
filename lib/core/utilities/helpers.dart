@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../features/cubit_access/counter_for_route_access/route_access_cubit.dart';
+import '../../features/cubit_access/counter_cubit_for_route_access/route_access_cubit.dart';
 import '../../presentation/widgets/text_widget.dart';
 
 /// 🔧 [Helpers] provides utility methods for navigation, theming, and context-based operations.

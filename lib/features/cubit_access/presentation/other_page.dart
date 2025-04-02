@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../core/exports/core_config_export.dart';
-import '../../features/cubit_access/counter_for_route_access/route_access_cubit.dart';
-import '../../presentation/widgets/text_widget.dart';
-import '../../presentation/widgets/floating_action_button.dart';
+import '../../../core/exports/core_config_export.dart';
+import '../counter_cubit_for_route_access/route_access_cubit.dart';
+import '../../../presentation/widgets/text_widget.dart';
+import '../../../presentation/widgets/floating_action_button.dart';
 
 ///  [OtherPage4CubitRouteAccessFeature] – page with Counter on shared (through Route Access) Cubit
 class OtherPage4CubitRouteAccessFeature extends StatelessWidget {

@@ -3,7 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 /* Config */
-import '../../../core/app_constants/app_constants.dart';
+import '../../../../core/app_constants/app_constants.dart';
 
 /* Bloc */
 import '../color_on_bloc/color_bloc.dart';
