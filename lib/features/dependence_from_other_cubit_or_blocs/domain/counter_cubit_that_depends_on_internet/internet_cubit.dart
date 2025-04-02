@@ -11,34 +11,28 @@ class InternetCubit extends Cubit<InternetState> {
   final Connectivity connectivity;
   late final StreamSubscription<List<ConnectivityResult>> _subscription;
 
-  InternetCubit({required this.connectivity}) : super(InternetLoading()) {
-    _initialize();
-  }
-
-  Future<void> _initialize() async {
-    final results = await connectivity.checkConnectivity();
-    _mapConnectivityToState([results[0]]);
-
-    _subscription = connectivity.onConnectivityChanged.listen(
-      (results) {
-        print('[DEBUG] Connectivity changed: $results');
-        _mapConnectivityToState(results);
-      },
-    );
+  InternetCubit({required this.connectivity}) : super(const InternetLoading()) {
+    print('🟢 [Init] InternetCubit created');
+    _subscription =
+        connectivity.onConnectivityChanged.listen(_mapConnectivityToState);
   }
 
   void _mapConnectivityToState(List<ConnectivityResult> results) {
+    print('[InternetCubit] ↪️ Connectivity changed: $results');
     final newState = () {
       if (results.contains(ConnectivityResult.wifi)) {
-        return InternetConnected(ConnectionType.wifi);
+        return InternetConnected(ConnectionType.wifi, DateTime.now());
       } else if (results.contains(ConnectivityResult.mobile)) {
-        return InternetConnected(ConnectionType.mobile);
+        return InternetConnected(ConnectionType.mobile, DateTime.now());
       } else {
-        return InternetDisconnected();
+        return const InternetDisconnected();
       }
     }();
-    if (state.runtimeType != newState.runtimeType || state != newState) {
+    if (state != newState) {
       emit(newState);
+      print('[InternetCubit] 📡 Changed to: $newState');
+    } else {
+      print('[InternetCubit] ❌ No change, same state');
     }
   }
 

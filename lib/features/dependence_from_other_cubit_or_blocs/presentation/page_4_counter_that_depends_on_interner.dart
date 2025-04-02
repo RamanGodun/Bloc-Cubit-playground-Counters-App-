@@ -1,3 +1,5 @@
+import 'package:countersapp_bloccubit_playground/core/app_constants/app_constants.dart';
+import 'package:countersapp_bloccubit_playground/presentation/widgets/floating_action_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:countersapp_bloccubit_playground/presentation/widgets/text_widget.dart';
@@ -11,6 +13,35 @@ class PageForCounterThatDependsOnInternet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocListener<InternetCubit, InternetState>(
+      listener: (context, internetState) {
+        final counterCubit = context.read<CounterThatDependsOnInternetCubit>();
+        final previous = counterCubit.previousState;
+        final current = internetState;
+
+        final becameConnected =
+            previous is! InternetConnected && current is InternetConnected;
+        final becameDisconnected =
+            previous is InternetConnected && current is! InternetConnected;
+
+        if (becameConnected) {
+          counterCubit.incrementOn10();
+        } else if (becameDisconnected) {
+          counterCubit.decrementOn10();
+        }
+
+        counterCubit.previousState = current;
+      },
+      child: const _CounterBody(), // винесений body окремо
+    );
+  }
+}
+
+class _CounterBody extends StatelessWidget {
+  const _CounterBody();
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const TextWidget('Internet Counter', TextType.titleSmall),
@@ -20,15 +51,12 @@ class PageForCounterThatDependsOnInternet extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            /// ✅ Окремий BlocBuilder для InternetCubit
             BlocBuilder<InternetCubit, InternetState>(
               builder: (context, internetState) {
                 return _ConnectionStatusLabel(internetState: internetState);
               },
             ),
             const SizedBox(height: 32),
-
-            /// ✅ Твій BlocConsumer для CounterCubit
             BlocConsumer<CounterThatDependsOnInternetCubit,
                 CounterThatDependsOnInternetState>(
               listener: (context, state) {
@@ -68,21 +96,17 @@ class _ConnectionStatusLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = Theme.of(context).textTheme.displaySmall;
-
     return switch (internetState) {
-      InternetConnected(:final connectionType) => Text(
+      InternetConnected(:final connectionType) => TextWidget(
           connectionType == ConnectionType.wifi ? 'Wi-Fi' : 'Mobile',
-          style: textStyle?.copyWith(
-            color: connectionType == ConnectionType.wifi
-                ? Colors.green
-                : Colors.orange,
-          ),
+          TextType.smallHeadline,
+          color: connectionType == ConnectionType.wifi
+              ? AppConstants.greenColor
+              : AppConstants.darkPrimaryColor,
         ),
-      InternetDisconnected() => Text(
-          'Disconnected',
-          style: textStyle?.copyWith(color: Colors.grey),
-        ),
+      InternetDisconnected() => const TextWidget(
+          'Disconnected', TextType.smallHeadline,
+          color: AppConstants.errorColor),
       _ => const CircularProgressIndicator(),
     };
   }
@@ -94,19 +118,16 @@ class _CounterControls extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        FloatingActionButton(
-          heroTag: '_dec',
-          onPressed: () =>
-              context.read<CounterThatDependsOnInternetCubit>().decrement(),
-          tooltip: 'Decrement',
-          child: const Icon(Icons.remove),
-        ),
-        FloatingActionButton(
-          heroTag: '_inc',
+        AppFloatingActionButton(
+            icon: Icons.remove,
+            onPressed: () =>
+                context.read<CounterThatDependsOnInternetCubit>().decrement(),
+            heroTag: '_dec'),
+        AppFloatingActionButton(
+          icon: Icons.add,
           onPressed: () =>
               context.read<CounterThatDependsOnInternetCubit>().increment(),
-          tooltip: 'Increment',
-          child: const Icon(Icons.add),
+          heroTag: '_inc',
         ),
       ],
     );

@@ -1,29 +1,28 @@
 part of 'internet_cubit.dart';
 
 abstract class InternetState extends Equatable {
-  final DateTime timestamp;
-  const InternetState(this.timestamp);
-
-  @override
-  List<Object?> get props => [timestamp];
+  const InternetState();
 }
 
 class InternetLoading extends InternetState {
-  InternetLoading() : super(DateTime.now());
+  const InternetLoading();
+  @override
+  List<Object?> get props => [1];
 }
 
 class InternetConnected extends InternetState {
   final ConnectionType connectionType;
+  final DateTime timestamp;
 
-  InternetConnected(this.connectionType) : super(DateTime.now());
+  const InternetConnected(this.connectionType, this.timestamp) : super();
 
   @override
   List<Object?> get props => [connectionType, timestamp];
 }
 
 class InternetDisconnected extends InternetState {
-  InternetDisconnected() : super(DateTime.now());
+  const InternetDisconnected();
 
   @override
-  List<Object?> get props => [timestamp];
+  List<Object?> get props => [0];
 }

@@ -30,7 +30,6 @@ import '../app_settings_state_management/ui_settings_state/ui_settings_cubit.dar
 
 /* 🧩 Extensions and Helpers */
 part 'navigation_extensions.dart';
-part 'counter_that_depends_on_internet_factory.dart';
 
 /// 🚦 [AppRoutes] provides a centralized navigation management for the app.
 /// Uses [onGenerateRoute] to handle all navigation requests safely and efficiently,
@@ -90,7 +89,7 @@ class AppRoutes {
 
       case RouteNames.counterThatDependsOnInternet:
         return MaterialPageRoute(
-          builder: (context) => _CounterInternetPageFactory.buildMain(context),
+          builder: (context) => _wrapWithCubits(context),
         );
 
       ///
@@ -151,6 +150,21 @@ class AppRoutes {
   }
 
   ///
+  static Widget _wrapWithCubits(BuildContext context) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+            create: (_) => InternetCubit(connectivity: Connectivity())),
+        BlocProvider(
+          create: (context) => CounterThatDependsOnInternetCubit(),
+        ),
+      ],
+      child: BlocProvider(
+        create: (_) => UiSettingsCubit(context),
+        child: const PageForCounterThatDependsOnInternet(),
+      ),
+    );
+  }
 
   ///
 }
