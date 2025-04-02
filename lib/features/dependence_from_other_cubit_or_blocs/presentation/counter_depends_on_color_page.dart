@@ -91,14 +91,7 @@ class PageForCounterThatDependsOnColor extends StatelessWidget {
                 onPressed: () =>
                     Helpers.pushNamed(context, RouteNames.themePage),
                 tooltip: AppStrings.toggleThemeButton,
-              ),
-              IconButton(
-                  icon: Icon(
-                    AppConstants.internetIcon,
-                    color: Helpers.getColorScheme(context).primary,
-                  ),
-                  onPressed: () => Helpers.pushNamed(
-                      context, RouteNames.counterThatDependsOnInternet)),
+              )
             ],
           ),
           body: Column(

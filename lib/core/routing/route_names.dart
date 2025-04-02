@@ -18,16 +18,12 @@ class RouteNames {
   /// ➕ Counter Page (Standard)
   static const String counterPage = '/counterPage';
 
-  /// 🎨 Dependence from other Cubits/BLoCs
+  /// 🎨 Pages for feature of "Dependence from other Cubits/BLoCs"
   static const String dependenceFromBLoCs = '/dependenceFromBLoCs';
   static const String counterDependsOnColor =
       '/dependenceFromBLoCs/counterDependsOnColorPage';
   static const String counterThatDependsOnInternet =
       '/dependenceFromBLoCs/counterThatDependsOnInternet';
-  static const String subPage1ForCounterThatDependsOnInternet =
-      '/dependenceFromBLoCs/counterThatDependsOnInternet/subPage1ForCounterThatDependsOnInternet';
-  static const String subPage2ForCounterThatDependsOnInternet =
-      '/dependenceFromBLoCs/counterThatDependsOnInternet/subPage2ForCounterThatDependsOnInternet';
 
   /// 🔁 Counter with Event Transformer Handling
   static const String counterEventTransformerDemo =
@@ -39,7 +35,7 @@ class RouteNames {
   /// 🚦 Navigation to "Other Page"
   static const String otherPage = '/counterPage/otherPage';
 
-  /// 🚏 Route State Access Feature pages
+  /// 🚏 Pages for feature of "State Access (through routes)""
   static const String routeAccessHome = '/routeAccess';
   static const String routeAccessMainPage = '/routeAccess/main';
   static const String routeAccessOtherPage = '/routeAccess/main/other';

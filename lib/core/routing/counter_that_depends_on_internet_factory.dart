@@ -9,26 +9,17 @@ class _CounterInternetPageFactory {
     );
   }
 
-  static Widget _buildSubPage1(BuildContext context) {
-    return _wrapWithProviders(
-      context,
-      const SubPage1ForCounterThatDependsOnInternet(),
-    );
-  }
-
-  static Widget _buildSubPage2(BuildContext context) {
-    return _wrapWithProviders(
-      context,
-      const SubPage2ForCounterThatDependsOnInternet(),
-    );
-  }
-
   static Widget _wrapWithProviders(BuildContext context, Widget child) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: (_) => InternetCubit(connectivity: Connectivity())),
-        BlocProvider(create: (_) => CounterThatDependsOnInternetCubit()),
+          create: (_) => InternetCubit(connectivity: Connectivity()),
+        ),
+        BlocProvider(
+          create: (context) => CounterThatDependsOnInternetCubit(
+            internetStream: context.read<InternetCubit>().stream,
+          ),
+        ),
       ],
       child: BlocProvider(
         create: (_) => UiSettingsCubit(context),

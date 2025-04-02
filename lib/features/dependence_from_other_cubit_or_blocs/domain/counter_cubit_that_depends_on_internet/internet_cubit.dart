@@ -9,38 +9,42 @@ enum ConnectionType { wifi, mobile, none }
 
 class InternetCubit extends Cubit<InternetState> {
   final Connectivity connectivity;
-  late final StreamSubscription<List<ConnectivityResult>>
-      _connectivitySubscription;
+  late final StreamSubscription<List<ConnectivityResult>> _subscription;
 
-  InternetCubit({required this.connectivity}) : super(const InternetLoading()) {
-    _connectivitySubscription = connectivity.onConnectivityChanged.listen((
-      resultList,
-    ) {
-      final result =
-          resultList.isNotEmpty ? resultList.first : ConnectivityResult.none;
-      _mapConnectivityToState(result);
-    });
+  InternetCubit({required this.connectivity}) : super(InternetLoading()) {
+    _initialize();
   }
 
-  void _mapConnectivityToState(ConnectivityResult result) {
-    switch (result) {
-      case ConnectivityResult.wifi:
-        emit(const InternetConnected(ConnectionType.wifi));
-        break;
-      case ConnectivityResult.mobile:
-        emit(const InternetConnected(ConnectionType.mobile));
-        break;
-      case ConnectivityResult.none:
-        emit(const InternetDisconnected());
-        break;
-      default:
-        emit(const InternetDisconnected());
+  Future<void> _initialize() async {
+    final results = await connectivity.checkConnectivity();
+    _mapConnectivityToState([results[0]]);
+
+    _subscription = connectivity.onConnectivityChanged.listen(
+      (results) {
+        print('[DEBUG] Connectivity changed: $results');
+        _mapConnectivityToState(results);
+      },
+    );
+  }
+
+  void _mapConnectivityToState(List<ConnectivityResult> results) {
+    final newState = () {
+      if (results.contains(ConnectivityResult.wifi)) {
+        return InternetConnected(ConnectionType.wifi);
+      } else if (results.contains(ConnectivityResult.mobile)) {
+        return InternetConnected(ConnectionType.mobile);
+      } else {
+        return InternetDisconnected();
+      }
+    }();
+    if (state.runtimeType != newState.runtimeType || state != newState) {
+      emit(newState);
     }
   }
 
   @override
   Future<void> close() async {
-    await _connectivitySubscription.cancel();
+    await _subscription.cancel();
     return super.close();
   }
 }

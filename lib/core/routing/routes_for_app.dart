@@ -19,8 +19,6 @@ import '../../features/events_transformer/counter_with_events_transformer_page.d
 
 import '../../features/dependence_from_other_cubit_or_blocs/presentation/counter_depends_on_color_page.dart';
 import '../../features/dependence_from_other_cubit_or_blocs/presentation/page_4_counter_that_depends_on_interner.dart';
-import '../../features/dependence_from_other_cubit_or_blocs/presentation/sub_page_1_for_counter_that_depends_on_interner.dart';
-import '../../features/dependence_from_other_cubit_or_blocs/presentation/sub_page_2_for_counter_that_depends_on_interner.dart';
 
 import '../../features/cubit_access/presentation/_home_page_4_route_cubit_access.dart';
 import '../../features/cubit_access/presentation/_main_page_4_route_cubit_access.dart';
@@ -93,18 +91,6 @@ class AppRoutes {
       case RouteNames.counterThatDependsOnInternet:
         return MaterialPageRoute(
           builder: (context) => _CounterInternetPageFactory.buildMain(context),
-        );
-
-      case RouteNames.subPage1ForCounterThatDependsOnInternet:
-        return MaterialPageRoute(
-          builder: (context) =>
-              _CounterInternetPageFactory._buildSubPage1(context),
-        );
-
-      case RouteNames.subPage2ForCounterThatDependsOnInternet:
-        return MaterialPageRoute(
-          builder: (context) =>
-              _CounterInternetPageFactory._buildSubPage2(context),
         );
 
       ///
