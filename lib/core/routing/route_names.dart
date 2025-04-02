@@ -19,11 +19,7 @@ class RouteNames {
   static const String counterPage = '/counterPage';
 
   /// 🎨 Pages for feature of "Dependence from other Cubits/BLoCs"
-  static const String dependenceFromBLoCs = '/dependenceFromBLoCs';
-  static const String counterDependsOnColor =
-      '/dependenceFromBLoCs/counterDependsOnColorPage';
-  static const String counterThatDependsOnInternet =
-      '/dependenceFromBLoCs/counterThatDependsOnInternet';
+  static const String counterDependsOnColor = '/counterDependsOnColorPage';
 
   /// 🔁 Counter with Event Transformer Handling
   static const String counterEventTransformerDemo =

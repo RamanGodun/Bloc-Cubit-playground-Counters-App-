@@ -13,7 +13,6 @@ import '../../../core/app_settings_state_management/app_settings_on_bloc/app_set
 import '../../../core/routing/route_names.dart';
 import '../../../core/utilities/helpers.dart';
 import '../domain/_state_switching_of_counter_which_depends_on_color/factory_for_counter_which_depends_on_color.dart';
-
 import '../domain/counter_on_bloc/counter_bloc.dart';
 import '../domain/counter_on_cubit/counter_which_depends_on_color_cubit.dart';
 
@@ -22,48 +21,21 @@ import '../../../presentation/widgets/custom_elevated_button.dart';
 import '../../../presentation/widgets/text_widget.dart';
 part 'counter_display_w.dart';
 
-class PageToShowDependenceFromOtherCubitsOrBlocs extends StatelessWidget {
-  const PageToShowDependenceFromOtherCubitsOrBlocs({super.key});
+class PageForCounterThatDependsOnColor extends StatelessWidget {
+  const PageForCounterThatDependsOnColor({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          title: const TextWidget(
-              'Dependence from other BLoCs', TextType.titleSmall)),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          spacing: 25,
-          children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: TextWidget(
-                'This page demonstrates BLoC/Cubit dependencies on other BLoC/Cubit.',
-                TextType.titleMedium,
-              ),
-            ),
-            const Divider(),
-            AppElevatedButton(
-              label: AppStrings.goToCounterDependsOnColor,
-              onPressed: () =>
-                  Helpers.pushNamed(context, RouteNames.counterDependsOnColor),
-            ),
-            AppElevatedButton(
-              label: AppStrings.toCounterThatDependsOnInternet,
-              onPressed: () => Helpers.pushNamed(
-                  context, RouteNames.counterThatDependsOnInternet),
-            ),
-          ],
-        ),
-      ),
+    return BlocProvider(
+      create: (ctx) => UiSettingsCubit(ctx),
+      child: const _UIForCounterThatDependsOnColor(),
     );
   }
 }
 
-/// 🟢 [ViewToShowDependenceFromOtherCubitsOrBlocs] dynamically handles counter and color states using BLoC or Cubit.
-class PageForCounterThatDependsOnColor extends StatelessWidget {
-  const PageForCounterThatDependsOnColor({super.key});
+/// 🟢 [_UIForCounterThatDependsOnColor] dynamically handles counter and color states using BLoC or Cubit.
+class _UIForCounterThatDependsOnColor extends StatelessWidget {
+  const _UIForCounterThatDependsOnColor();
 
   @override
   Widget build(BuildContext context) {

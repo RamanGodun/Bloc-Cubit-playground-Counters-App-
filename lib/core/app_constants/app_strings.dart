@@ -47,8 +47,6 @@ abstract class AppStrings {
   static const String toAnotherPage = 'To Another Page';
   static const String toCounterThatDependsOnInternet =
       'to Counter, that depends on internet';
-  static const String toDependenceFromOtherBLoCs =
-      'to feature with dependencies from other BLoCs';
 
   ///Route access feature
   static const String otherRouteAccessPageTitle = 'Other Page';

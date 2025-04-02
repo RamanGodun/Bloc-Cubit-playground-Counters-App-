@@ -30,9 +30,5 @@ export '../../features/counter/counter_on_cubit/counter_cubit.dart';
 export '../../features/dependence_from_other_cubit_or_blocs/domain/color_on_cubit/color_cubit.dart';
 export '../../features/dependence_from_other_cubit_or_blocs/domain/counter_on_cubit/counter_which_depends_on_color_cubit.dart';
 
-// 🌐 Internet-Dependent Features
-export '../../features/dependence_from_other_cubit_or_blocs/domain/counter_cubit_that_depends_on_internet/internet_cubit.dart';
-export '../../features/dependence_from_other_cubit_or_blocs/domain/counter_cubit_that_depends_on_internet/counter_that_depends_on_internet_cubit.dart';
-
 /// 🌐 For Route Access feature Cubit
 export '../../features/cubit_access/counter_cubit_for_route_access/route_access_cubit.dart';

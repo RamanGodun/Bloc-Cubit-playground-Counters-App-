@@ -1,4 +1,3 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,15 +17,11 @@ import '../../features/counter_on_hydrated_bloc/hydrated_counter_page.dart';
 import '../../features/events_transformer/counter_with_events_transformer_page.dart';
 
 import '../../features/dependence_from_other_cubit_or_blocs/presentation/counter_depends_on_color_page.dart';
-import '../../features/dependence_from_other_cubit_or_blocs/presentation/page_4_counter_that_depends_on_interner.dart';
 
 import '../../features/cubit_access/presentation/_home_page_4_route_cubit_access.dart';
 import '../../features/cubit_access/presentation/_main_page_4_route_cubit_access.dart';
 import '../../features/cubit_access/presentation/another_page.dart';
 import '../../features/cubit_access/presentation/other_page.dart';
-
-/* 🌈 UI Settings Cubit (окремо, бо залежить від контексту) */
-import '../app_settings_state_management/ui_settings_state/ui_settings_cubit.dart';
 
 /* 🧩 Extensions and Helpers */
 part 'navigation_extensions.dart';
@@ -53,44 +48,8 @@ class AppRoutes {
         return _buildRoute(const OtherPage());
 
       ///
-      case RouteNames.dependenceFromBLoCs:
-        return _buildRoute(const PageToShowDependenceFromOtherCubitsOrBlocs());
-
       case RouteNames.counterDependsOnColor:
-        return MaterialPageRoute(
-          builder: (_) {
-            final colorCubit = ColorOnCubit();
-            final counterCubit = CounterCubitWhichDependsOnColorCubit(
-              colorCubit: colorCubit,
-            );
-
-            return MultiBlocProvider(
-              providers: [
-                BlocProvider.value(value: colorCubit),
-                BlocProvider.value(value: counterCubit),
-                BlocProvider(create: (_) => ColorOnBloc()),
-                BlocProvider(
-                  create: (context) => CounterBlocWhichDependsOnColorBLoC(
-                    colorBloc: context.read<ColorOnBloc>(),
-                  ),
-                ),
-              ],
-              child: Builder(
-                builder: (context) {
-                  return BlocProvider(
-                    create: (_) => UiSettingsCubit(context),
-                    child: const PageForCounterThatDependsOnColor(),
-                  );
-                },
-              ),
-            );
-          },
-        );
-
-      case RouteNames.counterThatDependsOnInternet:
-        return MaterialPageRoute(
-          builder: (context) => _wrapWithCubits(context),
-        );
+        return _buildRoute(const PageForCounterThatDependsOnColor());
 
       ///
       case RouteNames.counterHydrated:
@@ -150,21 +109,6 @@ class AppRoutes {
   }
 
   ///
-  static Widget _wrapWithCubits(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-            create: (_) => InternetCubit(connectivity: Connectivity())),
-        BlocProvider(
-          create: (context) => CounterThatDependsOnInternetCubit(),
-        ),
-      ],
-      child: BlocProvider(
-        create: (_) => UiSettingsCubit(context),
-        child: const PageForCounterThatDependsOnInternet(),
-      ),
-    );
-  }
 
   ///
 }
