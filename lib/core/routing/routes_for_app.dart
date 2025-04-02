@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../features/counter/presentation/counter_page_.dart';
-import '../../features/cubit_and_bloc_depend_on_others/presentation/counter_depends_on_color_page.dart';
+import '../../features/dependence_from_other_cubit_or_blocs/presentation/counter_depends_on_color_page.dart';
 import '../../features/counter_on_hydrated_bloc/hydrated_counter_page.dart';
 import '../../features/cubit_access/presentation/_home_page_4_route_cubit_access.dart';
 import '../../features/cubit_access/presentation/_main_page_4_route_cubit_access.dart';
@@ -38,7 +38,7 @@ class AppRoutes {
         return _buildRoute(const OtherPage());
 
       case RouteNames.counterDependsOnColor:
-        return _buildRoute(const CounterDependsOnColorPage());
+        return _buildRoute(const PageToShowDependenceFromOtherCubitsOrBlocs());
 
       case RouteNames.counterHydrated:
         return _buildRoute(const CounterOnHydratedBlocPage());

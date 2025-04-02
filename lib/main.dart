@@ -52,6 +52,7 @@ class StateManagementProvider extends StatelessWidget {
           create: (context) => CounterCubitWhichDependsOnColorCubit(
               colorCubit: context.read<ColorOnCubit>()),
         ),
+        // BlocProvider(create: (context) => UiSettingsCubit(context)),
       ],
       child: const AppStateBuilder(),
     );

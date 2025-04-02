@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 /* Config */
+import '../../../core/app_settings_state_management/ui_settings_state/ui_settings_cubit.dart';
 import '../../../core/config/app_config.dart';
 import '../../../core/app_constants/app_strings.dart';
 import '../../../core/app_constants/app_constants.dart';
@@ -12,8 +13,6 @@ import '../../../core/app_settings_state_management/app_settings_on_bloc/app_set
 import '../../../core/routing/route_names.dart';
 import '../../../core/utilities/helpers.dart';
 import '../domain/_state_switching_of_counter_which_depends_on_color/factory_for_counter_which_depends_on_color.dart';
-import '../domain/color_on_bloc/color_bloc.dart';
-import '../domain/color_on_cubit/color_cubit.dart';
 import '../domain/counter_on_bloc/counter_bloc.dart';
 import '../domain/counter_on_cubit/counter_which_depends_on_color_cubit.dart';
 
@@ -22,7 +21,79 @@ import '../../../presentation/widgets/custom_elevated_button.dart';
 import '../../../presentation/widgets/text_widget.dart';
 part 'counter_display_w.dart';
 
-/// 🟢 [CounterDependsOnColorPage] dynamically handles counter and color states using BLoC or Cubit.
+/// 🟢 [ViewToShowDependenceFromOtherCubitsOrBlocs] dynamically handles counter and color states using BLoC or Cubit.
+class PageToShowDependenceFromOtherCubitsOrBlocs extends StatelessWidget {
+  const PageToShowDependenceFromOtherCubitsOrBlocs({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final counterManager = CounterDependsOnColorFactory.create(context);
+
+    return BlocProvider(
+      create: (_) => UiSettingsCubit(context),
+      child: BlocBuilder<UiSettingsCubit, UiSettingsState>(
+        builder: (context, uiState) {
+          return Scaffold(
+            backgroundColor: uiState.backgroundColor,
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              title: TextWidget(
+                uiState.appBarTitle,
+                TextType.titleSmall,
+                color: AppConstants.darkForegroundColor,
+              ),
+              actions: [
+                IconButton(
+                  icon: Icon(
+                    uiState.isDarkMode
+                        ? AppConstants.darkModeIcon
+                        : AppConstants.lightModeIcon,
+                    color: Helpers.getColorScheme(context).primary,
+                  ),
+                  onPressed: () =>
+                      Helpers.pushNamed(context, RouteNames.themePage),
+                  tooltip: AppStrings.toggleThemeButton,
+                ),
+                IconButton(
+                  icon: Icon(
+                    uiState.isUsingBloc
+                        ? AppConstants.syncIcon
+                        : AppConstants.changeCircleIcon,
+                    color: Helpers.getColorScheme(context).primary,
+                  ),
+                  onPressed: () => AppConfig.isAppSettingsOnBlocStateShape
+                      ? context
+                          .read<AppSettingsOnBloc>()
+                          .add(ToggleUseBlocEvent())
+                      : context.read<AppSettingsOnCubit>().toggleUseBloc(),
+                  tooltip:
+                      'Switch to ${uiState.isUsingBloc ? 'Cubit' : 'BLoC'} Mode',
+                ),
+              ],
+            ),
+            body: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: AppConstants.largePadding,
+              children: [
+                AppElevatedButton(
+                  label: AppStrings.changeColor,
+                  onPressed: counterManager.changeColor,
+                ),
+                const CounterDisplayWidget(),
+                AppElevatedButton(
+                  label: AppStrings.changeCounter,
+                  onPressed: counterManager.changeCounter,
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+/*
 class CounterDependsOnColorPage extends StatelessWidget {
   const CounterDependsOnColorPage({super.key});
 
@@ -111,3 +182,4 @@ class CounterDependsOnColorPage extends StatelessWidget {
     );
   }
 }
+ */
