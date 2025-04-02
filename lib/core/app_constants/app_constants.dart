@@ -61,6 +61,7 @@ abstract class AppConstants {
   static const IconData darkModeIcon = Icons.dark_mode;
   static const IconData syncIcon = Icons.sync;
   static const IconData changeCircleIcon = Icons.change_circle;
+  static const internetIcon = Icons.wifi;
 
   /// 📏 Paddings
   static const double smallPadding = 5.0;

@@ -18,8 +18,16 @@ class RouteNames {
   /// ➕ Counter Page (Standard)
   static const String counterPage = '/counterPage';
 
-  /// 🎨 Counter with Color Dependency
-  static const String counterDependsOnColor = '/counterDependsOnColorPage';
+  /// 🎨 Dependence from other Cubits/BLoCs
+  static const String dependenceFromBLoCs = '/dependenceFromBLoCs';
+  static const String counterDependsOnColor =
+      '/dependenceFromBLoCs/counterDependsOnColorPage';
+  static const String counterThatDependsOnInternet =
+      '/dependenceFromBLoCs/counterThatDependsOnInternet';
+  static const String subPage1ForCounterThatDependsOnInternet =
+      '/dependenceFromBLoCs/counterThatDependsOnInternet/subPage1ForCounterThatDependsOnInternet';
+  static const String subPage2ForCounterThatDependsOnInternet =
+      '/dependenceFromBLoCs/counterThatDependsOnInternet/subPage2ForCounterThatDependsOnInternet';
 
   /// 🔁 Counter with Event Transformer Handling
   static const String counterEventTransformerDemo =
@@ -31,15 +39,9 @@ class RouteNames {
   /// 🚦 Navigation to "Other Page"
   static const String otherPage = '/counterPage/otherPage';
 
-  /// 🚏 Route Access Feature - Home
+  /// 🚏 Route State Access Feature pages
   static const String routeAccessHome = '/routeAccess';
-
-  /// 🔢 Counter display on BLoC Access Page (Main Page of Route Feature)
   static const String routeAccessMainPage = '/routeAccess/main';
-
-  /// 🟥 Route Access Feature - Second Page
   static const String routeAccessOtherPage = '/routeAccess/main/other';
-
-  /// 🟩 Route Access Feature - Third Page
   static const String routeAccessAnotherPage = '/routeAccess/main/another';
 }

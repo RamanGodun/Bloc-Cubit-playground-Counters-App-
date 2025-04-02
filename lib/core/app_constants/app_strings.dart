@@ -36,7 +36,7 @@ abstract class AppStrings {
   static const String eventTransformers = 'to Counter with events transformer';
   static const String eventTransformersDemo = 'Counter with events transformer';
   static const String goToCounterDependsOnColor =
-      'to Counter that depends on Color';
+      'to Counter, that depends on Color';
   static const String goToCounterPage = 'to Counter';
   static const String hydratedBlocCounterButton =
       'to Hydrated BLoC Counter Page';
@@ -45,6 +45,8 @@ abstract class AppStrings {
   static const String toSeeCounterValue = 'to see the Counter value';
   static const String toOtherPage = 'To Other Page';
   static const String toAnotherPage = 'To Another Page';
+  static const String toCounterThatDependsOnInternet =
+      'to Counter, that depends on internet';
 
   ///Route access feature
   static const String otherRouteAccessPageTitle = 'Other Page';

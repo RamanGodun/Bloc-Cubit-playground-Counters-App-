@@ -1,6 +1,13 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../features/counter/presentation/counter_page_.dart';
+import '../../features/dependence_from_other_cubit_or_blocs/domain/color_on_bloc/color_bloc.dart';
+import '../../features/dependence_from_other_cubit_or_blocs/domain/color_on_cubit/color_cubit.dart';
+import '../../features/dependence_from_other_cubit_or_blocs/domain/counter_cubit_that_depends_on_internet/counter_that_depends_on_internet_cubit.dart';
+import '../../features/dependence_from_other_cubit_or_blocs/domain/counter_cubit_that_depends_on_internet/internet_cubit.dart';
+import '../../features/dependence_from_other_cubit_or_blocs/domain/counter_on_bloc/counter_bloc.dart';
+import '../../features/dependence_from_other_cubit_or_blocs/domain/counter_on_cubit/counter_which_depends_on_color_cubit.dart';
 import '../../features/dependence_from_other_cubit_or_blocs/presentation/counter_depends_on_color_page.dart';
 import '../../features/counter_on_hydrated_bloc/hydrated_counter_page.dart';
 import '../../features/cubit_access/presentation/_home_page_4_route_cubit_access.dart';
@@ -8,10 +15,14 @@ import '../../features/cubit_access/presentation/_main_page_4_route_cubit_access
 import '../../features/cubit_access/presentation/another_page.dart';
 import '../../features/cubit_access/counter_cubit_for_route_access/route_access_cubit.dart';
 import '../../features/cubit_access/presentation/other_page.dart';
+import '../../features/dependence_from_other_cubit_or_blocs/presentation/page_4_counter_that_depends_on_interner.dart';
+import '../../features/dependence_from_other_cubit_or_blocs/presentation/sub_page_1_for_counter_that_depends_on_interner.dart';
+import '../../features/dependence_from_other_cubit_or_blocs/presentation/sub_page_2_for_counter_that_depends_on_interner.dart';
 import '../../features/events_transformer/counter_with_events_transformer_page.dart';
 import '../../presentation/pages/home_page.dart';
 import '../../presentation/pages/other_page.dart';
 import '../../presentation/pages/theme_page.dart';
+import '../app_settings_state_management/ui_settings_state/ui_settings_cubit.dart';
 import 'route_names.dart';
 
 part 'navigation_extensions.dart';
@@ -37,9 +48,102 @@ class AppRoutes {
       case RouteNames.otherPage:
         return _buildRoute(const OtherPage());
 
-      case RouteNames.counterDependsOnColor:
+      ///
+      case RouteNames.dependenceFromBLoCs:
         return _buildRoute(const PageToShowDependenceFromOtherCubitsOrBlocs());
 
+      case RouteNames.counterDependsOnColor:
+        return MaterialPageRoute(
+          builder: (_) {
+            final colorCubit = ColorOnCubit();
+            final counterCubit = CounterCubitWhichDependsOnColorCubit(
+              colorCubit: colorCubit,
+            );
+
+            return MultiBlocProvider(
+              providers: [
+                BlocProvider.value(value: colorCubit),
+                BlocProvider.value(value: counterCubit),
+                BlocProvider(create: (_) => ColorOnBloc()),
+                BlocProvider(
+                  create: (context) => CounterBlocWhichDependsOnColorBLoC(
+                    colorBloc: context.read<ColorOnBloc>(),
+                  ),
+                ),
+              ],
+              child: Builder(
+                builder: (context) {
+                  return BlocProvider(
+                    create: (_) => UiSettingsCubit(context),
+                    child: const PageForCounterThatDependsOnColor(),
+                  );
+                },
+              ),
+            );
+          },
+        );
+
+      case RouteNames.counterThatDependsOnInternet:
+        return MaterialPageRoute(
+          builder: (_) {
+            return MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                    create: (_) => InternetCubit(connectivity: Connectivity())),
+                BlocProvider(
+                    create: (_) => CounterThatDependsOnInternetCubit()),
+              ],
+              child: Builder(
+                builder: (context) => BlocProvider(
+                  create: (_) => UiSettingsCubit(context),
+                  child: const PageForCounterThatDependsOnInternet(),
+                ),
+              ),
+            );
+          },
+        );
+
+      case RouteNames.subPage1ForCounterThatDependsOnInternet:
+        return MaterialPageRoute(
+          builder: (_) {
+            return MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                    create: (_) => InternetCubit(connectivity: Connectivity())),
+                BlocProvider(
+                    create: (_) => CounterThatDependsOnInternetCubit()),
+              ],
+              child: Builder(
+                builder: (context) => BlocProvider(
+                  create: (_) => UiSettingsCubit(context),
+                  child: const SubPage1ForCounterThatDependsOnInternet(),
+                ),
+              ),
+            );
+          },
+        );
+
+      case RouteNames.subPage2ForCounterThatDependsOnInternet:
+        return MaterialPageRoute(
+          builder: (_) {
+            return MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                    create: (_) => InternetCubit(connectivity: Connectivity())),
+                BlocProvider(
+                    create: (_) => CounterThatDependsOnInternetCubit()),
+              ],
+              child: Builder(
+                builder: (context) => BlocProvider(
+                  create: (_) => UiSettingsCubit(context),
+                  child: const SubPage2ForCounterThatDependsOnInternet(),
+                ),
+              ),
+            );
+          },
+        );
+
+      ///
       case RouteNames.counterHydrated:
         return _buildRoute(const CounterOnHydratedBlocPage());
 
@@ -93,6 +197,8 @@ class AppRoutes {
       ),
     );
   }
+
+  ///
 
   ///
 }

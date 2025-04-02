@@ -111,7 +111,7 @@ class ButtonsList extends StatelessWidget {
           AppElevatedButton(
             label: AppStrings.goToCounterDependsOnColor,
             onPressed: () =>
-                Helpers.pushNamed(context, RouteNames.counterDependsOnColor),
+                Helpers.pushNamed(context, RouteNames.dependenceFromBLoCs),
           ),
           AppElevatedButton(
             label: AppStrings.hydratedBlocCounter,
