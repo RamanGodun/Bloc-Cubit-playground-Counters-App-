@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../features/cubit_access/counter_cubit_for_route_access/route_access_cubit.dart';
+import '../../presentation/pages/other_page.dart';
 import '../../presentation/widgets/text_widget.dart';
+import '../app_constants/app_constants.dart';
+import '../app_constants/app_strings.dart';
+import 'show_dialog.dart';
 
 /// 🔧 [Helpers] provides utility methods for navigation, theming, and context-based operations.
 /// This class centralizes common actions, promoting clean and maintainable code.
@@ -57,6 +61,43 @@ abstract class Helpers {
         // ),
       ),
     );
+  }
+
+  /// ⚠️ Handles side-effects when counter reaches specific values
+  static void handleCounterSideEffects({
+    required BuildContext context,
+    required int counter,
+  }) {
+    // 📢 Show dialog at specific values
+    if (counter == 1 || counter == 3) {
+      DialogService.showAlertDialog(
+        context,
+        '${AppStrings.counterIs} $counter',
+      );
+    }
+    // 🚦 Navigate to another page at specific negative values
+    else if (counter == -1 || counter == -3) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const OtherPage()),
+      );
+    }
+    // 🍫 Show a SnackBar for specific counter values
+    else if (counter == -4 || counter == -2 || counter == 2 || counter == 4) {
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: TextWidget(
+            '${AppStrings.counterIz} $counter',
+            TextType.titleMedium,
+          ),
+          duration: const Duration(seconds: 2),
+          // behavior: SnackBarBehavior.floating,
+          backgroundColor:
+              AppConstants.secondaryColor4DarkTheme.withOpacity(0.5),
+        ),
+      );
+    }
   }
 
   ///

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/counter_bloc.dart';
 import '../../core/exports/core_config_export.dart';
 
-import '../../presentation/widgets/floating_action_button.dart';
+import '../../presentation/widgets/custom_buttons/app_floating_action_button.dart';
 import '../../presentation/widgets/text_widget.dart';
 import '../../presentation/widgets/header_text.dart';
 
@@ -30,13 +30,13 @@ class CounterWithEventTransformerHandling extends StatelessWidget {
             const HeaderText(
                 headlineText: 'Try different combinations ',
                 subTitleText: '"+" - droppable (3s), "-" - restartable (1s)'),
-            const TextWidget(AppStrings.currentValue, TextType.smallHeadline),
+            const TextWidget(AppStrings.currentValue, TextType.headlineSmall),
             BlocBuilder<CounterBlocWithTransformers,
                 CounterStateWithTransformers>(
               builder: (context, state) {
                 return TextWidget(
                   '${state.counter}',
-                  TextType.headline,
+                  TextType.headlineMedium,
                 );
               },
             ),

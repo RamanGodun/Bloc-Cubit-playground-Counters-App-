@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import '../../core/app_constants/app_constants.dart';
-import 'text_widget.dart';
+import '../../../core/app_constants/app_constants.dart';
+import '../text_widget.dart';
 
 /// 🆕 `AppElevatedButton` з сучасним дизайном glassmorphism для iOS/macOS.
 class AppElevatedButton extends StatelessWidget {

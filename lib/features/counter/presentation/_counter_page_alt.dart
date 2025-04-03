@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,7 +10,7 @@ import '../../../core/app_constants/app_strings.dart';
 import '../../../core/utilities/helpers.dart';
 import '../../../core/utilities/show_dialog.dart';
 import '../../../presentation/pages/other_page.dart';
-import '../../../presentation/widgets/floating_action_button.dart';
+import '../../../presentation/widgets/custom_buttons/app_floating_action_button.dart';
 import '../../../presentation/widgets/text_widget.dart';
 import '../counter_on_bloc/counter_bloc.dart';
 import '../counter_on_cubit/counter_cubit.dart';
@@ -58,12 +59,12 @@ class CounterPageAlt extends StatelessWidget {
             children: [
               const TextWidget(
                 AppStrings.currentValue,
-                TextType.smallHeadline,
+                TextType.headlineSmall,
               ),
               const SizedBox(height: AppConstants.largePadding),
               TextWidget(
                 '$counter',
-                TextType.headline,
+                TextType.headlineMedium,
               ),
             ],
           ),
@@ -116,3 +117,5 @@ class CounterPageAlt extends StatelessWidget {
     }
   }
 }
+
+ */

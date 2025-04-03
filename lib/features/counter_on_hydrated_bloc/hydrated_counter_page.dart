@@ -6,7 +6,7 @@ import '../../core/exports/core_config_export.dart';
 import 'hydrated_counter_bloc/counter_bloc.dart';
 
 /* Custom Widgets */
-import '../../presentation/widgets/floating_action_button.dart';
+import '../../presentation/widgets/custom_buttons/app_floating_action_button.dart';
 import '../../presentation/widgets/text_widget.dart';
 
 /// 🟢 `CounterOnHydratedBlocPage` displays the counter with persistence using `HydratedCounterBloc`.
@@ -31,12 +31,12 @@ class CounterOnHydratedBlocPage extends StatelessWidget {
               children: [
                 TextWidget(
                   AppStrings.locallyCashedCounterIs,
-                  TextType.smallHeadline,
+                  TextType.headlineSmall,
                   color: Helpers.getColorScheme(context).onSurface,
                 ),
                 TextWidget(
                   '${state.counter}',
-                  TextType.headline,
+                  TextType.headlineMedium,
                   color: Helpers.getColorScheme(context).onSurface,
                 ),
               ],

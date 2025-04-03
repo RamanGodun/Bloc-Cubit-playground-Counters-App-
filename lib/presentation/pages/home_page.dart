@@ -9,7 +9,7 @@ import '../../core/app_settings_state_management/app_settings_on_bloc/app_settin
 
 /* UI Components */
 import '../../presentation/widgets/text_widget.dart';
-import '../widgets/custom_elevated_button.dart';
+import '../widgets/custom_buttons/app_elevated_button.dart';
 import '../widgets/header_text.dart';
 
 /// 🏠 [HomePage] is the main entry point for navigating through the app features.
@@ -114,7 +114,7 @@ class ButtonsList extends StatelessWidget {
                 Helpers.pushNamed(context, RouteNames.counterDependsOnColor),
           ),
           AppElevatedButton(
-            label: AppStrings.hydratedBlocCounter,
+            label: AppStrings.hydratedBlocCounterButton,
             onPressed: () =>
                 Helpers.pushNamed(context, RouteNames.counterHydrated),
           ),

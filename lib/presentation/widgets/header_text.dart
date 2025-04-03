@@ -22,7 +22,7 @@ class HeaderText extends StatelessWidget {
         const SizedBox(height: AppConstants.largePadding),
         TextWidget(
           headlineText,
-          TextType.headline,
+          TextType.headlineSmall,
           color: textColor,
         ),
         const SizedBox(height: 4),

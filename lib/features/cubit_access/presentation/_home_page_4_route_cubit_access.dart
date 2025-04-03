@@ -1,4 +1,5 @@
 // import 'package:countersapp_bloccubit_playground/core/routing/routes_for_app.dart';
+import 'package:countersapp_bloccubit_playground/presentation/widgets/custom_app_bar.dart';
 import 'package:countersapp_bloccubit_playground/presentation/widgets/header_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,9 +8,8 @@ import '../../../core/app_constants/app_strings.dart';
 import '../../../core/routing/route_names.dart';
 import '../../../core/utilities/helpers.dart';
 import '../counter_cubit_for_route_access/route_access_cubit.dart';
-import '../../../presentation/widgets/custom_elevated_button.dart';
-import '../../../presentation/widgets/text_widget.dart';
-import '../../../presentation/widgets/floating_action_button.dart';
+import '../../../presentation/widgets/custom_buttons/app_elevated_button.dart';
+import '../../../presentation/widgets/custom_buttons/app_floating_action_button.dart';
 
 class HomePage4RouteAccessFeature extends StatelessWidget {
   const HomePage4RouteAccessFeature({super.key});
@@ -30,23 +30,10 @@ class _HomePage4RouteAccessBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<RouteAccessCounterCubit, RouteAccessCounterState>(
-      listener: (context, state) {
-        final wasIncremented = state.wasIncremented;
-        if (wasIncremented != null) {
-          final text = wasIncremented
-              ? AppStrings.incrementedText
-              : AppStrings.decrementedText;
-          Helpers.showStyledSnackBar(context: context, message: text);
-        }
-      },
+      listener: counterListener,
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(
-            title: const TextWidget(
-              AppStrings.blocAccessPageTitle,
-              TextType.titleSmall,
-            ),
-          ),
+          appBar: const CustomAppBar(title: AppStrings.blocAccessPageTitle),
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             spacing: AppConstants.largePadding,
@@ -92,5 +79,16 @@ class _HomePage4RouteAccessBody extends StatelessWidget {
         );
       },
     );
+  }
+
+  ///
+  void counterListener(BuildContext context, RouteAccessCounterState state) {
+    final wasIncremented = state.wasIncremented;
+    if (wasIncremented != null) {
+      final text = wasIncremented
+          ? AppStrings.incrementedText
+          : AppStrings.decrementedText;
+      Helpers.showStyledSnackBar(context: context, message: text);
+    }
   }
 }

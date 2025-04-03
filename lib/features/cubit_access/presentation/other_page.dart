@@ -1,9 +1,10 @@
+import 'package:countersapp_bloccubit_playground/presentation/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/exports/core_config_export.dart';
 import '../counter_cubit_for_route_access/route_access_cubit.dart';
 import '../../../presentation/widgets/text_widget.dart';
-import '../../../presentation/widgets/floating_action_button.dart';
+import '../../../presentation/widgets/custom_buttons/app_floating_action_button.dart';
 
 ///  [OtherPage4CubitRouteAccessFeature] – page with Counter on shared (through Route Access) Cubit
 class OtherPage4CubitRouteAccessFeature extends StatelessWidget {
@@ -14,11 +15,7 @@ class OtherPage4CubitRouteAccessFeature extends StatelessWidget {
     final color = AppConstants.otherPageAppBarColor;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const TextWidget(
-            AppStrings.otherRouteAccessPageTitle, TextType.titleSmall),
-        backgroundColor: color,
-      ),
+      appBar: const CustomAppBar(title: AppStrings.otherRouteAccessPageTitle),
       body: Center(
         child: BlocBuilder<RouteAccessCounterCubit, RouteAccessCounterState>(
           builder: (context, state) => Column(
@@ -27,9 +24,9 @@ class OtherPage4CubitRouteAccessFeature extends StatelessWidget {
             children: [
               const TextWidget(
                 AppStrings.currentValue,
-                TextType.smallHeadline,
+                TextType.headlineSmall,
               ),
-              TextWidget('${state.counter}', TextType.headline),
+              TextWidget('${state.counter}', TextType.headlineMedium),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [

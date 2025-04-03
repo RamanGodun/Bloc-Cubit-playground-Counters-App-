@@ -12,8 +12,8 @@ export '../../features/counter_on_hydrated_bloc/hydrated_counter_bloc/counter_bl
 export '../../features/events_transformer/bloc/counter_bloc.dart';
 
 /// 🎨 Color-Dependent Feature BLoCs
-export '../../features/dependence_from_other_cubit_or_blocs/domain/color_on_bloc/color_bloc.dart';
-export '../../features/dependence_from_other_cubit_or_blocs/domain/counter_on_bloc/counter_bloc.dart';
+export '../../features/counter_that_depends_on_color/domain/color_on_bloc/color_bloc.dart';
+export '../../features/counter_that_depends_on_color/domain/counter_on_bloc/counter_bloc.dart';
 
 /*
  */
@@ -27,8 +27,8 @@ export '../app_settings_state_management/app_settings_on_cubit/app_settings_cubi
 export '../../features/counter/counter_on_cubit/counter_cubit.dart';
 
 // 🎨 Color-Dependent Features
-export '../../features/dependence_from_other_cubit_or_blocs/domain/color_on_cubit/color_cubit.dart';
-export '../../features/dependence_from_other_cubit_or_blocs/domain/counter_on_cubit/counter_which_depends_on_color_cubit.dart';
+export '../../features/counter_that_depends_on_color/domain/color_on_cubit/color_cubit.dart';
+export '../../features/counter_that_depends_on_color/domain/counter_on_cubit/counter_which_depends_on_color_cubit.dart';
 
 /// 🌐 For Route Access feature Cubit
 export '../../features/cubit_access/counter_cubit_for_route_access/route_access_cubit.dart';

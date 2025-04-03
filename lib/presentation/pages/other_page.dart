@@ -18,7 +18,7 @@ class OtherPage extends StatelessWidget {
       body: const Center(
         child: TextWidget(
           AppStrings.otherPageBody,
-          TextType.smallHeadline,
+          TextType.headlineSmall,
         ),
       ),
     );

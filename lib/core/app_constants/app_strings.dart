@@ -23,7 +23,6 @@ abstract class AppStrings {
       'Counter, set on previous page, is:';
   static const String currentValue = 'Current counter value is:';
   static const String decrementHeroTag = 'decrement';
-  static const String hydratedBlocCounter = 'to Hydrated BLoC Counter';
   static const String incrementButton = 'Increment Counter';
   static const String incrementHeroTag = 'increment';
   static const String locallyCashedCounterIs =
@@ -37,9 +36,8 @@ abstract class AppStrings {
   static const String eventTransformersDemo = 'Counter with events transformer';
   static const String goToCounterDependsOnColor =
       'to Counter, that depends on Color';
-  static const String goToCounterPage = 'to Counter';
-  static const String hydratedBlocCounterButton =
-      'to Hydrated BLoC Counter Page';
+  static const String goToCounterPage = 'to Counter with side effects';
+  static const String hydratedBlocCounterButton = 'to Counter on Hydrated BLoC';
   static const String showCounterButton = 'Show Me Counter';
   static const String toStateAccessPage = 'to State access feature';
   static const String toSeeCounterValue = 'to see the Counter value';

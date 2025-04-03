@@ -8,7 +8,7 @@ import '../../core/app_settings_state_management/app_settings_on_cubit/app_setti
 import '../../core/app_settings_state_management/app_settings_on_bloc/app_settings_bloc.dart';
 
 /* Presentation */
-import '../widgets/custom_elevated_button.dart';
+import '../widgets/custom_buttons/app_elevated_button.dart';
 import '../widgets/text_widget.dart';
 
 /// 🌓 [ThemePage] allows toggling between light and dark themes.

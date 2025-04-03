@@ -7,12 +7,13 @@ import '../../../core/app_constants/app_strings.dart';
 import '../../../core/app_constants/app_constants.dart';
 
 /* State Management */
+import '../../../presentation/widgets/custom_app_bar.dart';
 import '../domain/_state_switching_of_counter_which_depends_on_color/factory_for_counter_which_depends_on_color.dart';
 import '../domain/counter_on_bloc/counter_bloc.dart';
 import '../domain/counter_on_cubit/counter_which_depends_on_color_cubit.dart';
 
 /* UI components */
-import '../../../presentation/widgets/custom_elevated_button.dart';
+import '../../../presentation/widgets/custom_buttons/app_elevated_button.dart';
 import '../../../presentation/widgets/text_widget.dart';
 
 class PageForCounterThatDependsOnColor extends StatelessWidget {
@@ -39,13 +40,10 @@ class _UIForCounterThatDependsOnColor extends StatelessWidget {
       builder: (context, uiState) {
         return Scaffold(
           backgroundColor: uiState.backgroundColor,
-          appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            title: TextWidget(
-              uiState.appBarTitle,
-              TextType.titleSmall,
-              color: AppConstants.darkForegroundColor,
-            ),
+          appBar: CustomAppBar(
+            title: uiState.appBarTitle,
+            isTransparent: true,
+            titleColor: AppConstants.darkForegroundColor,
           ),
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -75,7 +73,7 @@ class CounterDisplayWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-// 🔍 Determines if BLoC or Cubit is being used based on the current app state
+    // 🔍 Determines if BLoC or Cubit is being used based on the current app state
     final isUsingBloc = context.select<UiSettingsCubit, bool>(
       (cubit) => cubit.state.isUsingBlocForFeatures,
     );
@@ -86,7 +84,6 @@ class CounterDisplayWidget extends StatelessWidget {
   }
 }
 
-///
 class _CounterTextOnBloc extends StatelessWidget {
   const _CounterTextOnBloc();
 
@@ -97,14 +94,13 @@ class _CounterTextOnBloc extends StatelessWidget {
       selector: (state) => state.counter,
       builder: (_, counter) => TextWidget(
         '$counter',
-        TextType.headline,
+        TextType.headlineMedium,
         color: AppConstants.lightScaffoldBackgroundColor,
       ),
     );
   }
 }
 
-///
 class _CounterTextCubit extends StatelessWidget {
   const _CounterTextCubit();
 
@@ -115,7 +111,7 @@ class _CounterTextCubit extends StatelessWidget {
       selector: (state) => state.counter,
       builder: (_, counter) => TextWidget(
         '$counter',
-        TextType.headline,
+        TextType.headlineMedium,
         color: AppConstants.lightScaffoldBackgroundColor,
       ),
     );
