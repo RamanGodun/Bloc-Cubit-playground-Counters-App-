@@ -9,9 +9,13 @@ enum AppSettingsStateManagement {
 /// Centralizes state management strategy and exposes utility methods for easy access.
 class AppConfig {
   /// 🛠️ Defines the **default state management approach** for the app.
-  static const AppSettingsStateManagement stateManagement =
-      AppSettingsStateManagement
-          .onCubit; // ! Change this to switch between [AppSettingsStateManagement.onBloc] and [AppSettingsStateManagement.onCubit]
+  /// ! Change this to switch between [AppSettingsStateManagement.onBloc] and [AppSettingsStateManagement.onCubit]
+  static AppSettingsStateManagement stateManagement =
+      AppSettingsStateManagement.onCubit;
+
+  /// Not used, but need for correct tests [testWidgets] running in [main_test.dart]
+  static void setStateManagement(AppSettingsStateManagement newValue) =>
+      stateManagement = newValue;
 
   /// ✅ **Utility getter** to check if the app is using **BLoC** for state management.
   /// Returns **true** if [AppSettingsStateManagement.onBloc] is active, otherwise **false**.
