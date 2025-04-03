@@ -12,16 +12,14 @@ import '../../../presentation/widgets/text_widget.dart';
 
 /* State management */
 import '../_counter_state_switching/counter_factory.dart';
-import '../_counter_state_switching/counter_manager.dart';
 import '../counter_on_bloc/counter_bloc.dart';
 import '../counter_on_cubit/counter_cubit.dart';
 
 part 'widgets_for_counter_page.dart';
 
 /// 🟢 `CounterPage` dynamically handles state management using BLoC or Cubit
-
-class CounterPage extends StatelessWidget {
-  const CounterPage({super.key});
+class PageForCounterWithSideEffects extends StatelessWidget {
+  const PageForCounterWithSideEffects({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,41 +35,35 @@ class _ViewForCounterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 🔄 Determine whether to use BLoC or Cubit and create the appropriate manager
-    // final isCounterOnBloc1 = context.select<UiSettingsCubit, bool>(
-    //   (cubit) => cubit.state.isUsingBlocForFeatures,
-    // );
-    // final appBarText1 = context.select<UiSettingsCubit, String>(
-    //   (cubit) => cubit.state.appBarTitle,
-    // );
-    final isCounterOnBloc = CounterFactory.isCounterOnBloc(context,
-        isAppSettingsOnBloc: AppConfig.isAppSettingsOnBlocStateShape);
-    final appBarText = isCounterOnBloc
-        ? AppStrings.counterPageTitleOnBloc
-        : AppStrings.counterPageTitleOnCubit;
-
-    final CounterManager counterManager =
-        CounterFactory.create(context, isCounterOnBloc: isCounterOnBloc);
+    final settings = context.watch<UiSettingsCubit>().state;
+    final counterManager = CounterFactory.create(
+      context,
+      isCounterOnBloc: settings.isUsingBlocForFeatures,
+    );
 
     return Scaffold(
-      appBar: CustomAppBar(title: appBarText),
-      body: isCounterOnBloc
-          ? BlocListener<CounterOnBloc, CounterOnBLoCState>(
-              listener: (context, state) => Helpers.handleCounterSideEffects(
-                  context: context, counter: state.counter),
-              child: _CounterPageUI(
-                isCounterOnBloc: isCounterOnBloc,
-                counterManager: counterManager,
-              ),
-            )
-          : BlocListener<CounterOnCubit, CounterOnCubitState>(
-              listener: (context, state) => Helpers.handleCounterSideEffects(
-                  context: context, counter: state.counter),
-              child: _CounterPageUI(
-                isCounterOnBloc: isCounterOnBloc,
-                counterManager: counterManager,
-              ),
-            ),
+      appBar: CustomAppBar(title: settings.appBarTitle),
+      body:
+          // 🧩🔄 Determine whether to use BLoC or Cubit to create the appropriate [_CounterPageUI]
+          settings.isUsingBlocForFeatures
+              ? BlocListener<CounterOnBloc, CounterOnBLoCState>(
+                  listener: (context, state) =>
+                      Helpers.handleCounterSideEffects(
+                          context: context, counter: state.counter),
+                  child: _CounterPageUI(
+                    isCounterOnBloc: true,
+                    counterManager: counterManager,
+                  ),
+                )
+              : BlocListener<CounterOnCubit, CounterOnCubitState>(
+                  listener: (context, state) =>
+                      Helpers.handleCounterSideEffects(
+                          context: context, counter: state.counter),
+                  child: _CounterPageUI(
+                    isCounterOnBloc: false,
+                    counterManager: counterManager,
+                  ),
+                ),
     );
   }
 }

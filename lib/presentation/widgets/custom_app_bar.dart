@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../core/utilities/helpers.dart';
 import 'text_widget.dart';
 
 /// 🎨 **[CustomAppBar]
@@ -36,7 +37,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       );
     }
     final defaultBackgroundColor = Theme.of(context).scaffoldBackgroundColor;
-    final bool hasCustomBackgroundColor = backgroundColor != null;
+    final hasCustomBackgroundColor = backgroundColor != null;
+    final colorScheme = Helpers.getColorScheme(context);
 
     ///
     return AppBar(
@@ -61,6 +63,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           for (int i = 0; i < actionIcons!.length; i++)
             IconButton(
               icon: Icon(actionIcons![i]),
+              color: colorScheme.primary,
               onPressed: actionCallbacks![i],
             ),
         if ((actionIcons?.isNotEmpty ?? false) &&

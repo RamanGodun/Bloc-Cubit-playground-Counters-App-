@@ -7,7 +7,7 @@ library;
 export '../app_settings_state_management/app_settings_on_bloc/app_settings_bloc.dart';
 
 /// 🔢 Counter Features' BLoCs
-export '../../features/counter/counter_on_bloc/counter_bloc.dart';
+export '../../features/counter__with_side_effects/counter_on_bloc/counter_bloc.dart';
 export '../../features/counter_on_hydrated_bloc/hydrated_counter_bloc/counter_bloc.dart';
 export '../../features/events_transformer/bloc/counter_bloc.dart';
 
@@ -24,7 +24,7 @@ export '../../features/counter_that_depends_on_color/domain/counter_on_bloc/coun
 export '../app_settings_state_management/app_settings_on_cubit/app_settings_cubit.dart';
 
 /// 🔢 Counter Feature Cubit
-export '../../features/counter/counter_on_cubit/counter_cubit.dart';
+export '../../features/counter__with_side_effects/counter_on_cubit/counter_cubit.dart';
 
 // 🎨 Color-Dependent Features
 export '../../features/counter_that_depends_on_color/domain/color_on_cubit/color_cubit.dart';

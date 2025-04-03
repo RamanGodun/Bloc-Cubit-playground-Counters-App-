@@ -12,14 +12,14 @@ import '../../presentation/pages/home_page.dart';
 import '../../presentation/pages/other_page.dart';
 import '../../presentation/pages/theme_page.dart';
 
-import '../../features/counter/presentation/counter_page_.dart';
+import '../../features/counter__with_side_effects/presentation/counter_page_.dart';
 import '../../features/counter_on_hydrated_bloc/hydrated_counter_page.dart';
 import '../../features/events_transformer/counter_with_events_transformer_page.dart';
 
-import '../../features/counter_that_depends_on_color/presentation/counter_depends_on_color_page.dart';
+import '../../features/counter_that_depends_on_color/counter_depends_on_color_page.dart';
 
 import '../../features/cubit_access/presentation/_home_page_4_route_cubit_access.dart';
-import '../../features/cubit_access/presentation/_main_page_4_route_cubit_access.dart';
+import '../../features/cubit_access/presentation/main_page_4_route_cubit_access.dart';
 import '../../features/cubit_access/presentation/another_page.dart';
 import '../../features/cubit_access/presentation/other_page.dart';
 
@@ -42,7 +42,7 @@ class AppRoutes {
         return _buildRoute(const ThemePage());
 
       case RouteNames.counterPage:
-        return _buildRoute(const CounterPage());
+        return _buildRoute(const PageForCounterWithSideEffects());
 
       case RouteNames.otherPage:
         return _buildRoute(const OtherPage());
@@ -59,7 +59,7 @@ class AppRoutes {
         return _buildRoute(const HomePage4RouteAccessFeature());
 
       case RouteNames.counterEventTransformerDemo:
-        return _buildRoute(const CounterWithEventTransformerHandling());
+        return _buildRoute(const PageForCounterWithEventTransformerHandling());
 
       /// For cubit with route access feature:
       case RouteNames.routeAccessHome:

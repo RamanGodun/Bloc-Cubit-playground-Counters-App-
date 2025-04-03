@@ -1,97 +1,66 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import '../../core/app_settings_state_management/ui_settings_state/ui_settings_cubit.dart';
 import '../../core/exports/core_config_export.dart';
-
-/* State Management */
-import '../../core/app_settings_state_management/app_settings_on_cubit/app_settings_cubit.dart';
-import '../../core/app_settings_state_management/app_settings_on_bloc/app_settings_bloc.dart';
-
-/* UI Components */
-import '../../presentation/widgets/text_widget.dart';
+import '../../core/exports/cubits_and_blocs_exports.dart'
+    show AppSettingsOnBloc, AppSettingsOnCubit, ToggleUseBlocEvent;
+import '../widgets/custom_app_bar.dart';
 import '../widgets/custom_buttons/app_elevated_button.dart';
 import '../widgets/header_text.dart';
 
-/// 🏠 [HomePage] is the main entry point for navigating through the app features.
-/// It dynamically switches between BLoC and Cubit state management based on [AppConfig].
+/// 🏠 [HomePage] — root screen for navigating between feature demos.
+/// Initializes [UiSettingsCubit] to configure dynamic UI elements (theme, state manager).
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // 🔍 Determine if the app uses BLoC or Cubit for state management
-    final isUsingBlocForAppFeatures = AppConfig.isAppSettingsOnBlocStateShape
-        ? context.select<AppSettingsOnBloc, bool>(
-            (bloc) => bloc.state.isUsingBlocForAppFeatures)
-        : context.select<AppSettingsOnCubit, bool>(
-            (cubit) => cubit.state.isUsingBlocForAppFeatures);
-
-    final isDarkMode = isUsingBlocForAppFeatures
-        ? context.select<AppSettingsOnBloc, bool>(
-            (bloc) => bloc.state.isDarkThemeForBloc)
-        : context.select<AppSettingsOnCubit, bool>(
-            (cubit) => cubit.state.isDarkThemeForCubit);
-
-/*
-? Alternative: 
-  // 🔍 Determine if the app uses BLoC or Cubit for state management
-    final state = AppConfig.isAppSettingsOnBlocStateShape
-        ? context.watch<AppSettingsOnBloc>().state
-        : context.watch<AppSettingsOnCubit>().state;
-
-  !  // ⚠️ Casting to dynamic is used to avoid type issues
-  !  // Be careful: Incorrect state casting might cause runtime exceptions
-    final isUseBloc = (state as dynamic).isUsingBlocForAppFeatures;
-    final isDarkMode = isUseBloc
-        ? (state as dynamic).isDarkThemeForBloc
-        : (state as dynamic).isDarkThemeForCubit;
- */
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Center(
-          child: TextWidget(
-            isUsingBlocForAppFeatures
-                ? AppStrings.appIsOnBloc
-                : AppStrings.appIsOnCubit,
-            TextType.titleMedium,
-          ),
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(
-              isDarkMode
-                  ? AppConstants.darkModeIcon
-                  : AppConstants.lightModeIcon,
-              color: Helpers.getColorScheme(context).primary,
-            ),
-            onPressed: () => Helpers.pushNamed(context, RouteNames.themePage),
-            tooltip: AppStrings.toggleThemeButton,
-          ),
-          IconButton(
-            icon: Icon(
-              isUsingBlocForAppFeatures
-                  ? AppConstants.syncIcon
-                  : AppConstants.changeCircleIcon,
-              color: Helpers.getColorScheme(context).primary,
-            ),
-            onPressed: () => AppConfig.isAppSettingsOnBlocStateShape
-                ? context.read<AppSettingsOnBloc>().add(ToggleUseBlocEvent())
-                : context.read<AppSettingsOnCubit>().toggleUseBloc(),
-            tooltip:
-                'Switch to ${isUsingBlocForAppFeatures ? 'Cubit' : 'BLoC'} Mode',
-          ),
-        ],
-      ),
-      body: const ButtonsList(),
+    return BlocProvider(
+      create: (ctx) => UiSettingsCubit(ctx),
+      child: const _ViewForHomePage(),
     );
   }
 }
 
-class ButtonsList extends StatelessWidget {
-  const ButtonsList({
-    super.key,
-  });
+/// 🧩 [_ViewForHomePage] — UI view that reflects current settings state.
+/// Dynamically updates AppBar content and handles app settings interactions.
+class _ViewForHomePage extends StatelessWidget {
+  const _ViewForHomePage();
+
+  @override
+  Widget build(BuildContext context) {
+    final settings = context.watch<UiSettingsCubit>().state;
+    final isUsingBlocForAppFeatures = settings.isUsingBlocForFeatures;
+    final isDarkMode = settings.isDarkMode;
+
+    return Scaffold(
+      appBar: CustomAppBar(
+        isCenteredTitle: true,
+        title: isUsingBlocForAppFeatures
+            ? AppStrings.appIsOnBloc
+            : AppStrings.appIsOnCubit,
+        actionIcons: [
+          isDarkMode ? AppConstants.darkModeIcon : AppConstants.lightModeIcon,
+          isUsingBlocForAppFeatures
+              ? AppConstants.syncIcon
+              : AppConstants.changeCircleIcon,
+        ],
+        actionCallbacks: [
+          () => Helpers.pushNamed(context, RouteNames.themePage),
+          () => AppConfig.isAppSettingsOnBlocStateShape
+              ? context.read<AppSettingsOnBloc>().add(ToggleUseBlocEvent())
+              : context.read<AppSettingsOnCubit>().toggleUseBloc()
+        ],
+      ),
+      body: const _ButtonsListForGoToFeaturesPages(),
+    );
+  }
+}
+
+/// 📦 [_ButtonsListForGoToFeaturesPages] — list of navigation buttons
+/// to demonstrate different feature implementations using Bloc/Cubit.
+class _ButtonsListForGoToFeaturesPages extends StatelessWidget {
+  const _ButtonsListForGoToFeaturesPages();
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +72,8 @@ class ButtonsList extends StatelessWidget {
             headlineText: AppStrings.exploreFeatures,
             subTitleText: AppStrings.smashThoseButtons,
           ),
-          // 🚀 Navigation Buttons using `AppElevatedButton`
+
+          /// Navigation to feature pages
           AppElevatedButton(
             label: AppStrings.goToCounterPage,
             onPressed: () => Helpers.pushNamed(context, RouteNames.counterPage),
@@ -129,6 +99,8 @@ class ButtonsList extends StatelessWidget {
               RouteNames.counterEventTransformerDemo,
             ),
           ),
+
+          const SizedBox(height: AppConstants.hugePadding)
         ],
       ),
     );

@@ -40,8 +40,6 @@ class StateManagementProvider extends StatelessWidget {
         BlocProvider(
             create: (context) => CounterBlocWhichDependsOnColorBLoC(
                 colorBloc: context.read<ColorOnBloc>())),
-        BlocProvider(create: (_) => HydratedCounterBloc()),
-        BlocProvider(create: (_) => CounterBlocWithTransformers()),
 
         /// 🟧 Cubit Providers
         BlocProvider(create: (_) => AppSettingsOnCubit()),

@@ -64,9 +64,11 @@ abstract class AppConstants {
   static const internetIcon = Icons.wifi;
 
   /// 📏 Paddings
-  static const double smallPadding = 5.0;
-  static const double mediumPadding = 10.0;
-  static const double largePadding = 20.0;
+  static const double littlePadding = 5.0;
+  static const double smallPadding = 10.0;
+  static const double mediumPadding = 20.0;
+  static const double largePadding = 30.0;
+  static const double hugePadding = 50.0;
 
   /// 📐 Sizes
   static const double appBarElevation = 0.0;

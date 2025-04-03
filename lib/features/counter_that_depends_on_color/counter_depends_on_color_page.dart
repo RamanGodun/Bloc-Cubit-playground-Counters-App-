@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 /* Config */
-import '../../../core/app_settings_state_management/ui_settings_state/ui_settings_cubit.dart';
-import '../../../core/app_constants/app_strings.dart';
-import '../../../core/app_constants/app_constants.dart';
+import '../../core/app_settings_state_management/ui_settings_state/ui_settings_cubit.dart';
+import '../../core/app_constants/app_strings.dart';
+import '../../core/app_constants/app_constants.dart';
 
 /* State Management */
-import '../../../presentation/widgets/custom_app_bar.dart';
-import '../domain/_state_switching_of_counter_which_depends_on_color/factory_for_counter_which_depends_on_color.dart';
-import '../domain/counter_on_bloc/counter_bloc.dart';
-import '../domain/counter_on_cubit/counter_which_depends_on_color_cubit.dart';
+import '../../presentation/widgets/custom_app_bar.dart';
+import 'domain/_state_switching_of_counter_which_depends_on_color/factory_for_counter_which_depends_on_color.dart';
+import 'domain/counter_on_bloc/counter_bloc.dart';
+import 'domain/counter_on_cubit/counter_which_depends_on_color_cubit.dart';
 
 /* UI components */
-import '../../../presentation/widgets/custom_buttons/app_elevated_button.dart';
-import '../../../presentation/widgets/text_widget.dart';
+import '../../presentation/widgets/custom_buttons/app_elevated_button.dart';
+import '../../presentation/widgets/text_widget.dart';
 
 class PageForCounterThatDependsOnColor extends StatelessWidget {
   const PageForCounterThatDependsOnColor({super.key});

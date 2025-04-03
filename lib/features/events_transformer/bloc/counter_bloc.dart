@@ -30,7 +30,7 @@ class CounterBlocWithTransformers
     IncrementCounterEventWithTransformers event,
     Emitter<CounterStateWithTransformers> emit,
   ) async {
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 2));
     emit(state.copyWith(counter: state.counter + 1));
   }
 

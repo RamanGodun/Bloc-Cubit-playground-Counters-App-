@@ -67,6 +67,10 @@ abstract class AppStrings {
   /// 🆕 Custom Header Texts
   static const String counterWithSideEffectsHeadline = 'This counter is with';
   static const String counterWithSideEffectsSubtitle = 'some side effects😉';
+  static const String forEvensTransformerHeadline =
+      'Try different combinations ';
+  static const String forEvensTransformerSubTitle =
+      '"+" - droppable (2s), "-" - restartable (1s)';
 
   /// 🆕 Dynamic Counter Text Method
   static String currentCounterValue(int counter) =>
