@@ -3,15 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 /* Config */
 import '../../../core/app_settings_state_management/ui_settings_state/ui_settings_cubit.dart';
-import '../../../core/config/app_config.dart';
 import '../../../core/app_constants/app_strings.dart';
 import '../../../core/app_constants/app_constants.dart';
 
 /* State Management */
-import '../../../core/app_settings_state_management/app_settings_on_cubit/app_settings_cubit.dart';
-import '../../../core/app_settings_state_management/app_settings_on_bloc/app_settings_bloc.dart';
-import '../../../core/routing/route_names.dart';
-import '../../../core/utilities/helpers.dart';
 import '../domain/_state_switching_of_counter_which_depends_on_color/factory_for_counter_which_depends_on_color.dart';
 import '../domain/counter_on_bloc/counter_bloc.dart';
 import '../domain/counter_on_cubit/counter_which_depends_on_color_cubit.dart';
@@ -19,7 +14,6 @@ import '../domain/counter_on_cubit/counter_which_depends_on_color_cubit.dart';
 /* UI components */
 import '../../../presentation/widgets/custom_elevated_button.dart';
 import '../../../presentation/widgets/text_widget.dart';
-part 'counter_display_w.dart';
 
 class PageForCounterThatDependsOnColor extends StatelessWidget {
   const PageForCounterThatDependsOnColor({super.key});
@@ -52,19 +46,6 @@ class _UIForCounterThatDependsOnColor extends StatelessWidget {
               TextType.titleSmall,
               color: AppConstants.darkForegroundColor,
             ),
-            actions: [
-              IconButton(
-                icon: Icon(
-                  uiState.isDarkMode
-                      ? AppConstants.darkModeIcon
-                      : AppConstants.lightModeIcon,
-                  color: Helpers.getColorScheme(context).primary,
-                ),
-                onPressed: () =>
-                    Helpers.pushNamed(context, RouteNames.themePage),
-                tooltip: AppStrings.toggleThemeButton,
-              )
-            ],
           ),
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -83,6 +64,60 @@ class _UIForCounterThatDependsOnColor extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+/// 🔢 Displays the counter value with optimized UI rebuilds using `BlocSelector`
+/// and `RepaintBoundary` for performance boost.
+class CounterDisplayWidget extends StatelessWidget {
+  const CounterDisplayWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+// 🔍 Determines if BLoC or Cubit is being used based on the current app state
+    final isUsingBloc = context.select<UiSettingsCubit, bool>(
+      (cubit) => cubit.state.isUsingBlocForFeatures,
+    );
+    return RepaintBoundary(
+      child:
+          isUsingBloc ? const _CounterTextOnBloc() : const _CounterTextCubit(),
+    );
+  }
+}
+
+///
+class _CounterTextOnBloc extends StatelessWidget {
+  const _CounterTextOnBloc();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocSelector<CounterBlocWhichDependsOnColorBLoC,
+        CounterStateWhichDependsOnColorBloc, int>(
+      selector: (state) => state.counter,
+      builder: (_, counter) => TextWidget(
+        '$counter',
+        TextType.headline,
+        color: AppConstants.lightScaffoldBackgroundColor,
+      ),
+    );
+  }
+}
+
+///
+class _CounterTextCubit extends StatelessWidget {
+  const _CounterTextCubit();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocSelector<CounterCubitWhichDependsOnColorCubit,
+        CounterCubitStateWhichDependsOnColorCubit, int>(
+      selector: (state) => state.counter,
+      builder: (_, counter) => TextWidget(
+        '$counter',
+        TextType.headline,
+        color: AppConstants.lightScaffoldBackgroundColor,
+      ),
     );
   }
 }

@@ -15,11 +15,11 @@ class UiSettingsCubit extends Cubit<UiSettingsState> {
   final List<StreamSubscription> _subscriptions = [];
 
   UiSettingsCubit(this.context) : super(_initState(context)) {
-    final isUsingBloc = AppConfig.isAppSettingsOnBlocStateShape
+    final isUsingBlocForFeatures = AppConfig.isAppSettingsOnBlocStateShape
         ? context.read<AppSettingsOnBloc>().state.isUsingBlocForAppFeatures
         : context.read<AppSettingsOnCubit>().state.isUsingBlocForAppFeatures;
 
-    if (isUsingBloc) {
+    if (isUsingBlocForFeatures) {
       _subscriptions.addAll([
         context.read<AppSettingsOnBloc>().stream.listen((_) => _updateState()),
         context.read<ColorOnBloc>().stream.listen((_) => _updateState()),
@@ -33,24 +33,24 @@ class UiSettingsCubit extends Cubit<UiSettingsState> {
   }
 
   static UiSettingsState _initState(BuildContext context) {
-    final isUsingBloc = AppConfig.isAppSettingsOnBlocStateShape
+    final isUsingBlocForFeatures = AppConfig.isAppSettingsOnBlocStateShape
         ? context.read<AppSettingsOnBloc>().state.isUsingBlocForAppFeatures
         : context.read<AppSettingsOnCubit>().state.isUsingBlocForAppFeatures;
 
-    final backgroundColor = isUsingBloc
+    final backgroundColor = isUsingBlocForFeatures
         ? context.read<ColorOnBloc>().state.color
         : context.read<ColorOnCubit>().state.color;
 
-    final isDarkMode = isUsingBloc
+    final isDarkMode = isUsingBlocForFeatures
         ? context.read<AppSettingsOnBloc>().state.isDarkThemeForBloc
         : context.read<AppSettingsOnCubit>().state.isDarkThemeForCubit;
 
-    final appBarText = isUsingBloc
+    final appBarText = isUsingBlocForFeatures
         ? AppStrings.counterPageTitleOnBloc
         : AppStrings.counterPageTitleOnCubit;
 
     return UiSettingsState(
-      isUsingBloc: isUsingBloc,
+      isUsingBlocForFeatures: isUsingBlocForFeatures,
       isDarkMode: isDarkMode,
       backgroundColor: backgroundColor,
       appBarTitle: appBarText,

@@ -32,8 +32,10 @@ class RouteNames {
   static const String otherPage = '/counterPage/otherPage';
 
   /// 🚏 Pages for feature of "State Access (through routes)""
-  static const String routeAccessHome = '/routeAccess';
-  static const String routeAccessMainPage = '/routeAccess/main';
-  static const String routeAccessOtherPage = '/routeAccess/main/other';
-  static const String routeAccessAnotherPage = '/routeAccess/main/another';
+  static const String routeAccessHome = '/routeAccessHomePage';
+  static const String routeAccessMainPage =
+      '/routeAccessHomePage/routeAccessMainPage';
+  static const String routeAccessOtherPage =
+      '/routeAccess/routeAccessMainPage/otherPage';
+  static const String routeAccessAnotherPage = '/routeAccess/main/anotherPage';
 }
